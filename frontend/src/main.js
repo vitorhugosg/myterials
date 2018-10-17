@@ -64,8 +64,8 @@ if(process.env.NODE_ENV == 'development'){
   Vue.prototype.$urlAPI = 'http://127.0.0.1:8000/api/';
   Vue.prototype.$urlBaseAssets = 'http://127.0.0.1:8000/storage/';
 }else{
-  Vue.prototype.$urlAPI = 'https://api.aliencodes.com.br/api/';
-  Vue.prototype.$urlBaseAssets = 'https://api.aliencodes.com.br/storage/';
+  Vue.prototype.$urlAPI = 'https://api.myterials.com/api/';
+  Vue.prototype.$urlBaseAssets = 'https://api.myterials.com/storage/';
 }
 
 
