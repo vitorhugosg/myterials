@@ -11,9 +11,10 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'dayspan-vuetify/dist/lib/dayspan-vuetify.min.css'
-import 'bootstrap/dist/css/bootstrap.css'
+import bootstrap from 'booststrap'
 import 'mdbvue/build/css/mdb.css'
 
+Vue.use(bootstrap)
 Vue.use(VueGoogleMaps, {
   load: {
     libraries: 'places'
