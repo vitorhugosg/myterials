@@ -1,36 +1,22 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import Vuetify from 'vuetify'
-import DaySpanVuetify from 'dayspan-vuetify'
 import App from './App'
 import router from './router'
+import Vuetify from 'vuetify'
+import DaySpanVuetify from 'dayspan-vuetify'
 import Vuex from 'vuex'
+//VUEEX
+Vue.use(Vuex)
 import axios from 'axios'
 import * as VueGoogleMaps from 'vue2-google-maps'
 import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'dayspan-vuetify/dist/lib/dayspan-vuetify.min.css'
-import bootstrap from 'booststrap'
 import 'mdbvue/build/css/mdb.css'
+import 'bootstrap/dist/css/bootstrap.css'
 
-Vue.use(bootstrap)
-Vue.use(VueGoogleMaps, {
-  load: {
-    libraries: 'places'
-  }
-})
 
-Vue.use(Vuetify)
-
-Vue.use(DaySpanVuetify, {
-  methods: {
-    getDefaultEventColor: () => '#1976d2'
-  }
-})
-//VUEEX
-Vue.use(Vuex)
-//configurando vuex
 var store = {
   //variaveis e listas
   state: {
@@ -57,6 +43,21 @@ var store = {
     }
   }
 }
+
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    libraries: 'places'
+  }
+})
+
+Vue.use(Vuetify)
+Vue.use(DaySpanVuetify, {
+  methods: {
+    getDefaultEventColor: () => '#1976d2'
+  }
+})
+
 //definindo stancia do axios:
 Vue.prototype.$http = axios;
 //definindo variavel URL
