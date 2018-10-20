@@ -58,7 +58,6 @@ export default {
     },
     methods:{
       registerUser(){
-        alert();
         this.errorValidation = '';
         let data = {};
         data.name = this.name;

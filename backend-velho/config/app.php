@@ -147,6 +147,9 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        // other providers ommited
+        \ResultSystems\Cors\CorsServiceProvider::class,
+
         /*
          * Package Service Providers...
          */
