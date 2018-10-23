@@ -16,6 +16,29 @@
       <li>
         <ul class="collapsible">
           <li>
+            <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 11 ? active = 0 : active = 11">
+              <mdb-icon icon="tachometer"/> Organization<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 11 ? 'rotated' : ''"/>
+            </a>
+            <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
+              <mdb-sub-menu tag="ul" v-if="active === 11" class="collapse-side-nav-item">
+                <li><router-link class="ripple-parent" @click.native="wave" to="/" v-for="organization in organizations" :key="organization.id">{{organization.name}}</router-link></li>
+                <li><router-link class="ripple-parent" @click.native="wave" to="/admin/organization">View Organizations</router-link></li>
+                <li><router-link class="ripple-parent" @click.native="wave" to="/admin/organization/add">Add Organization</router-link></li>
+              </mdb-sub-menu>
+            </transition>
+          </li>
+          <li>
+            <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 22 ? active = 0 : active = 22">
+              <mdb-icon icon="tachometer"/> Companyes<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 22 ? 'rotated' : ''"/>
+            </a>
+            <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
+              <mdb-sub-menu tag="ul" v-if="active === 22" class="collapse-side-nav-item">
+                <li><router-link class="ripple-parent" @click.native="wave" to="/">AlienCodes</router-link></li>
+                <li><router-link class="ripple-parent" @click.native="wave" to="/dashboards/v-2">Add Organization</router-link></li>
+              </mdb-sub-menu>
+            </transition>
+          </li>
+          <li>
             <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 1 ? active = 0 : active = 1">
               <mdb-icon icon="tachometer"/> Dashboards<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 1 ? 'rotated' : ''"/>
             </a>
@@ -187,8 +210,29 @@ export default {
       toggle: false,
       active: 0,
       elHeight: 0,
-      windowHeight: 0
+      windowHeight: 0,
+      organizations: '',
+      errorGetOrganization: ''
     }
+  },
+  created(){
+      this.$http.get(this.$urlAPI + 'organization/getforuser',{
+          "headers":{
+              "authorization": "Bearer "+  this.$store.getters.getToken
+          }
+      }).then(response =>{
+          if(response.data.status){
+              console.log(response.data);
+              localStorage.setItem('organizations', JSON.stringify(response.data.organization));
+              this.$store.commit('setOrganizations', response.data.organization);
+              this.organizations = response.data.organization;
+          }else{
+              this.errorGetOrganization = 'Error get informations for organizations';
+          }
+      }).catch(e => {
+          console.log(e)
+          this.errorValidation = 'Houve uma falha ao se conectar com servidor';
+      });
   },
   methods: {
     beforeEnter (el) {

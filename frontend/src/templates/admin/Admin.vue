@@ -47,6 +47,9 @@ export default {
     }
   },
   mounted () {
+    if(!sessionStorage.getItem('usuario') || sessionStorage.getItem('usuario') == null){
+        this.$router.push('/');
+    }
     this.activePage = this.$route.name
     this.$on('toggle', function (value) {
       this.toggle = value

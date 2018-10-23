@@ -58,11 +58,14 @@ import Modals from '@/components/modals/Modals'
 import Charts from '@/components/charts/Charts'
 import Sections from '@/components/sections/Sections'
 import Calendar from '@/components/calendar/Calendar'
+//APLICATION
 import Home from '@/pages/home/Home'
 import LoginMeu from '@/pages/login/Login'
 import RegisterMeu from '@/pages/login/Register'
 import adminHome from '@/pages/dashboard/DashboardHome'
-
+import addOrganization from '@/pages/dashboard/organization/addOrganization'
+import viewOrganizations from '@/pages/dashboard/organization/viewOrganizations'
+//APLICATION
 Vue.use(Router)
 
 export default new Router({
@@ -88,8 +91,16 @@ export default new Router({
       name: 'adminHome',
       component: adminHome
     },
-
-    
+    {
+      path: '/admin/organization/add',
+      name: 'Add Organization',
+      component: addOrganization,
+    },
+    {
+      path: '/admin/organization',
+      name: 'View Organizations',
+      component: viewOrganizations,
+    },
     //Material Design
     {
       path: '/mdbvue',

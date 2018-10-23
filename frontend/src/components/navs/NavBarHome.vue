@@ -26,7 +26,24 @@ export default {
         mdbNavbarBrand
 
     },
-    name: 'NavBarHome'
+    name: 'NavBarHome',
+    data(){
+        return{
+            organizations: ''
+        }
+    },
+    mounted(){
+        this.$http.get(this.$urlAPI + 'auth/login').then(response =>{
+            if(response.data.status){
+                this.organizations = response.data.organizations;
+            }else{
+                this.errorGetOrganization = 'Error get informations for organizations';
+            }
+        }).catch(e => {
+            console.log(e)
+            this.errorValidation = 'Houve uma falha ao se conectar com servidor';
+        });
+    }
 }
 </script>
 <style scoped>

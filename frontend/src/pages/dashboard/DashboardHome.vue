@@ -17,9 +17,7 @@ export default {
         mdbContainer, admin
     },
     mounted(){
-        if(!sessionStorage.getItem('usuario') || sessionStorage.getItem('usuario') == null){
-            this.$router.push('/');
-        }
+        
     }
 }
 </script>

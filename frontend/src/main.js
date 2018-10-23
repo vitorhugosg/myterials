@@ -20,7 +20,8 @@ import 'bootstrap/dist/css/bootstrap.css'
 var store = {
   //variaveis e listas
   state: {
-    usuario: sessionStorage.getItem('usuario') ? JSON.parse(sessionStorage.getItem('usuario')) : null
+    usuario: sessionStorage.getItem('usuario') ? JSON.parse(sessionStorage.getItem('usuario')) : null,
+    organizations: localStorage.getItem('organizations') ? JSON.parse(localStorage.getItem('organizations')) : null
   },
   //metodos para listar os getters
   getters:{
@@ -34,12 +35,18 @@ var store = {
       }else{
         return;
       }
+    },
+    getOrganizations: state =>{
+      return state.organizations;
     }
   },
   //meetodos para auterar os valores 
   mutations:{
     setUsuario(state, n){
       state.usuario = n;
+    },
+    setOrganizations(state, n){
+      state.organizations = n;
     }
   }
 }
