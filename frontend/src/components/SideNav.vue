@@ -219,7 +219,8 @@ export default {
   created(){
       this.$http.get(this.$urlAPI + 'organization/getforuser',{
           "headers":{
-              "authorization": "Bearer "+  this.$store.getters.getToken
+              "authorization": "Bearer "+  this.$store.getters.getToken,
+              'X-Requested-With': 'XMLHttpRequest' 
           }
       }).then(response =>{
           if(response.data.status){
@@ -236,7 +237,8 @@ export default {
 
       this.$http.get(this.$urlAPI + 'company/getforuser',{
           "headers":{
-              "authorization": "Bearer "+  this.$store.getters.getToken
+              "authorization": "Bearer "+  this.$store.getters.getToken,
+              'X-Requested-With': 'XMLHttpRequest' 
           }
       }).then(response =>{
           if(response.data.status){
