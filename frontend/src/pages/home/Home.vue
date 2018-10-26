@@ -3,8 +3,8 @@
         <nav-bar-home></nav-bar-home>
 
         <!-- Intro Section -->
-        <section class="view intro-2">
-            <div class="mask rgba-gradient">
+        <section id="intro2" class="view intro-2">
+            <div class="mask rgba-gradient py-5">
                 <div class="container h-100 d-flex justify-content-center align-items-center">
                     <div class="d-flex align-items-center content-height">
                         <div class="row flex-center pt-5 mt-3">
@@ -544,7 +544,14 @@ export default {
 .card {
     background-color: rgba(229, 228, 255, 0.2);
 }
-.navbar .container{
 
+@media (max-width: 768px) {
+    #intro2{
+        
+        height: 140vh;
+    }
+    .intro-2{
+        
+    }
 }
 </style>

@@ -1,19 +1,18 @@
 <template>
-    <navbar navStyle="background-color: transparent;" position="top" color="mdb" dark scrolling transparent>
-        <container>
-            <mdb-navbar-brand><strong><router-link to="/" class="nav-brand">MyTerials</router-link> </strong></mdb-navbar-brand>
-            
-                <navbar-nav>
-                    <navbar-item  waves-fixed active ><router-link to="/login" class='text-white'>Login</router-link></navbar-item>
-                    <navbar-item  waves-fixed active ><router-link to="/register" class='text-white'>Register</router-link></navbar-item>
-                </navbar-nav>
-                
-            
-        </container>
+    <navbar navStyle="background-color: #424242;" position="top" color="mdb" dark transparent class="margin-reponsive">
+        
+        <mdb-navbar-brand><strong><router-link to="/" class="nav-brand">MyTerials</router-link> </strong></mdb-navbar-brand>
+        <navbar-collapse>
+            <navbar-nav>
+                <navbar-item  waves-fixed active ><router-link to="/login" class='text-white'>Login</router-link></navbar-item>
+                <navbar-item  waves-fixed active ><router-link to="/register" class='text-white'>Register</router-link></navbar-item>
+            </navbar-nav>
+        </navbar-collapse>
+        
     </navbar>
 </template>
 <script>
-import{ Container, mdbNavbarBrand, NavbarItem, Navbar, NavbarNav, NavbarCollapse} from 'mdbvue'
+import{ Container, mdbNavbarBrand, NavbarItem, Navbar, NavbarNav, NavbarCollapse, Row} from 'mdbvue'
 
 
 export default {
@@ -23,7 +22,8 @@ export default {
         NavbarNav,
         NavbarCollapse,
         Container,
-        mdbNavbarBrand
+        mdbNavbarBrand,
+        Row
 
     },
     name: 'NavBarHome',
@@ -33,16 +33,7 @@ export default {
         }
     },
     mounted(){
-        this.$http.get(this.$urlAPI + 'auth/login').then(response =>{
-            if(response.data.status){
-                this.organizations = response.data.organizations;
-            }else{
-                this.errorGetOrganization = 'Error get informations for organizations';
-            }
-        }).catch(e => {
-            console.log(e)
-            this.errorValidation = 'Houve uma falha ao se conectar com servidor';
-        });
+        
     }
 }
 </script>
@@ -52,5 +43,8 @@ export default {
 }
 .nav-brand{
     color: #fff;
+}
+@media (max-width: 768px) {
+    
 }
 </style>

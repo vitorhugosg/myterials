@@ -16,7 +16,7 @@
     "dayspan": "^0.12.4",
     "dayspan-vuetify": "^0.3.2",
     "jquery": "^3.3.1",
-    "mdbvue": "^4.8.0",
+    "mdbvue": "file:mdbvue",
     "vue": "^2.5.2",
     "vue-loading-bar": "^1.0.0",
     "vue-router": "^3.0.1",
