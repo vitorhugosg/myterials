@@ -27,12 +27,12 @@ Route::prefix('auth')->middleware('cors')->group(function(){
 /*
 Oraganization
  */
-Route::prefix('organization')->middleware(['cors','auth:api'])->group(function(){
+Route::prefix('organization')->middleware('cors')->group(function(){
 	Route::get('getforuser', 'Organization\OrganizationController@getorganazitionsforuser');
 	Route::post('add', 'Organization\OrganizationController@addorganization');
 });
 
-Route::prefix('company')->middleware(['cors','auth:api'])->group(function(){
+Route::prefix('company')->middleware('cors')->group(function(){
 	Route::get('getforuser', 'Company\CompanyController@getcompanyesforuser');
 	Route::post('add', 'Company\CompanyController@addcompany');
 });
