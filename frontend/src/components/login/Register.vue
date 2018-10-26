@@ -14,8 +14,13 @@
                 <mdb-input v-model="password" label="Your password" labelColor="white" icon="lock" type="password"/>
                 <mdb-input v-model="password_confirmation" label="Repeat your password" labelColor="white" icon="lock" type="password"/>
                 <div class="text-center mt-4 black-text">
-                  <div class="w-100" v-on:click="registerUser()" >
+                  <div class="w-100" v-on:click="registerUser()"  v-if="!loader">
                     <btn gradient="purple">Register</btn>
+                  </div>
+                  <div class="w-100" v-if="loader">
+                    <progress-wrapper>
+                      <progress-bar :value="progressLoader" color="danger" animated></progress-bar>
+                    </progress-wrapper>
                   </div>
                   <hr />
                   <div class="text-center d-flex justify-content-center white-label">
@@ -41,11 +46,11 @@
 
 <script>
 
-import { Container, Row, Column, ViewWrapper, MdMask, Btn, mdbCard, mdbCardBody, mdbInput, Fa, mdbNavbarBrand } from 'mdbvue'
+import { Container, Row, Column, ViewWrapper, MdMask, Btn, mdbCard, mdbCardBody, mdbInput, Fa, mdbNavbarBrand,ProgressBar ,ProgressWrapper } from 'mdbvue'
 export default {
     name: 'register',
     components: {
-        Container, Row, Column, ViewWrapper, MdMask, Btn, mdbCard, mdbCardBody, mdbInput, Fa, mdbNavbarBrand
+        Container, Row, Column, ViewWrapper, MdMask, Btn, mdbCard, mdbCardBody, mdbInput, Fa, mdbNavbarBrand,ProgressBar ,ProgressWrapper
     },
     data(){
       return {
@@ -53,20 +58,28 @@ export default {
         email: '',
         password: '',
         password_confirmation: '',
-        errorValidation: ''
+        errorValidation: '',
+        loader: false,
+        progressLoader: 0,
+        errorLoader: 'info'
       }
     },
     methods:{
       registerUser(){
+        this.errorLoader = 'info';
+        this.loader = true;
+        this.progressLoader = 0;
         this.errorValidation = '';
         let data = {};
         data.name = this.name;
         data.email = this.email;
         data.password = this.password;
         data.password_confirmation = this.password_confirmation;
-        // if(this.validation()){
+        if(this.validation()){
           this.$http.post(this.$urlAPI + 'auth/register',data).then(response =>{
               if(response.data.status){
+                  this.progressLoader = 100;
+                  this.errorLoader = 'success';
                   sessionStorage.setItem('usuario', JSON.stringify(response.data.usuario));
                   this.$store.commit('setUsuario', response.data.usuario);
                   this.$router.push('/admin');
@@ -78,14 +91,27 @@ export default {
                       }
                   }
                   this.errorValidation = erros;
+                  this.errorLoader = 'danger';
+                  this.progressLoader = 100;
               }else{
                   this.errorValidation = 'Usuário não existe em nosso banco de dados';
+                  this.errorLoader = 'warning';
+                  this.progressLoader = 100;
               }
           }).catch(e => {
               console.log(e)
               this.errorValidation = 'Houve uma falha ao se conectar com servidor';
+              this.errorLoader = 'danger';
+              this.progressLoader = 100;
           });
-        // }
+        }else{
+          this.errorLoader = 'danger';
+          this.progressLoader = 100;
+        }
+        setTimeout(() => {
+          this.errorLoader = 'info';
+          this.loader = false;
+        }, 3000);
         
       },
       validation(){

@@ -88,10 +88,10 @@ const Navbar = {
         this.collapse.classList.add('hide-navbar');
         this.collapse.classList.toggle('show-navbar');
         this.collapse.style.overflow = 'hidden';
-        // this.collapseOverflow = setTimeout(() => {
-        //   this.collapse.classList.toggle('collapse');
-        //   this.collapse.style.overflow = 'initial';
-        // }, 300);
+        this.collapseOverflow = setTimeout(() => {
+          this.collapse.classList.toggle('collapse');
+          this.collapse.style.overflow = 'initial';
+        }, 300);
         this.toggleClicked = true;
       }
     },
@@ -141,7 +141,7 @@ const Navbar = {
   mounted() {
     document.addEventListener('click', this.onClick);
     this.collapse = this.$el.children.navbarSupportedContent;
-    // this.collapse.classList.add('collapse');
+    this.collapse.classList.add('collapse');
   },
   created() {
     window.addEventListener('scroll', this.handleScroll);

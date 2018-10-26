@@ -21,7 +21,7 @@
             </a>
             <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
               <mdb-sub-menu tag="ul" v-if="active === 11" class="collapse-side-nav-item">
-                <li><router-link class="ripple-parent" @click.native="wave" to="/" v-for="organization in organizations" :key="organization.id">{{organization.name}}</router-link></li>
+                <li><router-link class="ripple-parent" @click.native="wave" :to="'/admin/organization/'+ organization.id" v-for="organization in organizations" :key="organization.id">{{organization.name}}</router-link></li>
                 <li><router-link class="ripple-parent" @click.native="wave" to="/admin/organization">View Organizations</router-link></li>
                 <li><router-link class="ripple-parent" @click.native="wave" to="/admin/organization/add">Add Organization</router-link></li>
               </mdb-sub-menu>
@@ -33,8 +33,8 @@
             </a>
             <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
               <mdb-sub-menu tag="ul" v-if="active === 22" class="collapse-side-nav-item">
-                <li><router-link class="ripple-parent" @click.native="wave" to="/">AlienCodes</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/dashboards/v-2">Add Organization</router-link></li>
+                <li><router-link class="ripple-parent" @click.native="wave" to="/" v-for="company in companyes" :key="company.id">{{company.name}}</router-link></li>
+                <li><router-link class="ripple-parent" @click.native="wave" to="/admin/company/add">Add Companyes</router-link></li>
               </mdb-sub-menu>
             </transition>
           </li>
@@ -212,7 +212,8 @@ export default {
       elHeight: 0,
       windowHeight: 0,
       organizations: '',
-      errorGetOrganization: ''
+      errorGetOrganization: '',
+      companyes: ''
     }
   },
   created(){
@@ -222,10 +223,26 @@ export default {
           }
       }).then(response =>{
           if(response.data.status){
-              console.log(response.data);
               localStorage.setItem('organizations', JSON.stringify(response.data.organization));
               this.$store.commit('setOrganizations', response.data.organization);
               this.organizations = response.data.organization;
+          }else{
+              this.errorGetOrganization = 'Error get informations for organizations';
+          }
+      }).catch(e => {
+          console.log(e)
+          this.errorValidation = 'Houve uma falha ao se conectar com servidor';
+      });
+
+      this.$http.get(this.$urlAPI + 'company/getforuser',{
+          "headers":{
+              "authorization": "Bearer "+  this.$store.getters.getToken
+          }
+      }).then(response =>{
+          if(response.data.status){
+              localStorage.setItem('companyes', JSON.stringify(response.data.companyes));
+              this.$store.commit('setCompanyes', response.data.companyes);
+              this.companyes = response.data.companyes;
           }else{
               this.errorGetOrganization = 'Error get informations for organizations';
           }

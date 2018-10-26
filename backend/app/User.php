@@ -32,4 +32,9 @@ class User extends Authenticatable
     public function organizations(){
         return $this->belongsToMany(Models\Organization::class, 'user_organization');
     }
+
+    public function companyes()
+    {
+        return $this->belongsToMany(Models\Company::class, 'user_company');
+    }
 }

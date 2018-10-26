@@ -13,4 +13,8 @@ class Organization extends Model
     public function users(){
     	return $this->belongsToMany(User::class, 'user_organization');
     }
+    public function companyes()
+    {
+        return $this->hasMany('App\Model\Company');
+    }
 }

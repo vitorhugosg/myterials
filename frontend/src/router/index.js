@@ -65,6 +65,8 @@ import RegisterMeu from '@/pages/login/Register'
 import adminHome from '@/pages/dashboard/DashboardHome'
 import addOrganization from '@/pages/dashboard/organization/addOrganization'
 import viewOrganizations from '@/pages/dashboard/organization/viewOrganizations'
+import viewOrganization from '@/pages/dashboard/organization/viewOrganization'
+import addCompany from '@/pages/dashboard/company/addCompany'
 //APLICATION
 Vue.use(Router)
 
@@ -100,6 +102,16 @@ export default new Router({
       path: '/admin/organization',
       name: 'View Organizations',
       component: viewOrganizations,
+    },
+    {
+      path: '/admin/organization/:id',
+      name: 'View Organization',
+      component: viewOrganization
+    },
+    {
+      path: '/admin/company/add',
+      name: 'Add Company',
+      component: addCompany
     },
     //Material Design
     {

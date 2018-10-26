@@ -45,8 +45,7 @@ const MdTextarea = {
       default: false
     },
     rows: {
-      type: Number,
-      default: 3
+      type: Number
     },
     value: {
       type: String,

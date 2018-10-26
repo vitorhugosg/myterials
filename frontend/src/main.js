@@ -21,7 +21,8 @@ var store = {
   //variaveis e listas
   state: {
     usuario: sessionStorage.getItem('usuario') ? JSON.parse(sessionStorage.getItem('usuario')) : null,
-    organizations: localStorage.getItem('organizations') ? JSON.parse(localStorage.getItem('organizations')) : null
+    organizations: localStorage.getItem('organizations') ? JSON.parse(localStorage.getItem('organizations')) : null,
+    companyes: localStorage.getItem('companyes') ? JSON.parse(localStorage.getItem('companyes')) : null,
   },
   //metodos para listar os getters
   getters:{
@@ -38,6 +39,9 @@ var store = {
     },
     getOrganizations: state =>{
       return state.organizations;
+    },
+    getCompanyes: state =>{
+      return state.companyes;
     }
   },
   //meetodos para auterar os valores 
@@ -47,6 +51,9 @@ var store = {
     },
     setOrganizations(state, n){
       state.organizations = n;
+    },
+    setCompanyes(state, n){
+      state.companyes = n;
     }
   }
 }
