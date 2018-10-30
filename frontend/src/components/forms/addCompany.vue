@@ -13,32 +13,32 @@
                         <mdb-select @getValue="getSelectValue">
                             <option disabled selected>Select Organization</option>
                             
-                            <span :value="organization.id" v-for="organization in organizations" :key="organization.id">{{organization.name}}</span>
+                            <span :value="organization.id" v-for="organization in organizations" :key="organization.id">  {{organization.name}}</span>
                         </mdb-select>
                     </div>
                     <div class="col-md-6">
-                        <mdb-input v-model="name" label="Name" icon="envelope"/>
+                        <mdb-input v-model="name" label="Name" icon="users"/>
                     </div>
                     <div class="col-md-6">
-                        <mdb-input v-model="tradeName" label="Trade Name" icon="envelope"/>
+                        <mdb-input v-model="tradeName" label="Trade Name" icon="user"/>
                     </div>
                     <div class="col-md-6">
-                        <mdb-input v-model="zipCode" label="Zip Code" icon="envelope"/>
+                        <mdb-input v-model="zipCode" label="Zip Code" icon="address-book"/>
                     </div>
                     <div class="col-md-6">
-                        <mdb-input v-model="Adress" label="Adress" icon="envelope"/>
+                        <mdb-input v-model="Adress" label="Adress" icon="address-book-o"/>
                     </div>
                     <div class="col-md-6">
-                        <mdb-input v-model="adressTwo" label="Adress 2" icon="envelope"/>
+                        <mdb-input v-model="adressTwo" label="Adress 2" icon="address-book-o"/>
                     </div>
                     <div class="col-md-6">
-                        <mdb-input v-model="city" label="City" icon="envelope"/>
+                        <mdb-input v-model="city" label="City" icon="street-view"/>
                     </div>
                     <div class="col-md-6">
-                        <mdb-input v-model="state" label="State" icon="envelope"/>
+                        <mdb-input v-model="state" label="State" icon="street-view"/>
                     </div>
                     <div class="col-md-6">
-                        <mdb-input v-model="country" label="Country" icon="envelope"/>
+                        <mdb-input v-model="country" label="Country" icon="street-view"/>
                     </div>
                 </div>
                 <div class="text-center mt-4 black-text">

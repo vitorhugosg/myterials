@@ -1,9 +1,9 @@
 <template>
-  <mdb-side-nav :OpenedFromOutside.sync="toggle" ref="sideNav">
+  <mdb-side-nav :OpenedFromOutside.sync="toggle" dark color="primary-color" ref="sideNav">
     <mdb-scrollbar class="side-nav-scroll" :wheelSpeed="0.3">
-      <li>
+      <li class="logo-nav">
         <div class="logo-wrapper">
-          <img alt="" class="img-fluid" src="../assets/logo-mdb-vue-small.png"/>
+          <img alt="" class="img-fluid" src="/static/img/logo/myterials.png"/>
         </div>
       </li>
       <li>
@@ -17,11 +17,12 @@
         <ul class="collapsible">
           <li>
             <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 11 ? active = 0 : active = 11">
-              <mdb-icon icon="tachometer"/> Organization<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 11 ? 'rotated' : ''"/>
+              <mdb-icon icon="cubes"/> Organization<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 11 ? 'rotated' : ''"/>
             </a>
             <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
               <mdb-sub-menu tag="ul" v-if="active === 11" class="collapse-side-nav-item">
                 <li><router-link class="ripple-parent" @click.native="wave" :to="'/admin/organization/'+ organization.id" v-for="organization in organizations" :key="organization.id">{{organization.name}}</router-link></li>
+                <hr>
                 <li><router-link class="ripple-parent" @click.native="wave" to="/admin/organization">View Organizations</router-link></li>
                 <li><router-link class="ripple-parent" @click.native="wave" to="/admin/organization/add">Add Organization</router-link></li>
               </mdb-sub-menu>
@@ -29,11 +30,12 @@
           </li>
           <li>
             <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 22 ? active = 0 : active = 22">
-              <mdb-icon icon="tachometer"/> Companyes<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 22 ? 'rotated' : ''"/>
+              <mdb-icon icon="cube"/> Companyes<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 22 ? 'rotated' : ''"/>
             </a>
             <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
               <mdb-sub-menu tag="ul" v-if="active === 22" class="collapse-side-nav-item">
-                <li><router-link class="ripple-parent" @click.native="wave" to="/" v-for="company in companyes" :key="company.id">{{company.name}}</router-link></li>
+                <li><router-link class="ripple-parent" @click.native="wave" :to="'/admin/company/' + company.id" v-for="company in companyes" :key="company.id">{{company.name}}</router-link></li>
+                <hr>
                 <li><router-link class="ripple-parent" @click.native="wave" to="/admin/company/add">Add Companyes</router-link></li>
               </mdb-sub-menu>
             </transition>
@@ -286,6 +288,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.logo-nav .logo-wrapper{
+  min-height: 200px;
+}
 .side-nav .collapsible a {
   color: #424242;
 }

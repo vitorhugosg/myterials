@@ -67,6 +67,9 @@ import addOrganization from '@/pages/dashboard/organization/addOrganization'
 import viewOrganizations from '@/pages/dashboard/organization/viewOrganizations'
 import viewOrganization from '@/pages/dashboard/organization/viewOrganization'
 import addCompany from '@/pages/dashboard/company/addCompany'
+import viewCompany from '@/pages/dashboard/company/viewCompany'
+import viewCompanyProducts from '@/pages/dashboard/company/viewCompanyProducts'
+import viewCompanyMembers from '@/pages/dashboard/company/viewCompanyMembers'
 //APLICATION
 Vue.use(Router)
 
@@ -112,6 +115,21 @@ export default new Router({
       path: '/admin/company/add',
       name: 'Add Company',
       component: addCompany
+    },
+    {
+      path: '/admin/company/:idProducts',
+      name: 'View Company',
+      component: viewCompany
+    },
+    {
+      path: '/admin/company/products/:idProducts',
+      name: 'View Products Company',
+      component: viewCompanyProducts
+    },
+    {
+      path: '/admin/company/members/:idProducts',
+      name: 'View Products Members',
+      component: viewCompanyMembers
     },
     //Material Design
     {
