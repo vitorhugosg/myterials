@@ -40,7 +40,7 @@
               </mdb-sub-menu>
             </transition>
           </li>
-          <!-- <li>
+          <li>
             <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 1 ? active = 0 : active = 1">
               <mdb-icon icon="tachometer"/> Dashboards<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 1 ? 'rotated' : ''"/>
             </a>
@@ -177,7 +177,7 @@
           </li>
           <li>
             <router-link class="ripple-parent" @click.native="wave" to="/sections/sections"><mdb-icon icon="th-large"/> Sections</router-link>
-          </li> -->
+          </li>
         </ul>
       </li>
       <div class="sidenav-bg mask-strong"></div>

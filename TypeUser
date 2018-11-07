@@ -1,0 +1,15 @@
+TypeUser{
+	Admin (MASTER) - Add Organization & Company
+	Modulado ACL - Create, view, delete, update{
+		Company
+	}
+
+}
+Dashboard{
+	Validação de Usuário(!TRIAL){
+		desactive
+	},
+	Criação de Contas no dashboard{
+		
+	}
+}
