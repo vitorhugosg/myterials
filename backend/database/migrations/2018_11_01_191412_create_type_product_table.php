@@ -17,6 +17,7 @@ class CreateTypeProductTable extends Migration
             $table->increments('id');
             $table->integer('company_id');
             $table->char('name', 190);
+            $table->integer('status');
             $table->timestamps();
         });
     }

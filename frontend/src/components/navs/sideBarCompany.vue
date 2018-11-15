@@ -1,9 +1,10 @@
 <template>
     <div class="classOperations mb-4">
         <div class="row text-center ">
-            <div class="col-md-4"><router-link class="p-2 button-classOp text-white w-100 d-block" :to="'/admin/company/'+ this.$route.params.idProducts">Statistic</router-link></div>
-            <div class="col-md-4"><router-link class="p-2 button-classOp text-white w-100 d-block" :to="'/admin/company/products/'+ this.$route.params.idProducts">Products</router-link></div>
-            <div class="col-md-4"><router-link class="p-2 button-classOp text-white w-100 d-block" :to="'/admin/company/members/'+ this.$route.params.idProducts">Members</router-link></div>
+            <div class="col"><router-link class="p-2 button-classOp text-white w-100 d-block" :to="'/admin/company/'+ this.$route.params.idCompany">Statistic</router-link></div>
+            <div class="col"><router-link class="p-2 button-classOp text-white w-100 d-block" :to="'/admin/company/products/'+ this.$route.params.idCompany">Products</router-link></div>
+            <div class="col"><router-link class="p-2 button-classOp text-white w-100 d-block" :to="'/admin/company/members/'+ this.$route.params.idCompany">Members</router-link></div>
+            <div class="col"><router-link class="p-2 button-classOp text-white w-100 d-block" :to="'/admin/company/config/'+ this.$route.params.idCompany">Config</router-link></div>
         </div>
     </div>
 </template>

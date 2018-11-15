@@ -15,6 +15,9 @@ class CreateProfileProductTable extends Migration
     {
         Schema::create('profile_product', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('company_id');
+            $table->char('name', 190);
+            $table->integer('status');
             $table->timestamps();
         });
     }

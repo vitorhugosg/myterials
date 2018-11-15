@@ -15,6 +15,9 @@ class CreateMoistureProductTable extends Migration
     {
         Schema::create('moisture_product', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('company_id');
+            $table->char('name', 190);
+            $table->integer('status');
             $table->timestamps();
         });
     }

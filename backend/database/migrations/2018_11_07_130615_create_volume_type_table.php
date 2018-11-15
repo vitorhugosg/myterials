@@ -15,6 +15,9 @@ class CreateVolumeTypeTable extends Migration
     {
         Schema::create('volume_type', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('company_id');
+            $table->char('name', 190);
+            $table->integer('status');
             $table->timestamps();
         });
     }

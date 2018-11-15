@@ -18,6 +18,7 @@ class CreateUofmTypeTable extends Migration
             $table->char('name', 191);
             $table->char('base_factor', 190);
             $table->double('base_factor_multiply');
+            $table->integer('status');
             $table->timestamps();
         });
     }

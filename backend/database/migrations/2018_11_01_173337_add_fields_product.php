@@ -49,7 +49,7 @@ class AddFieldsProduct extends Migration
      */
     public function down()
     {
-        Schema::table('product', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             $table->dropColumn('type_product_id');
             $table->dropColumn('company_id');
             $table->dropColumn('collection_id');
@@ -69,7 +69,6 @@ class AddFieldsProduct extends Migration
             $table->dropColumn('length');
             $table->dropColumn('heigth');
             $table->dropColumn('volume');
-            $table->dropColumn('material_type');
             $table->dropColumn('hazard_id');
             $table->dropColumn('barcode');
             $table->dropColumn('qrcode');
