@@ -50,7 +50,7 @@ Route::prefix('material_type')->middleware('auth:api')->group(function(){
 
 });
 
-Route::prefix('profile_product')->middleware('auth:api')->group(function(){
+Route::prefix('profile_product')->middleware(['cors','auth:api'])->group(function(){
 	Route::get('get/{idCompany}', 'Products\ProfileProduct\profile_productController@get');
 	Route::post('add', 'Products\ProfileProduct\profile_productController@add');
 	Route::post('update/{idCompany}/{idMaterialType}', 'Products\ProfileProduct\profile_productController@update');
