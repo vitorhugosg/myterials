@@ -7,11 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Collection extends Model
 {
     protected $table = 'collection';
+
     protected $fillable = [
         'company_id', 'name', 'status',
     ];
-    public function companyes()
+    public function company()
     {
         return $this->belongsTo('App\Models\Company', 'company_id');
     }
+    
 }

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\VolumeType;
+namespace App\Http\Controllers\Products\GradeProduct;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Volume_Type;
+use App\Models\Grade_Product;
 use App\User;
 use App\Models\Company;
 
-class volume_typeController extends Controller
+class grade_productController extends Controller
 {
     public function get(Request $request,$idCompany){
     	$user = $request->user();
@@ -16,8 +16,8 @@ class volume_typeController extends Controller
     		return [
                 'status'=> true,
                 'material_type' =>[
-                    'active' => Volume_Type::where('company_id', $idCompany)->where('status', 1)->get(),
-                    'desactive' => Volume_Type::where('company_id', $idCompany)->where('status', 0)->get()
+                    'active' => Grade_Product::where('company_id', $idCompany)->where('status', 1)->get(),
+                    'desactive' => Grade_Product::where('company_id', $idCompany)->where('status', 0)->get()
                 ],
             ];
     	}else{
@@ -32,11 +32,11 @@ class volume_typeController extends Controller
     	$data = $request->all();
     	$user = $request->user();
 
-        if(isset(Volume_Type::where('company_id',$data['idCompany'])->where('name', $data['name'])->get()[0])){
+        if(isset(Grade_Product::where('company_id',$data['idCompany'])->where('name', $data['name'])->get()[0])){
             return[
                 'status' => false,
                 'message' => 'An item with that name already exists.',
-                'result' => Volume_Type::where('company_id',$data['idCompany'])->where('name', $data['name'])->get()
+                'result' => Grade_Product::where('company_id',$data['idCompany'])->where('name', $data['name'])->get()
             ];
         }
     	if ($user->companyes()->find($data['idCompany'])) {
@@ -45,12 +45,12 @@ class volume_typeController extends Controller
 	    		'name' => $data['name'],
 	    		'status' => 1
 	    	];
-	    	if ($add = Volume_Type::create($insert)) {
+	    	if ($add = Grade_Product::create($insert)) {
 	    		return [
 	    			'status'=> true,
                     'material_type' =>[
-                        'active' => Volume_Type::where('company_id', $data['idCompany'])->where('status', 1)->get(),
-                        'desactive' => Volume_Type::where('company_id', $data['idCompany'])->where('status', 0)->get()
+                        'active' => Grade_Product::where('company_id', $data['idCompany'])->where('status', 1)->get(),
+                        'desactive' => Grade_Product::where('company_id', $data['idCompany'])->where('status', 0)->get()
                     ],
 				];
 	    	}else{
@@ -71,14 +71,14 @@ class volume_typeController extends Controller
     	$data = $request->all();
     	$user = $request->user();
     	if ($user->companyes()->find($idCompany)) {
-    		if ($updateResult = Volume_Type::find($idMaterialType)) {
+    		if ($updateResult = Grade_Product::find($idMaterialType)) {
                 $updateResult->name = $data['name'];
                 $updateResult->save();
     			return [
     				'status'=> true,
                     'material_type' =>[
-                        'active' => Volume_Type::where('company_id', $idCompany)->where('status', 1)->get(),
-                        'desactive' => Volume_Type::where('company_id', $idCompany)->where('status', 0)->get()
+                        'active' => Grade_Product::where('company_id', $idCompany)->where('status', 1)->get(),
+                        'desactive' => Grade_Product::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
     			];
     		}else{
@@ -98,14 +98,14 @@ class volume_typeController extends Controller
         $data = $request->all();
         $user = $request->user();
         if ($user->companyes()->find($idCompany)) {
-            if ($updateResult = Volume_Type::find($data['idMaterialType'])) {
+            if ($updateResult = Grade_Product::find($data['idMaterialType'])) {
                 $updateResult->status = 0;
                 $updateResult->save();
                 return [
                     'status'=> true,
                     'material_type' =>[
-                        'active' => Volume_Type::where('company_id', $idCompany)->where('status', 1)->get(),
-                        'desactive' => Volume_Type::where('company_id', $idCompany)->where('status', 0)->get()
+                        'active' => Grade_Product::where('company_id', $idCompany)->where('status', 1)->get(),
+                        'desactive' => Grade_Product::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
                 ];
             }else{
@@ -125,14 +125,14 @@ class volume_typeController extends Controller
         $data = $request->all();
         $user = $request->user();
         if ($user->companyes()->find($idCompany)) {
-            if ($updateResult = Volume_Type::find($data['idMaterialType'])) {
+            if ($updateResult = Grade_Product::find($data['idMaterialType'])) {
                 $updateResult->status = 1;
                 $updateResult->save();
                 return [
                     'status'=> true,
                     'material_type' =>[
-                        'active' => Volume_Type::where('company_id', $idCompany)->where('status', 1)->get(),
-                        'desactive' => Volume_Type::where('company_id', $idCompany)->where('status', 0)->get()
+                        'active' => Grade_Product::where('company_id', $idCompany)->where('status', 1)->get(),
+                        'desactive' => Grade_Product::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
                 ];
             }else{

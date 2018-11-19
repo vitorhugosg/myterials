@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\MoistureProduct;
+namespace App\Http\Controllers\Products\VolumeType;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Moisture_Product;
+use App\Models\Volume_Type;
 use App\User;
 use App\Models\Company;
 
-class moistureProductController extends Controller
+class volume_typeController extends Controller
 {
     public function get(Request $request,$idCompany){
     	$user = $request->user();
@@ -16,8 +16,8 @@ class moistureProductController extends Controller
     		return [
                 'status'=> true,
                 'material_type' =>[
-                    'active' => Moisture_Product::where('company_id', $idCompany)->where('status', 1)->get(),
-                    'desactive' => Moisture_Product::where('company_id', $idCompany)->where('status', 0)->get()
+                    'active' => Volume_Type::where('company_id', $idCompany)->where('status', 1)->get(),
+                    'desactive' => Volume_Type::where('company_id', $idCompany)->where('status', 0)->get()
                 ],
             ];
     	}else{
@@ -32,11 +32,11 @@ class moistureProductController extends Controller
     	$data = $request->all();
     	$user = $request->user();
 
-        if(isset(Moisture_Product::where('company_id',$data['idCompany'])->where('name', $data['name'])->get()[0])){
+        if(isset(Volume_Type::where('company_id',$data['idCompany'])->where('name', $data['name'])->get()[0])){
             return[
                 'status' => false,
                 'message' => 'An item with that name already exists.',
-                'result' => Moisture_Product::where('company_id',$data['idCompany'])->where('name', $data['name'])->get()
+                'result' => Volume_Type::where('company_id',$data['idCompany'])->where('name', $data['name'])->get()
             ];
         }
     	if ($user->companyes()->find($data['idCompany'])) {
@@ -45,12 +45,12 @@ class moistureProductController extends Controller
 	    		'name' => $data['name'],
 	    		'status' => 1
 	    	];
-	    	if ($add = Moisture_Product::create($insert)) {
+	    	if ($add = Volume_Type::create($insert)) {
 	    		return [
 	    			'status'=> true,
                     'material_type' =>[
-                        'active' => Moisture_Product::where('company_id', $data['idCompany'])->where('status', 1)->get(),
-                        'desactive' => Moisture_Product::where('company_id', $data['idCompany'])->where('status', 0)->get()
+                        'active' => Volume_Type::where('company_id', $data['idCompany'])->where('status', 1)->get(),
+                        'desactive' => Volume_Type::where('company_id', $data['idCompany'])->where('status', 0)->get()
                     ],
 				];
 	    	}else{
@@ -71,14 +71,14 @@ class moistureProductController extends Controller
     	$data = $request->all();
     	$user = $request->user();
     	if ($user->companyes()->find($idCompany)) {
-    		if ($updateResult = Moisture_Product::find($idMaterialType)) {
+    		if ($updateResult = Volume_Type::find($idMaterialType)) {
                 $updateResult->name = $data['name'];
                 $updateResult->save();
     			return [
     				'status'=> true,
                     'material_type' =>[
-                        'active' => Moisture_Product::where('company_id', $idCompany)->where('status', 1)->get(),
-                        'desactive' => Moisture_Product::where('company_id', $idCompany)->where('status', 0)->get()
+                        'active' => Volume_Type::where('company_id', $idCompany)->where('status', 1)->get(),
+                        'desactive' => Volume_Type::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
     			];
     		}else{
@@ -98,14 +98,14 @@ class moistureProductController extends Controller
         $data = $request->all();
         $user = $request->user();
         if ($user->companyes()->find($idCompany)) {
-            if ($updateResult = Moisture_Product::find($data['idMaterialType'])) {
+            if ($updateResult = Volume_Type::find($data['idMaterialType'])) {
                 $updateResult->status = 0;
                 $updateResult->save();
                 return [
                     'status'=> true,
                     'material_type' =>[
-                        'active' => Moisture_Product::where('company_id', $idCompany)->where('status', 1)->get(),
-                        'desactive' => Moisture_Product::where('company_id', $idCompany)->where('status', 0)->get()
+                        'active' => Volume_Type::where('company_id', $idCompany)->where('status', 1)->get(),
+                        'desactive' => Volume_Type::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
                 ];
             }else{
@@ -125,14 +125,14 @@ class moistureProductController extends Controller
         $data = $request->all();
         $user = $request->user();
         if ($user->companyes()->find($idCompany)) {
-            if ($updateResult = Moisture_Product::find($data['idMaterialType'])) {
+            if ($updateResult = Volume_Type::find($data['idMaterialType'])) {
                 $updateResult->status = 1;
                 $updateResult->save();
                 return [
                     'status'=> true,
                     'material_type' =>[
-                        'active' => Moisture_Product::where('company_id', $idCompany)->where('status', 1)->get(),
-                        'desactive' => Moisture_Product::where('company_id', $idCompany)->where('status', 0)->get()
+                        'active' => Volume_Type::where('company_id', $idCompany)->where('status', 1)->get(),
+                        'desactive' => Volume_Type::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
                 ];
             }else{

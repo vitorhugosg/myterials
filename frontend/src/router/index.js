@@ -71,6 +71,7 @@ import viewCompany from '@/pages/dashboard/company/viewCompany'
 import viewCompanyProducts from '@/pages/dashboard/company/viewCompanyProducts'
 import viewCompanyMembers from '@/pages/dashboard/company/viewCompanyMembers'
 import viewCompanyConfig from '@/pages/dashboard/company/viewCompanyConfig'
+import addProducts from '@/pages/dashboard/company/addProducts'
 //APLICATION
 Vue.use(Router)
 
@@ -136,6 +137,11 @@ export default new Router({
       path: '/admin/company/config/:idCompany',
       name: 'View Products Config',
       component: viewCompanyConfig
+    },
+    {
+      path: '/admin/company/addproducts/:idCompany',
+      name: 'View Products Config',
+      component: addProducts
     },
     //Material Design
     {

@@ -49,8 +49,8 @@ class collectionController extends Controller
 	    		return [
 	    			'status'=> true,
                     'material_type' =>[
-                        'active' => Finish_Product::where('company_id', $data['idCompany'])->where('status', 1)->get(),
-                        'desactive' => Finish_Product::where('company_id', $data['idCompany'])->where('status', 0)->get()
+                        'active' => Collection::where('company_id', $data['idCompany'])->where('status', 1)->get(),
+                        'desactive' => Collection::where('company_id', $data['idCompany'])->where('status', 0)->get()
                     ],
 				];
 	    	}else{
@@ -71,7 +71,7 @@ class collectionController extends Controller
     	$data = $request->all();
     	$user = $request->user();
     	if ($user->companyes()->find($idCompany)) {
-    		if ($updateResult = Finish_Product::find($idMaterialType)) {
+    		if ($updateResult = Collection::find($idMaterialType)) {
                 $updateResult->name = $data['name'];
                 $updateResult->save();
     			return [

@@ -10,20 +10,8 @@
                 
                 <div class="row py-4 controllProducts" >
                     <div class="col-md-3">
-                        <btn color="primary" @click.native="addProductModal = true">Add Product</btn>
-                        <modal v-if="addProductModal" @close="addProductModal = false">
-                            <modal-header>
-                                <modal-title>Add Product Modal</modal-title>
-                            </modal-header>
-                            <modal-body>
-                                
-                            </modal-body>
-                            <modal-footer>
-                                <btn color="secondary" @click.native="addProductModal = false">Close</btn>
-                                <btn color="primary">Save changes</btn>
-                            </modal-footer>
-                        </modal>
-
+                        <router-link :to="'/admin/company/addproducts/'+ this.$route.params.idCompany"><btn color="primary" >Add Product</btn></router-link>
+                        
                     </div>
                     <div class="col-md-3">
                         

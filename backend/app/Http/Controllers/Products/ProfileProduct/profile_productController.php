@@ -1,24 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\MaterialType;
+namespace App\Http\Controllers\Products\ProfileProduct;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Material_Type;
+use App\Models\Profile_Product;
 use App\User;
 use App\Models\Company;
 
-class material_typeController extends Controller
+class profile_productController extends Controller
 {
-	
     public function get(Request $request,$idCompany){
     	$user = $request->user();
     	if ($user->companyes()->find($idCompany)) {
     		return [
                 'status'=> true,
                 'material_type' =>[
-                    'active' => Material_Type::where('company_id', $idCompany)->where('status', 1)->get(),
-                    'desactive' => Material_Type::where('company_id', $idCompany)->where('status', 0)->get()
+                    'active' => Profile_Product::where('company_id', $idCompany)->where('status', 1)->get(),
+                    'desactive' => Profile_Product::where('company_id', $idCompany)->where('status', 0)->get()
                 ],
             ];
     	}else{
@@ -33,11 +32,11 @@ class material_typeController extends Controller
     	$data = $request->all();
     	$user = $request->user();
 
-        if(isset(Material_Type::where('company_id',$data['idCompany'])->where('name', $data['name'])->get()[0])){
+        if(isset(Profile_Product::where('company_id',$data['idCompany'])->where('name', $data['name'])->get()[0])){
             return[
                 'status' => false,
                 'message' => 'An item with that name already exists.',
-                'result' => Material_Type::where('company_id',$data['idCompany'])->where('name', $data['name'])->get()
+                'result' => Profile_Product::where('company_id',$data['idCompany'])->where('name', $data['name'])->get()
             ];
         }
     	if ($user->companyes()->find($data['idCompany'])) {
@@ -46,12 +45,12 @@ class material_typeController extends Controller
 	    		'name' => $data['name'],
 	    		'status' => 1
 	    	];
-	    	if ($add = Material_Type::create($insert)) {
+	    	if ($add = Profile_Product::create($insert)) {
 	    		return [
 	    			'status'=> true,
                     'material_type' =>[
-                        'active' => Material_Type::where('company_id', $data['idCompany'])->where('status', 1)->get(),
-                        'desactive' => Material_Type::where('company_id', $data['idCompany'])->where('status', 0)->get()
+                        'active' => Profile_Product::where('company_id', $data['idCompany'])->where('status', 1)->get(),
+                        'desactive' => Profile_Product::where('company_id', $data['idCompany'])->where('status', 0)->get()
                     ],
 				];
 	    	}else{
@@ -72,14 +71,14 @@ class material_typeController extends Controller
     	$data = $request->all();
     	$user = $request->user();
     	if ($user->companyes()->find($idCompany)) {
-    		if ($updateResult = Material_Type::find($idMaterialType)) {
+    		if ($updateResult = Profile_Product::find($idMaterialType)) {
                 $updateResult->name = $data['name'];
                 $updateResult->save();
     			return [
     				'status'=> true,
                     'material_type' =>[
-                        'active' => Material_Type::where('company_id', $idCompany)->where('status', 1)->get(),
-                        'desactive' => Material_Type::where('company_id', $idCompany)->where('status', 0)->get()
+                        'active' => Profile_Product::where('company_id', $idCompany)->where('status', 1)->get(),
+                        'desactive' => Profile_Product::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
     			];
     		}else{
@@ -99,14 +98,14 @@ class material_typeController extends Controller
         $data = $request->all();
         $user = $request->user();
         if ($user->companyes()->find($idCompany)) {
-            if ($updateResult = Material_Type::find($data['idMaterialType'])) {
+            if ($updateResult = Profile_Product::find($data['idMaterialType'])) {
                 $updateResult->status = 0;
                 $updateResult->save();
                 return [
                     'status'=> true,
                     'material_type' =>[
-                        'active' => Material_Type::where('company_id', $idCompany)->where('status', 1)->get(),
-                        'desactive' => Material_Type::where('company_id', $idCompany)->where('status', 0)->get()
+                        'active' => Profile_Product::where('company_id', $idCompany)->where('status', 1)->get(),
+                        'desactive' => Profile_Product::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
                 ];
             }else{
@@ -126,14 +125,14 @@ class material_typeController extends Controller
         $data = $request->all();
         $user = $request->user();
         if ($user->companyes()->find($idCompany)) {
-            if ($updateResult = Material_Type::find($data['idMaterialType'])) {
+            if ($updateResult = Profile_Product::find($data['idMaterialType'])) {
                 $updateResult->status = 1;
                 $updateResult->save();
                 return [
                     'status'=> true,
                     'material_type' =>[
-                        'active' => Material_Type::where('company_id', $idCompany)->where('status', 1)->get(),
-                        'desactive' => Material_Type::where('company_id', $idCompany)->where('status', 0)->get()
+                        'active' => Profile_Product::where('company_id', $idCompany)->where('status', 1)->get(),
+                        'desactive' => Profile_Product::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
                 ];
             }else{

@@ -8,11 +8,13 @@ class Category extends Model
 {
     protected $table = 'category';
     protected $fillable = [
-        'company_id', 'name', 'status',
+        'colletion_id', 'name', 'status',
     ];
 
     public function collections()
     {
         return $this->belongsTo('App\Models\Collection', 'colletion_id');
     }
+
+    
 }

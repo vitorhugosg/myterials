@@ -17,8 +17,9 @@
                     <div class="row">
                         <div class="col text-center py-1" v-for="act in active" :key="act.id">
                             <mdb-btn-group>
+                                <mdb-btn outline="warning" darkWaves rounded size="sm">{{act.collection}}</mdb-btn>
                                 <mdb-btn outline="primary" darkWaves rounded size="sm">{{act.name}}</mdb-btn>
-                                <div v-on:click="activeModal(act.id,true)">
+                                <div v-on:click="activeModal(act.id,true, act.colletion_id)">
                                 <mdb-btn outline="danger" darkWaves rounded size="sm"><i class="fa fa-trash" aria-hidden="true"></i></mdb-btn>
                                 </div>
                             </mdb-btn-group>
@@ -29,8 +30,10 @@
                     <div class="row">
                         <div class="col text-center py-1" v-for="dst in desactive" :key="dst.id">
                             <mdb-btn-group>
+                                
                                 <mdb-btn outline="primary" darkWaves rounded size="sm">{{dst.name}}</mdb-btn>
-                                <div v-on:click="activeModal(dst.id,false)">
+                                <mdb-btn outline="warning" darkWaves rounded size="sm">{{dst.collection}}</mdb-btn>
+                                <div v-on:click="activeModal(dst.id,false,dst.colletion_id)">
                                     <mdb-btn outline="success" darkWaves rounded size="sm" ><i class="fa fa-plus-square-o" aria-hidden="true"></i></mdb-btn>
                                 </div>
                                 
@@ -48,7 +51,10 @@
                     
                     <p class="red">{{errorValidation}}</p>
                     <mdb-input class="grey-text" type="text" v-model="nameAdd" label="Material Type name"/>
-                    
+                    <mdb-select @getValue="getSelectValue" v-if="collections != null">
+                        <option disabled selected>Choose your collection</option>
+                        <span :value="collection.id" v-for="collection in collections" :key="collection.id">{{collection.name}}</span>
+                    </mdb-select>
                     <div class="text-center mt-4" v-on:click="addMaterial()">
                         <mdb-btn class="btn-block" color="green " icon="paper-plane-o" iconRight >Add New</mdb-btn>
                     </div>
@@ -64,31 +70,37 @@
     <!--/.Card-->
 </template>
 <script>
-import {mdbInput, mdbBtn, mdbBtnGroup, Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter, Btn } from 'mdbvue'
+import {mdbInput, mdbBtn, mdbBtnGroup, Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter, Btn,mdbSelect } from 'mdbvue'
 export default {
     name: 'CategoryProduct',
     components: {
-        mdbInput, mdbBtn, mdbBtnGroup,  Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter, Btn
+        mdbInput, mdbBtn, mdbBtnGroup,  Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter, Btn,mdbSelect
     },
     data(){
         return{
             active: [],
             desactive: [],
+            collections: null,
             errorValidation: '',
-            nameAdd: ''
+            nameAdd: '',
+            collection: '',
         }
     },
     mounted(){
-        this.$http.get(this.$urlAPI + 'finish_product/get/'+ this.$route.params.idCompany,{
+
+        this.$http.get(this.$urlAPI + 'products/category/get/'+ this.$route.params.idCompany,{
           "headers":{
               "authorization": "Bearer "+  this.$store.getters.getToken,
               'X-Requested-With': 'XMLHttpRequest' 
           }
         }).then(response =>{
+            
             if(response.data.status){
-                this.active = response.data.material_type.active;
-                this.desactive = response.data.material_type.desactive;
                 
+                this.active = response.data.category.active;
+                this.desactive = response.data.category.desactive;
+                this.collections = response.data.collections;
+                console.table(this.collections)
             }else{
                 this.errorValidation = 'Error get informations for organizations';
             }
@@ -96,22 +108,29 @@ export default {
             console.log(e)
             this.errorValidation = 'Houve uma falha ao se conectar com servidor';
         });
+
     },
     methods:{
-        
-        activeModal(id,type){
+        getSelectValue(value) {
+            this.collection = value;
+        },
+        activeModal(id,type,colletion_id){
             this.errorValidation = '';
             if(type){
-                let data = {idMaterialType: id};
-                this.$http.post(this.$urlAPI + 'finish_product/desactive/'+ this.$route.params.idCompany,data,{
+                 let data = {
+                    idCategory: id,
+                    idCompany: this.$route.params.idCompany
+                };
+                this.$http.post(this.$urlAPI + 'products/category/desactive/'+ colletion_id,data,{
                     "headers":{
                         "authorization": "Bearer "+  this.$store.getters.getToken
                     }
                 }).then(response =>{
                     if(response.data.status){
                         console.log(response.data)
-                        this.active = response.data.material_type.active;
-                        this.desactive = response.data.material_type.desactive;
+                        this.active = response.data.category.active;
+                        this.desactive = response.data.category.desactive;
+                        this.collections = response.data.collections;
                     }else{
                         this.errorValidation = 'Error get informations for organizations';
                     }
@@ -120,16 +139,20 @@ export default {
                     this.errorValidation = 'Houve uma falha ao se conectar com servidor';
                 });
             }else{
-                let data = {idMaterialType: id};
-                this.$http.post(this.$urlAPI + 'finish_product/activate/'+ this.$route.params.idCompany,data,{
+                let data = {
+                    idCategory: id,
+                    idCompany: this.$route.params.idCompany
+                };
+                this.$http.post(this.$urlAPI + 'products/category/activate/'+ colletion_id,data,{
                     "headers":{
                         "authorization": "Bearer "+  this.$store.getters.getToken
                     }
                 }).then(response =>{
                     if(response.data.status){
                         console.log(response.data)
-                        this.active = response.data.material_type.active;
-                        this.desactive = response.data.material_type.desactive;
+                        this.active = response.data.category.active;
+                        this.desactive = response.data.category.desactive;
+                        this.collections = response.data.collections;
                     }else{
                         this.errorValidation = 'Error get informations for organizations';
                     }
@@ -141,19 +164,24 @@ export default {
         },
         addMaterial(){
             this.errorValidation = '';
+            if(this.collection == '' || this.nameAdd == ''){
+                this.errorValidation = 'No empty values please.';
+                return;
+            }
             let data = {
-                'idCompany': this.$route.params.idCompany,
+                'idCollection': this.collection,
                 'name': this.nameAdd
             }
-            this.$http.post(this.$urlAPI + 'finish_product/add/',data,{
+            this.$http.post(this.$urlAPI + 'products/category/add/',data,{
                 "headers":{
                     "authorization": "Bearer "+  this.$store.getters.getToken
                 }
             }).then(response =>{
                 if(response.data.status){
                     console.log(response.data)
-                    this.active = response.data.material_type.active;
-                    this.desactive = response.data.material_type.desactive;
+                    this.active = response.data.category.active;
+                    this.desactive = response.data.category.desactive;
+                    this.collections = response.data.collections;
                 }else{
                     this.errorValidation = response.data.message;
                 }

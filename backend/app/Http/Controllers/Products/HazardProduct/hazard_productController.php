@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\ProfileProduct;
+namespace App\Http\Controllers\Products\HazardProduct;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Profile_Product;
+use App\Models\Harzard_Product;
 use App\User;
 use App\Models\Company;
 
-class profile_productController extends Controller
+class hazard_productController extends Controller
 {
     public function get(Request $request,$idCompany){
     	$user = $request->user();
@@ -16,8 +16,8 @@ class profile_productController extends Controller
     		return [
                 'status'=> true,
                 'material_type' =>[
-                    'active' => Profile_Product::where('company_id', $idCompany)->where('status', 1)->get(),
-                    'desactive' => Profile_Product::where('company_id', $idCompany)->where('status', 0)->get()
+                    'active' => Harzard_Product::where('company_id', $idCompany)->where('status', 1)->get(),
+                    'desactive' => Harzard_Product::where('company_id', $idCompany)->where('status', 0)->get()
                 ],
             ];
     	}else{
@@ -32,11 +32,11 @@ class profile_productController extends Controller
     	$data = $request->all();
     	$user = $request->user();
 
-        if(isset(Profile_Product::where('company_id',$data['idCompany'])->where('name', $data['name'])->get()[0])){
+        if(isset(Harzard_Product::where('company_id',$data['idCompany'])->where('name', $data['name'])->get()[0])){
             return[
                 'status' => false,
                 'message' => 'An item with that name already exists.',
-                'result' => Profile_Product::where('company_id',$data['idCompany'])->where('name', $data['name'])->get()
+                'result' => Harzard_Product::where('company_id',$data['idCompany'])->where('name', $data['name'])->get()
             ];
         }
     	if ($user->companyes()->find($data['idCompany'])) {
@@ -45,12 +45,12 @@ class profile_productController extends Controller
 	    		'name' => $data['name'],
 	    		'status' => 1
 	    	];
-	    	if ($add = Profile_Product::create($insert)) {
+	    	if ($add = Harzard_Product::create($insert)) {
 	    		return [
 	    			'status'=> true,
                     'material_type' =>[
-                        'active' => Profile_Product::where('company_id', $data['idCompany'])->where('status', 1)->get(),
-                        'desactive' => Profile_Product::where('company_id', $data['idCompany'])->where('status', 0)->get()
+                        'active' => Harzard_Product::where('company_id', $data['idCompany'])->where('status', 1)->get(),
+                        'desactive' => Harzard_Product::where('company_id', $data['idCompany'])->where('status', 0)->get()
                     ],
 				];
 	    	}else{
@@ -71,14 +71,14 @@ class profile_productController extends Controller
     	$data = $request->all();
     	$user = $request->user();
     	if ($user->companyes()->find($idCompany)) {
-    		if ($updateResult = Profile_Product::find($idMaterialType)) {
+    		if ($updateResult = Harzard_Product::find($idMaterialType)) {
                 $updateResult->name = $data['name'];
                 $updateResult->save();
     			return [
     				'status'=> true,
                     'material_type' =>[
-                        'active' => Profile_Product::where('company_id', $idCompany)->where('status', 1)->get(),
-                        'desactive' => Profile_Product::where('company_id', $idCompany)->where('status', 0)->get()
+                        'active' => Harzard_Product::where('company_id', $idCompany)->where('status', 1)->get(),
+                        'desactive' => Harzard_Product::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
     			];
     		}else{
@@ -98,14 +98,14 @@ class profile_productController extends Controller
         $data = $request->all();
         $user = $request->user();
         if ($user->companyes()->find($idCompany)) {
-            if ($updateResult = Profile_Product::find($data['idMaterialType'])) {
+            if ($updateResult = Harzard_Product::find($data['idMaterialType'])) {
                 $updateResult->status = 0;
                 $updateResult->save();
                 return [
                     'status'=> true,
                     'material_type' =>[
-                        'active' => Profile_Product::where('company_id', $idCompany)->where('status', 1)->get(),
-                        'desactive' => Profile_Product::where('company_id', $idCompany)->where('status', 0)->get()
+                        'active' => Harzard_Product::where('company_id', $idCompany)->where('status', 1)->get(),
+                        'desactive' => Harzard_Product::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
                 ];
             }else{
@@ -125,14 +125,14 @@ class profile_productController extends Controller
         $data = $request->all();
         $user = $request->user();
         if ($user->companyes()->find($idCompany)) {
-            if ($updateResult = Profile_Product::find($data['idMaterialType'])) {
+            if ($updateResult = Harzard_Product::find($data['idMaterialType'])) {
                 $updateResult->status = 1;
                 $updateResult->save();
                 return [
                     'status'=> true,
                     'material_type' =>[
-                        'active' => Profile_Product::where('company_id', $idCompany)->where('status', 1)->get(),
-                        'desactive' => Profile_Product::where('company_id', $idCompany)->where('status', 0)->get()
+                        'active' => Harzard_Product::where('company_id', $idCompany)->where('status', 1)->get(),
+                        'desactive' => Harzard_Product::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
                 ];
             }else{

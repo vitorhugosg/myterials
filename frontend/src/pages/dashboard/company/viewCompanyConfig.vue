@@ -11,7 +11,7 @@
             <!--Section: Intro-->
                 <div class="row pt-5">
                     <!--Grid column-->
-                    <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="col-lg-4 mb-4">
 
                         <add-material-type class="mb-2">
                         </add-material-type>
@@ -22,27 +22,29 @@
                         <add-finish-product class="mb-2">
                         </add-finish-product>
                     </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <add-profile-product class="mb-2">
-
-                        </add-profile-product>
-                        <add-hazard-product class="mb-2">
-                        </add-hazard-product>
-                        <!-- <add-category class="mb-2">
-
-                        </add-category> -->
-                    </div>
-                    <div class="col-lg-4 col-md-6 mb-4">
-                        <add-volume-type class="mb-2">
-                            
-                        </add-volume-type>
+                    <div class="col-lg-4 mb-4">
+                        
                         <add-grade-product class="mb-2">
 
                         </add-grade-product>
                         <add-collection class="mb-2">
 
-                        </add-collection>
+                        </add-collection> 
                     </div>
+                    <div class="col-lg-4 mb-4">
+                        <add-profile-product class="mb-2">
+
+                        </add-profile-product>
+                        <add-hazard-product class="mb-2">
+                        </add-hazard-product>
+                        <add-volume-type class="mb-2">
+                            
+                        </add-volume-type>
+                        <add-category class="mb-2">
+
+                        </add-category> 
+                    </div>
+                    
                     <!--Grid column-->
                 </div>
             </mdb-container>
