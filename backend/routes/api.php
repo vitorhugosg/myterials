@@ -52,7 +52,7 @@ Route::prefix('material_type')->middleware('auth:api')->group(function(){
 
 Route::prefix('profile_product')->middleware(['cors','auth:api'])->group(function(){
 	Route::get('get/{idCompany}', 'Products\ProfileProduct\profile_productController@get');
-	Route::post('add', 'ProfileProduct\profile_productController@add');
+	Route::post('add', 'Products\PProfileProduct\profile_productController@add');
 	Route::post('update/{idCompany}/{idMaterialType}', 'Products\ProfileProduct\profile_productController@update');
 	Route::post('desactive/{idCompany}', 'Products\ProfileProduct\profile_productController@desactive');
 	Route::post('activate/{idCompany}', 'Products\ProfileProduct\profile_productController@activate');
