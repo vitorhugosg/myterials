@@ -13,10 +13,10 @@ return [
     */
    
     'supportsCredentials' => false,
-    'allowedOrigins' => '*',
+    'allowedOrigins' => ['*'],
     'allowedOriginsPatterns' => [],
     'allowedHeaders' => ['*'],
-    'allowedMethods' => ['*'],
+    'allowedMethods' => ['GET', 'POST', 'PUT',  'DELETE', 'PATCH'], // explicitly adding PATCH method
     'exposedHeaders' => [],
     'maxAge' => 0,
 ];
