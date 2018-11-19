@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Finish_Product;
 use App\User;
 use App\Models\Company;
+use Auth;
 
 class finish_productController extends Controller
 {

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Profile_Product;
 use App\User;
 use App\Models\Company;
+use Auth;
 
 class profile_productController extends Controller
 {

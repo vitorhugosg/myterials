@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Volume_Type;
 use App\User;
 use App\Models\Company;
+use Auth;
 
 class volume_typeController extends Controller
 {

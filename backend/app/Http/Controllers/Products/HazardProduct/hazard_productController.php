@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Harzard_Product;
 use App\User;
 use App\Models\Company;
+use Auth;
 
 class hazard_productController extends Controller
 {

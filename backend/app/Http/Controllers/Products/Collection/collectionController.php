@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Collection;
 use App\User;
 use App\Models\Company;
-
+use Auth;
 class collectionController extends Controller
 {
     public function get(Request $request,$idCompany){

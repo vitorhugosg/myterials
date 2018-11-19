@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Grade_Product;
 use App\User;
 use App\Models\Company;
+use Auth;
 
 class grade_productController extends Controller
 {

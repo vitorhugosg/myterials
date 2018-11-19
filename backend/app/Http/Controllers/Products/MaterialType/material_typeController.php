@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Material_Type;
 use App\User;
 use App\Models\Company;
+use Auth;
 
 class material_typeController extends Controller
 {

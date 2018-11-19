@@ -41,7 +41,7 @@ Route::prefix('company')->middleware(['cors','auth:api'])->group(function(){
 });
 
 
-Route::prefix('material_type')->middleware(['cors','auth:api'])->group(function(){
+Route::prefix('material_type')->middleware('auth:api')->group(function(){
 	Route::get('get/{idCompany}', 'Products\MaterialType\material_typeController@get');
 	Route::post('add', 'Products\MaterialType\material_typeController@add');
 	Route::post('update/{idCompany}/{idMaterialType}', 'Products\MaterialType\material_typeController@update');
