@@ -11,8 +11,8 @@
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
-    RewriteRule ^(.*)/$ /$1 [L,R=307]
-    
+    RewriteRule ^(.*)/$ /$1 [L,R=200]
+
     # Forbid non-secure POSTs
     RewriteCond %{HTTPS} !=on
     RewriteCond %{REQUEST_METHOD} =POST
