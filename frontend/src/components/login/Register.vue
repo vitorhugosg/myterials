@@ -3,11 +3,11 @@
       <container id="" >
           <row>
             
-          <div class="col-md-6 p-3 pt-5">
+          <div class="col-md-6 p-3 pt-5 mt-5 ">
               <mdb-card id="classic-card">
               <mdb-card-body class="z-depth-2 white-text">
-                  <div class="form-header purple-gradient">
-                  <h3><i class="fa fa-user mt-2 mb-2"></i> <b>MyTerials</b> Register:</h3>
+                  <div class="form-header ">
+                  <h3><i class="fa fa-user mt-2 mb-2 "></i> <b>Myterials</b> Register :</h3>
                   </div>
                   <div>{{errorValidation}}</div>
                   <mdb-input v-model="name" label="Your name" labelColor="white" icon="user"/>
@@ -16,7 +16,7 @@
                   <mdb-input v-model="password_confirmation" label="Repeat your password" labelColor="white" icon="lock" type="password"/>
                   <div class="text-center mt-4 black-text">
                     <div class="w-100" v-on:click="registerUser()"  v-if="!loader">
-                      <btn gradient="purple">Register</btn>
+                      <btn class="button-myterials">Register</btn>
                     </div>
                     <div class="w-100" v-if="loader">
                       <progress-wrapper>
@@ -120,5 +120,15 @@ export default {
 .classic-form-page label {
   color: #fff!important;
 }
+
+.form-header {
+  background-color:#D02B2C !important; 
+}
+.button-myterials {
+    background: #D02B2C !important;
+    letter-spacing: .1em;
+    color:#fff !important;
+}
+
 </style>
 

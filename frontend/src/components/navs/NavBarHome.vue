@@ -1,11 +1,11 @@
 <template>
-    <navbar navStyle="background-color: #424242;" position="top" color="mdb" dark transparent class="margin-reponsive">
+    <navbar navStyle="background-color: #FFF;" position="top" color="mdb"  transparent class="margin-reponsive">
         
-        <mdb-navbar-brand><strong><router-link to="/" class="nav-brand">MyTerials</router-link> </strong></mdb-navbar-brand>
-        <navbar-collapse>
+        <mdb-navbar-brand><strong><router-link to="/" class="nav-brand"><img src="/static/img/logo/myterials.png" class="img-fluid  imagem-logo ">Myterials</router-link> </strong></mdb-navbar-brand>
+        <navbar-collapse class="meunavered">
             <navbar-nav>
-                <navbar-item  waves-fixed active ><router-link to="/login" class='text-white'>Login</router-link></navbar-item>
-                <navbar-item  waves-fixed active ><router-link to="/register" class='text-white'>Register</router-link></navbar-item>
+                <navbar-item  waves-fixed active ><router-link to="/login" class='d-flex justify-content-end'>Login</router-link></navbar-item>
+                <navbar-item  waves-fixed active ><router-link to="/register" class='d-flex justify-content-end'>Register</router-link></navbar-item>
             </navbar-nav>
         </navbar-collapse>
         
@@ -38,10 +38,27 @@ export default {
 }
 </script>
 <style scoped>
+
+
 .navbar {
     background: transparent;
 }
-.nav-brand{
-    color: #fff;
+.nav-item a {
+    color: #143F3B !important;
 }
+.nav-brand{
+    color: #143F3B;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+
+}
+.imagem-logo{
+    max-width: 30px;
+    margin-right: 20px;
+
+}
+.navbar.navbar-toggler{
+    background: red !important;
+}
+
 </style>

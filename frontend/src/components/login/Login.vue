@@ -1,14 +1,16 @@
-<template>
+<template >
   <md-mask overlay="stylish-strong" class="d-flex justify-content-center align-items-center py-5">
     <container>
-      <row>
-        <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-5">
+      <row class="">
+        <div class="col-md-6  pt-5 mt-5 ">
           <mdb-card id="classic-card">
 
             <mdb-card-body class="z-depth-2 white-text">
-              <div class="form-header purple-gradient">
-                <h3><i class="fa fa-user mt-2 mb-2"></i> <b>MyTerial</b> Log in:</h3>
-            </div>
+              <div class="form-header ">
+                <h3>
+                  <i class="fa fa-user mt-2 mb-2"></i> 
+                  <b>Myterials</b> Log in:</h3>
+              </div>
 
             <div class="form-erros">
                 {{errorValidation}}
@@ -17,7 +19,7 @@
             <mdb-input v-model="password" label="Your password" labelColor="white" icon="lock" type="password"/>
             <div class="text-center mt-4 black-text">
                 <div class="w-100" v-on:click="login()" v-if="!loader">
-                  <btn gradient="purple">Login</btn>
+                  <btn  class="button-myterials">Login</btn>
               </div>
               <div class="w-100" v-if="loader">
                   <progress-wrapper>
@@ -90,6 +92,7 @@
 
 .card {
   background-color: rgba(229, 228, 255, 0.2);
+  
 }
 
 .classic-form-page h6 {
@@ -117,5 +120,16 @@
 .classic-form-page label {
   color: #fff!important;
 }
+
+.button-myterials {
+    background: #D02B2C !important;
+    letter-spacing: .1em;
+    color:#fff !important;
+}
+.form-header {
+  background-color:#D02B2C ; 
+}
+
+
 </style>
 

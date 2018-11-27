@@ -3,8 +3,8 @@
         <nav-bar-home></nav-bar-home>
         
         <!-- Intro Section -->
-        <section id="intro2" class="view intro-2">
-            <div class="mask rgba-gradient py-5">
+        <section id="intro2" class="" style="background-image: url(/static/img/images/bg-home2-png.png); background-size: cover; background-position: center center;">
+            <div class=" py-5">
                 <div class="container h-100 d-flex justify-content-center align-items-center">
                     <div class="d-flex align-items-center content-height">
                         <div class="row flex-center pt-5 mt-3">
@@ -12,11 +12,11 @@
                                 <div class="white-text">
                                     <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Sign up right now! </h1>
                                     <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
-                                    <h6 class="wow fadeInLeft" data-wow-delay="0.3s">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem repellendus quasi fuga
+                                    <h6 class="title6 wow fadeInLeft" data-wow-delay="0.3s">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem repellendus quasi fuga
                                         nesciunt dolorum nulla magnam veniam sapiente, fugiat! Commodi sequi non animi ea
                                         dolor molestiae, quisquam iste, maiores. Nulla.</h6>
                                     <br>
-                                    <mdb-btn outline="white" rounded>Learn more</mdb-btn>
+                                    <mdb-btn class='button-myterials' color="danger" rounded>Learn more</mdb-btn>
                                 </div>
                             </div>
 
@@ -26,20 +26,20 @@
                                     <div class="card-body">
                                         <!-- Header -->
                                         <div class="text-center">
-                                            <h3 class="white-text"><i class="fa fa-user white-text"></i> Register:</h3>
+                                            <h3 class="white-text"><i class="fa fa-user white-text"></i> Register :</h3>
                                             <hr class="hr-light">
                                         </div>
 
                                         <!-- Body -->
                                         <div>{{errorValidation}}</div>
-                                        <mdb-input v-model="name" label="Your name" labelColor="white" icon="user"/>
-                                        <mdb-input v-model="email" label="Your email" labelColor="white" icon="envelope"/>
-                                        <mdb-input v-model="password" label="Your password" labelColor="white" icon="lock" type="password"/>
-                                        <mdb-input v-model="password_confirmation" label="Repeat your password" labelColor="white" icon="lock" type="password"/>
+                                        <mdb-input v-model="name" label="Your name" labelColor="white" icon="user" class="text-white"/>
+                                        <mdb-input v-model="email" label="Your email" labelColor="white" icon="envelope"  class="text-white"/>
+                                        <mdb-input v-model="password" label="Your password" labelColor="white" icon="lock" type="password" class="text-white"/>
+                                        <mdb-input v-model="password_confirmation" label="Repeat your password" labelColor="white" icon="lock" type="password" class="text-white" />
 
                                         <div class="text-center mt-4">
                                             <div class="w-100" v-on:click="registerUser()" >
-                                                <mdb-btn gradient="purple">Register</mdb-btn>
+                                                <mdb-btn class="button-form" outline="danger">Register</mdb-btn>
                                             </div>
                                             <hr class="hr-light mb-3 mt-4">
 
@@ -79,7 +79,7 @@
                         <!--Grid row-->
                         <div class="row mb-2">
                             <div class="col-2">
-                                <i class="fa fa-2x fa-flag-checkered indigo-text"></i>
+                                <i class="fa fa-2x fa-flag-checkered icon-myterials"></i>
                             </div>
                             <div class="col-10">
                                 <h5 class="font-weight-bold my-4">International</h5>
@@ -91,7 +91,7 @@
                         <!--Grid row-->
                         <div class="row mb-2">
                             <div class="col-2">
-                                <i class="fa fa-2x fa-flask blue-text"></i>
+                                <i class="fa fa-2x fa-flask icon-myterials"></i>
                             </div>
                             <div class="col-10">
                                 <h5 class="font-weight-bold my-4">Experimental</h5>
@@ -103,7 +103,7 @@
                         <!--Grid row-->
                         <div class="row mb-2">
                             <div class="col-2">
-                                <i class="fa fa-2x fa-glass cyan-text"></i>
+                                <i class="fa fa-2x fa-glass icon-myterials"></i>
                             </div>
                             <div class="col-10">
                                 <h5 class="font-weight-bold my-4">Relaxing</h5>
@@ -116,8 +116,8 @@
                     <!--Grid column-->
 
                     <!--Grid column-->
-                    <div class="col-md-4 mb-2 text-center text-md-left flex-center">
-                        <img src="https://mdbootstrap.com/img/Mockups/Transparent/Small/iphone-portfolio1.png" alt="" class="z-depth-0">
+                    <div class="col-md-4  text-center  flex-center ">
+                        <img src="/static/img/images/img-home.png" alt="" class="z-depth-0">
                     </div>
                     <!--Grid column-->
 
@@ -127,7 +127,7 @@
                         <!--Grid row-->
                         <div class="row mb-2">
                             <div class="col-2">
-                                <i class="fa fa-2x fa-heart deep-purple-text"></i>
+                                <i class="fa fa-2x fa-heart icon-myterials"></i>
                             </div>
                             <div class="col-10">
                                 <h5 class="font-weight-bold my-4">Beloved</h5>
@@ -139,7 +139,7 @@
                         <!--Grid row-->
                         <div class="row mb-2">
                             <div class="col-2">
-                                <i class="fa fa-2x fa-flash purple-text"></i>
+                                <i class="fa fa-2x fa-flash icon-myterials"></i>
                             </div>
                             <div class="col-10">
                                 <h5 class="font-weight-bold my-4">Rapid</h5>
@@ -151,7 +151,7 @@
                         <!--Grid row-->
                         <div class="row mb-2">
                             <div class="col-2">
-                                <i class="fa fa-2x fa-magic pink-text"></i>
+                                <i class="fa fa-2x fa-magic icon-myterials"></i>
                             </div>
                             <div class="col-10">
                                 <h5 class="font-weight-bold my-4">Magical</h5>
@@ -193,11 +193,11 @@
 
                             <!--Content-->
                             <h4 class="font-weight-bold mt-4 mb-3">Anna Deynah</h4>
-                            <h6 class="mb-3 font-weight-bold grey-text">Web Designer</h6>
+                            <h6 class="mb-3 font-weight-bold title6-red">Web Designer</h6>
                             <p><i class="fa fa-quote-left"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod eos id officiis hic tenetur quae quaerat ad velit ab hic tenetur.</p>
 
                             <!--Review-->
-                            <div class="orange-text">
+                            <div class="title6-red">
                                 <i class="fa fa-star"> </i>
                                 <i class="fa fa-star"> </i>
                                 <i class="fa fa-star"> </i>
@@ -218,11 +218,11 @@
 
                             <!--Content-->
                             <h4 class="font-weight-bold mt-4 mb-3">John Doe</h4>
-                            <h6 class="mb-3 font-weight-bold grey-text">Web Developer</h6>
+                            <h6 class="mb-3 font-weight-bold title6-red">Web Developer</h6>
                             <p><i class="fa fa-quote-left"></i> Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi.</p>
 
                             <!--Review-->
-                            <div class="orange-text">
+                            <div class="title6-red">
                                 <i class="fa fa-star"> </i>
                                 <i class="fa fa-star"> </i>
                                 <i class="fa fa-star"> </i>
@@ -242,11 +242,11 @@
                             </div>
                             <!--Content-->
                             <h4 class="font-weight-bold mt-4 mb-3">Maria Kate</h4>
-                            <h6 class="mb-3 font-weight-bold grey-text">Photographer</h6>
+                            <h6 class="mb-3 font-weight-bold title6-red">Photographer</h6>
                             <p><i class="fa fa-quote-left"></i> At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti.</p>
 
                             <!--Review-->
-                            <div class="orange-text">
+                            <div class="title6-red">
                                 <i class="fa fa-star"> </i>
                                 <i class="fa fa-star"> </i>
                                 <i class="fa fa-star"> </i>
@@ -280,7 +280,7 @@
                     <!--Grid column-->
                     <div class="col-lg-4 col-md-12 mb-4">
                         <!--Card-->
-                        <div class="card hoverable">
+                        <div class="card hoverable card-grey-myterials">
 
                             <!--Content-->
                             <div class="text-center">
@@ -288,7 +288,7 @@
                                     <h5>Basic plan</h5>
                                     <div class="d-flex justify-content-center">
                                         <div class="card-circle d-flex justify-content-center align-items-center">
-                                            <i class="fa fa-home light-blue-text"></i>
+                                            <i class="fa fa-home icon-myterials"></i>
                                         </div>
                                     </div>
 
@@ -296,7 +296,7 @@
                                     <h2 class="font-weight-bold my-3">59$</h2>
                                     <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa pariatur id nobis
                                         accusamus deleniti cumque hic laborum.</p>
-                                    <a class="btn btn-light-blue btn-rounded">Buy now</a>
+                                    <a class="btn button-myterials btn-rounded">Buy now</a>
                                 </div>
                             </div>
 
@@ -308,7 +308,7 @@
                     <!--Grid column-->
                     <div class="col-lg-4 col-md-12 mb-4">
                         <!--Card-->
-                        <div class="card purple-gradient hoverable">
+                        <div class="card hoverable card-red-myterials">
 
                             <!--Content-->
                             <div class="text-center white-text">
@@ -324,7 +324,7 @@
                                     <h2 class="font-weight-bold my-3">79$</h2>
                                     <p>Esse corporis saepe laudantium velit adipisci cumque iste ratione facere non
                                         distinctio cupiditate sequi atque.</p>
-                                    <a class="btn btn-outline-white btn-rounded">Buy now</a>
+                                    <a class="btn btn-outline-white btn-rounded button-form">Buy now</a>
                                 </div>
                             </div>
 
@@ -336,7 +336,7 @@
                     <!--Grid column-->
                     <div class="col-lg-4 col-md-12 mb-4">
                         <!--Card-->
-                        <div class="card hoverable">
+                        <div class="card hoverable card-grey-myterials">
 
                             <!--Content-->
                             <div class="text-center">
@@ -344,7 +344,7 @@
                                     <h5>Advanced plan</h5>
                                     <div class="d-flex justify-content-center">
                                         <div class="card-circle d-flex justify-content-center align-items-center">
-                                            <i class="fa fa-bar-chart light-blue-text"></i>
+                                            <i class="fa fa-bar-chart icon-myterials"></i>
                                         </div>
                                     </div>
 
@@ -352,7 +352,7 @@
                                     <h2 class="font-weight-bold my-3">99$</h2>
                                     <p class="grey-text">At ab ea a molestiae corrupti numquam quo beatae minima ratione magni accusantium
                                         repellat eveniet quia vitae.</p>
-                                    <a class="btn btn-light-blue btn-rounded">Buy now</a>
+                                    <a class="btn button-myterials btn-rounded">Buy now</a>
                                 </div>
                             </div>
 
@@ -424,7 +424,7 @@
                         </form>
 
                         <div class="text-center text-md-left my-4">
-                            <mdb-btn color="light-blue" rounded>Send</mdb-btn>
+                            <mdb-btn color="light-blue button-myterials" rounded>Send</mdb-btn>
                         </div>
                     </div>
                     <!--Grid column-->
@@ -432,15 +432,15 @@
                     <!--Grid column-->
                     <div class="col-md-4 col-xl-3">
                         <ul class="contact-icons list-unstyled text-center">
-                            <li><i class="fa fa-map-marker fa-2x"></i>
+                            <li><i class="fa fa-map-marker fa-2x icon-myterials"></i>
                                 <p>San Francisco, CA 94126, USA</p>
                             </li>
 
-                            <li><i class="fa fa-phone fa-2x"></i>
+                            <li><i class="fa fa-phone fa-2x icon-myterials"></i>
                                 <p>+ 01 234 567 89</p>
                             </li>
 
-                            <li><i class="fa fa-envelope fa-2x"></i>
+                            <li><i class="fa fa-envelope fa-2x icon-myterials"></i>
                                 <p>contact@mdbootstrap.com</p>
                             </li>
                         </ul>
@@ -527,22 +527,23 @@ export default {
 </script>
 
 <style scoped>
-.intro-2 {
+/*.intro-2 {
     background: url("https://mdbootstrap.com/img/Photos/Others/img%20(42).jpg")no-repeat center center;
     background-size: cover;
     height: 100vh;
 }
-
-
 
 .rgba-gradient {
     background: -webkit-linear-gradient(45deg, rgba(83, 125, 210, 0.4), rgba(178, 30, 123, 0.4) 100%);
     background: -webkit-gradient(linear, 45deg, from(rgba(29, 236, 197, 0.4)), to(rgba(96, 0, 136, 0.4)));
     background: linear-gradient(45deg, rgba(29, 236, 197, 0.4), rgba(96, 0, 136, 0.4) 100%);
 }
-
+*/
 .card {
-    background-color: rgba(229, 228, 255, 0.2);
+    /*cinzinha:*/
+   /* background-color: rgba(229, 228, 255, 0.2);*/
+    /*rgba-red-light:*/
+    background-color: rgba(244, 67, 54, 0.3); 
 }
 
 @media (max-width: 768px) {
@@ -553,5 +554,33 @@ export default {
     .intro-2{
         
     }
+}
+
+.title6 {
+    letter-spacing: 1px;
+}
+.button-myterials {
+    background: #D02B2C !important;
+    letter-spacing: .1em;
+    color:#fff !important;
+}
+.button-form {
+    border: 2px solid #fff !important;
+    letter-spacing: .1em;
+    color:#fff !important;
+}
+
+.icon-myterials {
+     color: #D02B2C;
+}
+.title6-red {
+    color: #D02B2C;
+    letter-spacing: .1em;
+}
+.card-grey-myterials {
+     background-color: rgba(244, 67, 54, 0.1);
+}
+.card-red-myterials {
+     background-color: #D02B2C; 
 }
 </style>
