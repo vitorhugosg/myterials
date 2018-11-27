@@ -117,7 +117,7 @@
 
                     <!--Grid column-->
                     <div class="col-md-4  text-center  flex-center ">
-                        <img src="/static/img/images/img-home.png" alt="" class="z-depth-0">
+                        <img src="/static/img/images/img-home.png" alt="" class="img-fluid z-depth-0">
                     </div>
                     <!--Grid column-->
 

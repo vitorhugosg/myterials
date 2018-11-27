@@ -7,7 +7,7 @@
               <mdb-card id="classic-card">
               <mdb-card-body class="z-depth-2 white-text">
                   <div class="form-header ">
-                  <h3><i class="fa fa-user mt-2 mb-2 "></i> <b>Myterials</b> Register :</h3>
+                  <h3><i class="fa fa-user mt-2 mb-2 "></i> <b>Myterials</b> Register:</h3>
                   </div>
                   <div>{{errorValidation}}</div>
                   <mdb-input v-model="name" label="Your name" labelColor="white" icon="user"/>
@@ -40,9 +40,10 @@
               </mdb-card-body>
               </mdb-card>
           </div>
-          <div class="col-md-6">
-            
+          <div class="col-md-6  pt-5 mt-5 text-center flex-center ">
+              <img src="/static/img/images/img-register.png" alt="" class="img-fluid z-depth-0">
           </div>
+
           </row>
       </container>
     </md-mask>  
