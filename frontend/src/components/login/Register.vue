@@ -134,5 +134,9 @@ export default {
     color:#fff !important;
 }
 
+#classic-card {
+  max-width: 450px;
+} 
+
 </style>
 

@@ -26,7 +26,7 @@
                                     <div class="card-body">
                                         <!-- Header -->
                                         <div class="text-center">
-                                            <h3 class="white-text"><i class="fa fa-user white-text"></i> Register :</h3>
+                                            <h3 class="white-text"><i class="fa fa-user white-text"></i> Register:</h3>
                                             <hr class="hr-light">
                                         </div>
 

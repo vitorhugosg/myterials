@@ -134,7 +134,9 @@
 .form-header {
   background-color:#D02B2C ; 
 }
-
+#classic-card {
+  max-width: 450px;
+}
 
 </style>
 
