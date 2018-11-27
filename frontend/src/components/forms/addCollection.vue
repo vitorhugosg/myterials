@@ -84,10 +84,10 @@ export default {
         this.loader = true;
         if (this.$store.getters.getCollections == null) {
             this.$http.get(this.$urlAPI + 'products/collection/get/'+ this.$route.params.idCompany,{
-              "headers":{
-                  "authorization": "Bearer "+  this.$store.getters.getToken,
-                  'X-Requested-With': 'XMLHttpRequest' 
-              }
+                "headers":{
+                    "authorization": "Bearer "+  this.$store.getters.getToken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
             }).then(response =>{
                 if(response.data.status){
                     this.active = response.data.collections.active;
@@ -101,14 +101,12 @@ export default {
             }).catch(e => {
                 console.log(e)
                 this.errorValidation = 'Houve uma falha ao se conectar com servidor';
-        });
+            });
         }else{
             this.active = this.$store.getters.getCollections.active;
             this.desactive = this.$store.getters.getCollections.desactive;
             this.loader = false;
         }
-        
-
     },
     methods:{
         

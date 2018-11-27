@@ -40,6 +40,9 @@
               </mdb-card-body>
               </mdb-card>
           </div>
+          <div class="col-md-6">
+            
+          </div>
           </row>
       </container>
     </md-mask>  

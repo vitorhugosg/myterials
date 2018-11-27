@@ -20,6 +20,7 @@ class CreateUofmTable extends Migration
             $table->text('name');
             $table->timestamps();
         });
+        
     }
 
     /**
