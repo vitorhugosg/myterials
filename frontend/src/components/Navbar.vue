@@ -39,7 +39,9 @@
           <mdb-icon icon="user"></mdb-icon> <span class="clearfix d-none d-sm-inline-block">Profile</span>
         </mdb-dropdown-toggle>
         <mdb-dropdown-menu right>
-          <mdb-dropdown-item>Log Out</mdb-dropdown-item>
+          <span v-on:click="closeLogin()">
+            <mdb-dropdown-item >Log Out</mdb-dropdown-item>
+          </span>
           <mdb-dropdown-item>My account</mdb-dropdown-item>
         </mdb-dropdown-menu>
       </mdb-dropdown>
@@ -49,7 +51,7 @@
 
 <script>
 import { mdbNavbar, mdbNavbarBrand, mdbNavItem, mdbNavbarNav, mdbNavbarToggler, mdbBreadcrumb, mdbDropdown, mdbDropdownToggle, mdbDropdownMenu, mdbDropdownItem, mdbIcon, mdbBadge } from 'mdbvue'
-
+import mixinsUser from '@/store/modules/users/mixins'
 export default {
   name: 'Navbar',
   props: {
@@ -57,6 +59,7 @@ export default {
       type: String
     }
   },
+  mixins: [mixinsUser],
   components: {
     mdbNavbar,
     mdbNavbarBrand,

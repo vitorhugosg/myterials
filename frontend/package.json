@@ -18,6 +18,7 @@
     "jquery": "^3.3.1",
     "mdbvue": "file:mdbvue",
     "vue": "^2.5.2",
+    "vue-axios": "^2.1.4",
     "vue-loading-bar": "^1.0.0",
     "vue-router": "^3.0.1",
     "vue2-google-maps": "^0.10.2",

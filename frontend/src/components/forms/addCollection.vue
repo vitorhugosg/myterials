@@ -1,4 +1,4 @@
-<template>
+this.loader = false;<template>
     <!--Card-->
     <div class="card">
 
@@ -12,7 +12,7 @@
             
             <hr>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" v-if="loader == false">
                     <p class="h6 text-center">Active</p>
                     <div class="row">
                         <div class="col text-center py-1" v-for="act in active" :key="act.id">
@@ -33,11 +33,12 @@
                                 <div v-on:click="activeModal(dst.id,false)">
                                     <mdb-btn outline="success" darkWaves rounded size="sm" ><i class="fa fa-plus-square-o" aria-hidden="true"></i></mdb-btn>
                                 </div>
-                                
                             </mdb-btn-group>
-                            
                         </div>
                     </div>
+                </div>
+                <div class="col-md-12  text-center" v-if="loader">
+                    <img class="img-fluid text-center" src="/static/img/images/loader.gif" alt="">
                 </div>
             </div>
             <hr>
@@ -75,27 +76,39 @@ export default {
             active: [],
             desactive: [],
             errorValidation: '',
-            nameAdd: ''
+            nameAdd: '',
+            loader: false
         }
     },
     mounted(){
-        this.$http.get(this.$urlAPI + 'products/collection/get/'+ this.$route.params.idCompany,{
-          "headers":{
-              "authorization": "Bearer "+  this.$store.getters.getToken,
-              'X-Requested-With': 'XMLHttpRequest' 
-          }
-        }).then(response =>{
-            if(response.data.status){
-                this.active = response.data.material_type.active;
-                this.desactive = response.data.material_type.desactive;
-                
-            }else{
-                this.errorValidation = 'Error get informations for organizations';
-            }
-        }).catch(e => {
-            console.log(e)
-            this.errorValidation = 'Houve uma falha ao se conectar com servidor';
+        this.loader = true;
+        if (this.$store.getters.getCollections == null) {
+            this.$http.get(this.$urlAPI + 'products/collection/get/'+ this.$route.params.idCompany,{
+              "headers":{
+                  "authorization": "Bearer "+  this.$store.getters.getToken,
+                  'X-Requested-With': 'XMLHttpRequest' 
+              }
+            }).then(response =>{
+                if(response.data.status){
+                    this.active = response.data.collections.active;
+                    this.desactive = response.data.collections.desactive;
+                    this.$store.commit('SET_COLLECTIONS', response.data.collections);
+                    this.loader = false;
+                }else{
+                    this.errorValidation = 'Error get informations for organizations';
+                    this.loader = false;
+                }
+            }).catch(e => {
+                console.log(e)
+                this.errorValidation = 'Houve uma falha ao se conectar com servidor';
         });
+        }else{
+            this.active = this.$store.getters.getCollections.active;
+            this.desactive = this.$store.getters.getCollections.desactive;
+            this.loader = false;
+        }
+        
+
     },
     methods:{
         
@@ -110,8 +123,9 @@ export default {
                 }).then(response =>{
                     if(response.data.status){
                         console.log(response.data)
-                        this.active = response.data.material_type.active;
-                        this.desactive = response.data.material_type.desactive;
+                        this.active = response.data.collections.active;
+                        this.desactive = response.data.collections.desactive;
+                        this.$store.commit('SET_COLLECTIONS', response.data.collections);
                     }else{
                         this.errorValidation = 'Error get informations for organizations';
                     }
@@ -128,8 +142,9 @@ export default {
                 }).then(response =>{
                     if(response.data.status){
                         console.log(response.data)
-                        this.active = response.data.material_type.active;
-                        this.desactive = response.data.material_type.desactive;
+                        this.active = response.data.collections.active;
+                        this.desactive = response.data.collections.desactive;
+                        this.$store.commit('SET_COLLECTIONS', response.data.collections);
                     }else{
                         this.errorValidation = 'Error get informations for organizations';
                     }
@@ -145,15 +160,16 @@ export default {
                 'idCompany': this.$route.params.idCompany,
                 'name': this.nameAdd
             }
-            this.$http.post(this.$urlAPI + 'products/collection/add/',data,{
+            this.$http.post(this.$urlAPI + 'products/collection/add',data,{
                 "headers":{
                     "authorization": "Bearer "+  this.$store.getters.getToken
                 }
             }).then(response =>{
                 if(response.data.status){
                     console.log(response.data)
-                    this.active = response.data.material_type.active;
-                    this.desactive = response.data.material_type.desactive;
+                    this.active = response.data.collections.active;
+                    this.desactive = response.data.collections.desactive;
+                    this.$store.commit('SET_COLLECTIONS', response.data.collections);
                 }else{
                     this.errorValidation = response.data.message;
                 }

@@ -16,7 +16,7 @@ class profile_productController extends Controller
     	if ($user->companyes()->find($idCompany)) {
     		return [
                 'status'=> true,
-                'material_type' =>[
+                'profile_product' =>[
                     'active' => Profile_Product::where('company_id', $idCompany)->where('status', 1)->get(),
                     'desactive' => Profile_Product::where('company_id', $idCompany)->where('status', 0)->get()
                 ],
@@ -49,7 +49,7 @@ class profile_productController extends Controller
 	    	if ($add = Profile_Product::create($insert)) {
 	    		return [
 	    			'status'=> true,
-                    'material_type' =>[
+                    'profile_product' =>[
                         'active' => Profile_Product::where('company_id', $data['idCompany'])->where('status', 1)->get(),
                         'desactive' => Profile_Product::where('company_id', $data['idCompany'])->where('status', 0)->get()
                     ],
@@ -77,7 +77,7 @@ class profile_productController extends Controller
                 $updateResult->save();
     			return [
     				'status'=> true,
-                    'material_type' =>[
+                    'profile_product' =>[
                         'active' => Profile_Product::where('company_id', $idCompany)->where('status', 1)->get(),
                         'desactive' => Profile_Product::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
@@ -104,7 +104,7 @@ class profile_productController extends Controller
                 $updateResult->save();
                 return [
                     'status'=> true,
-                    'material_type' =>[
+                    'profile_product' =>[
                         'active' => Profile_Product::where('company_id', $idCompany)->where('status', 1)->get(),
                         'desactive' => Profile_Product::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
@@ -131,7 +131,7 @@ class profile_productController extends Controller
                 $updateResult->save();
                 return [
                     'status'=> true,
-                    'material_type' =>[
+                    'profile_product' =>[
                         'active' => Profile_Product::where('company_id', $idCompany)->where('status', 1)->get(),
                         'desactive' => Profile_Product::where('company_id', $idCompany)->where('status', 0)->get()
                     ],

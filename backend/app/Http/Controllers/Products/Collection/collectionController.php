@@ -15,7 +15,7 @@ class collectionController extends Controller
     	if ($user->companyes()->find($idCompany)) {
     		return [
                 'status'=> true,
-                'material_type' =>[
+                'collections' =>[
                     'active' => Collection::where('company_id', $idCompany)->where('status', 1)->get(),
                     'desactive' => Collection::where('company_id', $idCompany)->where('status', 0)->get()
                 ],
@@ -48,7 +48,7 @@ class collectionController extends Controller
 	    	if ($add = Collection::create($insert)) {
 	    		return [
 	    			'status'=> true,
-                    'material_type' =>[
+                    'collections' =>[
                         'active' => Collection::where('company_id', $data['idCompany'])->where('status', 1)->get(),
                         'desactive' => Collection::where('company_id', $data['idCompany'])->where('status', 0)->get()
                     ],
@@ -76,7 +76,7 @@ class collectionController extends Controller
                 $updateResult->save();
     			return [
     				'status'=> true,
-                    'material_type' =>[
+                    'collections' =>[
                         'active' => Collection::where('company_id', $idCompany)->where('status', 1)->get(),
                         'desactive' => Collection::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
@@ -103,7 +103,7 @@ class collectionController extends Controller
                 $updateResult->save();
                 return [
                     'status'=> true,
-                    'material_type' =>[
+                    'collections' =>[
                         'active' => Collection::where('company_id', $idCompany)->where('status', 1)->get(),
                         'desactive' => Collection::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
@@ -130,7 +130,7 @@ class collectionController extends Controller
                 $updateResult->save();
                 return [
                     'status'=> true,
-                    'material_type' =>[
+                    'collections' =>[
                         'active' => Collection::where('company_id', $idCompany)->where('status', 1)->get(),
                         'desactive' => Collection::where('company_id', $idCompany)->where('status', 0)->get()
                     ],

@@ -14,10 +14,7 @@
         name: 'sideBarCompany',
         props: [
             'idProduct'
-        ],
-        created(){
-            console.log(this.$route.params.idProducts);
-        }
+        ]
     }
 </script>
 <style scoped>

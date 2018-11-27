@@ -35,7 +35,7 @@ class AuthController extends Controller
 	    	//retornando token(accessToken) e criando tokeen
 	    	$user->token = $user->createToken($user->email)->accessToken;
 		    return [
-		    	'status' => 'true',
+		    	'status' => true,
 		    	'usuario' => $user
 		    ];
 		}else{

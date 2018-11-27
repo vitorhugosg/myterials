@@ -1,129 +1,73 @@
 <template>
-    <md-mask overlay="stylish-strong" class="d-flex justify-content-center align-items-center py-5">
+  <md-mask overlay="stylish-strong" class="d-flex justify-content-center align-items-center py-5">
     <container>
-        <row>
+      <row>
         <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-5">
-            <mdb-card id="classic-card">
-              
+          <mdb-card id="classic-card">
+
             <mdb-card-body class="z-depth-2 white-text">
-                <div class="form-header purple-gradient">
+              <div class="form-header purple-gradient">
                 <h3><i class="fa fa-user mt-2 mb-2"></i> <b>MyTerial</b> Log in:</h3>
-                </div>
-                
-                <div class="form-erros">
-                  {{errorValidation}}
-                </div>
-                <mdb-input v-model="email" label="Your email" labelColor="white" icon="envelope"/>
-                <mdb-input v-model="password" label="Your password" labelColor="white" icon="lock" type="password"/>
-                <div class="text-center mt-4 black-text">
-                  <div class="w-100" v-on:click="login()" v-if="!loader">
-                    <btn gradient="purple">Login</btn>
-                  </div>
-                  <div class="w-100" v-if="loader">
-                    <progress-wrapper>
-                      <progress-bar :value="progressLoader" color="danger" animated></progress-bar>
-                    </progress-wrapper>
-                  </div>
-                
-                <hr />
-                <div class="text-center d-flex justify-content-center white-label">
-                    <a class="p-2 m-2">
-                    <fa icon="twitter" class="white-text"/>
-                    </a>
-                    <a class="p-2 m-2">
-                    <fa icon="linkedin" class="white-text"/>
-                    </a>
-                    <a class="p-2 m-2">
-                    <fa icon="instagram" class="white-text"/>
-                    </a>
-                </div>
-                </div>
-            </mdb-card-body>
-            </mdb-card>
+            </div>
+
+            <div class="form-erros">
+                {{errorValidation}}
+            </div>
+            <mdb-input v-model="email" label="Your email" labelColor="white" icon="envelope"/>
+            <mdb-input v-model="password" label="Your password" labelColor="white" icon="lock" type="password"/>
+            <div class="text-center mt-4 black-text">
+                <div class="w-100" v-on:click="login()" v-if="!loader">
+                  <btn gradient="purple">Login</btn>
+              </div>
+              <div class="w-100" v-if="loader">
+                  <progress-wrapper>
+                    <progress-bar :value="progressLoader" color="danger" animated></progress-bar>
+                </progress-wrapper>
+            </div>
+
+            <hr />
+            <div class="text-center d-flex justify-content-center white-label">
+              <a class="p-2 m-2">
+                <fa icon="twitter" class="white-text"/>
+            </a>
+            <a class="p-2 m-2">
+                <fa icon="linkedin" class="white-text"/>
+            </a>
+            <a class="p-2 m-2">
+                <fa icon="instagram" class="white-text"/>
+            </a>
         </div>
-        </row>
-    </container>
-    </md-mask>
-    
+    </div>
+</mdb-card-body>
+</mdb-card>
+</div>
+</row>
+</container>
+</md-mask>
+
 </template>
 
 <script>
+    import mixinsUsers from '@/store/modules/users/mixins.js'
+    import { Container, Row, Column, ViewWrapper, MdMask, Btn, mdbCard, mdbCardBody, mdbInput, Fa, mdbNavbarBrand,ProgressBar,ProgressWrapper  } from 'mdbvue'
 
-import { Container, Row, Column, ViewWrapper, MdMask, Btn, mdbCard, mdbCardBody, mdbInput, Fa, mdbNavbarBrand,ProgressBar,ProgressWrapper  } from 'mdbvue'
-export default {
+    export default {
     name: 'login',
+    mixins: [mixinsUsers],
     components: {
-        Container, Row, Column, ViewWrapper, MdMask, Btn, mdbCard, mdbCardBody, mdbInput, Fa, mdbNavbarBrand,ProgressBar ,ProgressWrapper
-    },
-    methods:{
-      login(){
-        this.errorLoader = 'info';
-        
-        this.loader = true;
-        this.progressLoader = 0;
-        this.errorValidation = '';
-        let data = {};
-        data.password = this.password;
-        data.email = this.email;
-        if(this.validation(data)){
-          this.progressLoader = 50;
-          this.$http.post(this.$urlAPI + 'auth/login',data).then(response =>{
-              if(response.data.status){
-                  sessionStorage.setItem('usuario', JSON.stringify(response.data.usuario));
-                  this.$store.commit('setUsuario', response.data.usuario);
-                  this.$router.push('/admin');
-                  this.progressLoader = 100;
-              }else if(response.data.status == false && response.data.validacao){
-                  let erros = '';
-                  for(let erro of Object.values(response.data.erros)){
-                      if(erro != 'no' && erro != 'false'){
-                          erros += " - "+ erro + " <br>".replace('<br>', "\n");
-                      }
-                  }
-                  this.errorLoader = 'success';
-                  this.errorValidation = erros;
-                  this.progressLoader = 100;
-              }else{
-                  this.errorLoader = 'warning';
-                  this.errorValidation = 'Usuário não existe em nosso banco de dados';
-                  this.progressLoader = 100;
-              }
-          }).catch(e => {
-              console.log(e)
-              this.errorLoader = 'danger';
-              this.progressLoader = 100;
-              this.errorValidation = 'Houve uma falha ao se conectar com servidor';
-              
-              
-          });
-        }else{
-          this.errorLoader = 'danger';
-          this.progressLoader = 100;
-        }
-
-        setTimeout(() => {
-          this.loader = false;
-        }, 3000);
-        
-      },
-      validation(data){
-        if(data.name == '' || data.email == ''){
-          this.errorValidation = 'Fields can not be empty';
-          return false;
-        }
-        return true;
-      }
+      Container, Row, Column, ViewWrapper, MdMask, Btn, mdbCard, mdbCardBody, mdbInput, Fa, mdbNavbarBrand,ProgressBar ,ProgressWrapper
     },
     data(){
       return {
-        errorValidation: '',
-        email: '',
-        password: '',
-        loader: false,
-        progressLoader: 0,
-        errorLoader: false
-      }
-    }
+            errorValidation: '',
+            email: '',
+            password: '',
+            loader: false,
+            progressLoader: 0,
+            errorLoader: false
+        }
+    },
+
 }
 </script>
 <style scoped>
@@ -166,8 +110,8 @@ export default {
 
 @media (max-width: 768px) {
   .classic-form-page .navbar:not(.top-nav-collapse) {
-      background: #424f95 !important;
-  }
+    background: #424f95 !important;
+}
 }
 
 .classic-form-page label {

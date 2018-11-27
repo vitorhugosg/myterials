@@ -7,13 +7,18 @@
                 <side-bar-company :idProduct="this.$route.params.idProducts" class="mb-5">
 
                 </side-bar-company>
-                
+                <div class="row py-5" v-if="loader">
+                    <div class="col-md-12  text-center">
+                        <img class="img-fluid text-center" src="/static/img/images/loader.gif" alt="">
+                    </div>
+                    
+                </div>
             <!--Section: Intro-->
-                <div class="row pt-5">
+                <div class="row pt-5" v-if="loader == false">
                     <!--Grid column-->
                     <div class="col-lg-4 mb-4">
 
-                        <add-material-type class="mb-2">
+                        <add-material-type class="mb-2" >
                         </add-material-type>
 
                         <add-moisture-product class="mb-2">
@@ -68,6 +73,32 @@ export default {
     name: 'CompanyConfig',
     components:{
         mdbContainer, admin, mdbCard, mdbCardBody,sideBarCompany,addMaterialType,addProfileProduct,addVolumeType,addMoistureProduct,addHazardProduct,addGradeProduct,addFinishProduct,addCategory,addCollection
+    },
+    data(){
+        return{
+            productsAux: '',
+            loader: false
+        }
+    },
+    mounted(){
+        this.loader = true;
+        this.$http.get(this.$urlAPI +'products/getproductsaux/'+ this.$route.params.idCompany, {
+            "headers":{
+                "authorization": "Bearer "+  this.$store.getters.getToken,
+                'X-Requested-With': 'XMLHttpRequest' 
+            }
+        }).then(response =>{
+            if (response.data.status) {
+                localStorage.setItem('productAux', JSON.stringify(response.data));
+                this.$store.commit('SET_PRODUCT_AUX', response.data);
+                this.loader = false;
+            }else{
+                this.$router.push('/login');
+            }
+        }).catch(e => {
+            console.log(e);
+        });
+        
     }
 }
 </script>

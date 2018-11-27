@@ -7,21 +7,16 @@
                 <side-bar-company :idProduct="this.$route.params.idProducts" class="mb-5">
 
                 </side-bar-company>
-                
-            <!--Section: Intro-->
-                
-                    <div class="row pt-5">
-                        <div class="col-md-2">
+                <div class="row pt-5">
+                    <div class="col-md-2">
 
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card">
-                                eaea
-                            </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card">
+                            eaea
                         </div>
                     </div>
-                
-                
+                </div>
             </mdb-container>
         </span>
     </admin>

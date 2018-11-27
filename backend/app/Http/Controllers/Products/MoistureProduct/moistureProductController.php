@@ -16,7 +16,7 @@ class moistureProductController extends Controller
     	if ($user->companyes()->find($idCompany)) {
     		return [
                 'status'=> true,
-                'material_type' =>[
+                'moisture_product' =>[
                     'active' => Moisture_Product::where('company_id', $idCompany)->where('status', 1)->get(),
                     'desactive' => Moisture_Product::where('company_id', $idCompany)->where('status', 0)->get()
                 ],
@@ -49,7 +49,7 @@ class moistureProductController extends Controller
 	    	if ($add = Moisture_Product::create($insert)) {
 	    		return [
 	    			'status'=> true,
-                    'material_type' =>[
+                    'moisture_product' =>[
                         'active' => Moisture_Product::where('company_id', $data['idCompany'])->where('status', 1)->get(),
                         'desactive' => Moisture_Product::where('company_id', $data['idCompany'])->where('status', 0)->get()
                     ],
@@ -77,7 +77,7 @@ class moistureProductController extends Controller
                 $updateResult->save();
     			return [
     				'status'=> true,
-                    'material_type' =>[
+                    'moisture_product' =>[
                         'active' => Moisture_Product::where('company_id', $idCompany)->where('status', 1)->get(),
                         'desactive' => Moisture_Product::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
@@ -104,7 +104,7 @@ class moistureProductController extends Controller
                 $updateResult->save();
                 return [
                     'status'=> true,
-                    'material_type' =>[
+                    'moisture_product' =>[
                         'active' => Moisture_Product::where('company_id', $idCompany)->where('status', 1)->get(),
                         'desactive' => Moisture_Product::where('company_id', $idCompany)->where('status', 0)->get()
                     ],
@@ -131,7 +131,7 @@ class moistureProductController extends Controller
                 $updateResult->save();
                 return [
                     'status'=> true,
-                    'material_type' =>[
+                    'moisture_product' =>[
                         'active' => Moisture_Product::where('company_id', $idCompany)->where('status', 1)->get(),
                         'desactive' => Moisture_Product::where('company_id', $idCompany)->where('status', 0)->get()
                     ],

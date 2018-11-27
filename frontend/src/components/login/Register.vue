@@ -1,54 +1,57 @@
 <template>
     <md-mask overlay="stylish-strong" class="d-flex justify-content-center align-items-center py-5">
-    <container>
-        <row>
-        <div class="col-xl-5 col-lg-6 col-md-10 col-sm-12 mx-auto mt-5">
-            <mdb-card id="classic-card">
-            <mdb-card-body class="z-depth-2 white-text">
-                <div class="form-header purple-gradient">
-                <h3><i class="fa fa-user mt-2 mb-2"></i> <b>MyTerials</b> Register:</h3>
-                </div>
-                <div>{{errorValidation}}</div>
-                <mdb-input v-model="name" label="Your name" labelColor="white" icon="user"/>
-                <mdb-input v-model="email" label="Your email" labelColor="white" icon="envelope"/>
-                <mdb-input v-model="password" label="Your password" labelColor="white" icon="lock" type="password"/>
-                <mdb-input v-model="password_confirmation" label="Repeat your password" labelColor="white" icon="lock" type="password"/>
-                <div class="text-center mt-4 black-text">
-                  <div class="w-100" v-on:click="registerUser()"  v-if="!loader">
-                    <btn gradient="purple">Register</btn>
+      <container id="" >
+          <row>
+            
+          <div class="col-md-6 p-3 pt-5">
+              <mdb-card id="classic-card">
+              <mdb-card-body class="z-depth-2 white-text">
+                  <div class="form-header purple-gradient">
+                  <h3><i class="fa fa-user mt-2 mb-2"></i> <b>MyTerials</b> Register:</h3>
                   </div>
-                  <div class="w-100" v-if="loader">
-                    <progress-wrapper>
-                      <progress-bar :value="progressLoader" color="danger" animated></progress-bar>
-                    </progress-wrapper>
+                  <div>{{errorValidation}}</div>
+                  <mdb-input v-model="name" label="Your name" labelColor="white" icon="user"/>
+                  <mdb-input v-model="email" label="Your email" labelColor="white" icon="envelope"/>
+                  <mdb-input v-model="password" label="Your password" labelColor="white" icon="lock" type="password"/>
+                  <mdb-input v-model="password_confirmation" label="Repeat your password" labelColor="white" icon="lock" type="password"/>
+                  <div class="text-center mt-4 black-text">
+                    <div class="w-100" v-on:click="registerUser()"  v-if="!loader">
+                      <btn gradient="purple">Register</btn>
+                    </div>
+                    <div class="w-100" v-if="loader">
+                      <progress-wrapper>
+                        <progress-bar :value="progressLoader" color="danger" animated></progress-bar>
+                      </progress-wrapper>
+                      {{response}}
+                    </div>
+                    <hr />
+                    <div class="text-center d-flex justify-content-center white-label">
+                        <a class="p-2 m-2">
+                        <fa icon="twitter" class="white-text"/>
+                        </a>
+                        <a class="p-2 m-2">
+                        <fa icon="linkedin" class="white-text"/>
+                        </a>
+                        <a class="p-2 m-2">
+                        <fa icon="instagram" class="white-text"/>
+                        </a>
+                    </div>
                   </div>
-                  <hr />
-                  <div class="text-center d-flex justify-content-center white-label">
-                      <a class="p-2 m-2">
-                      <fa icon="twitter" class="white-text"/>
-                      </a>
-                      <a class="p-2 m-2">
-                      <fa icon="linkedin" class="white-text"/>
-                      </a>
-                      <a class="p-2 m-2">
-                      <fa icon="instagram" class="white-text"/>
-                      </a>
-                  </div>
-                </div>
-            </mdb-card-body>
-            </mdb-card>
-        </div>
-        </row>
-    </container>
-    </md-mask>
+              </mdb-card-body>
+              </mdb-card>
+          </div>
+          </row>
+      </container>
+    </md-mask>  
     
 </template>
 
 <script>
-
+import mixinxs from '@/store/modules/users/mixins'
 import { Container, Row, Column, ViewWrapper, MdMask, Btn, mdbCard, mdbCardBody, mdbInput, Fa, mdbNavbarBrand,ProgressBar ,ProgressWrapper } from 'mdbvue'
 export default {
     name: 'register',
+    mixins: [mixinxs],
     components: {
         Container, Row, Column, ViewWrapper, MdMask, Btn, mdbCard, mdbCardBody, mdbInput, Fa, mdbNavbarBrand,ProgressBar ,ProgressWrapper
     },
@@ -65,70 +68,12 @@ export default {
       }
     },
     methods:{
-      registerUser(){
-        this.errorLoader = 'info';
-        this.loader = true;
-        this.progressLoader = 0;
-        this.errorValidation = '';
-        let data = {};
-        data.name = this.name;
-        data.email = this.email;
-        data.password = this.password;
-        data.password_confirmation = this.password_confirmation;
-        if(this.validation()){
-          this.$http.post(this.$urlAPI + 'auth/register',data).then(response =>{
-              if(response.data.status){
-                  this.progressLoader = 100;
-                  this.errorLoader = 'success';
-                  sessionStorage.setItem('usuario', JSON.stringify(response.data.usuario));
-                  this.$store.commit('setUsuario', response.data.usuario);
-                  this.$router.push('/admin');
-              }else if(response.data.status == false && response.data.validacao){
-                  let erros = '';
-                  for(let erro of Object.values(response.data.erros)){
-                      if(erro != 'no' && erro != 'false'){
-                          erros += " - "+ erro + " <br>".replace('<br>', "\n");
-                      }
-                  }
-                  this.errorValidation = erros;
-                  this.errorLoader = 'danger';
-                  this.progressLoader = 100;
-              }else{
-                  this.errorValidation = 'Usuário não existe em nosso banco de dados';
-                  this.errorLoader = 'warning';
-                  this.progressLoader = 100;
-              }
-          }).catch(e => {
-              console.log(e)
-              this.errorValidation = 'Houve uma falha ao se conectar com servidor';
-              this.errorLoader = 'danger';
-              this.progressLoader = 100;
-          });
-        }else{
-          this.errorLoader = 'danger';
-          this.progressLoader = 100;
-        }
-        setTimeout(() => {
-          this.errorLoader = 'info';
-          this.loader = false;
-        }, 3000);
-        
-      },
-      validation(){
-        if(this.password_confirmation != this.password){
-          this.errorValidation = 'The passwords entered in the fields do not match';
-          return false;
-        }
-        if(this.name == '' || this.email == '' || this.password == '' || this.password_confirmation == ''){
-          this.errorValidation = 'Fields can not be empty';
-          return false;
-        }
-        return true;
-      }
+      
     }
 }
 </script>
 <style scoped>
+
 .classic-form-page {
   position: fixed;
   left: 0;

@@ -6,6 +6,7 @@ import router from './router'
 import Vuetify from 'vuetify'
 import DaySpanVuetify from 'dayspan-vuetify'
 import Vuex from 'vuex'
+
 //VUEEX
 Vue.use(Vuex)
 import axios from 'axios'
@@ -15,48 +16,9 @@ import 'material-design-icons-iconfont/dist/material-design-icons.css'
 import 'dayspan-vuetify/dist/lib/dayspan-vuetify.min.css'
 import 'mdbvue/build/css/mdb.css'
 import 'bootstrap/dist/css/bootstrap.css'
+import store from './store/store.js'
 
 
-var store = {
-  //variaveis e listas
-  state: {
-    usuario: sessionStorage.getItem('usuario') ? JSON.parse(sessionStorage.getItem('usuario')) : null,
-    organizations: localStorage.getItem('organizations') ? JSON.parse(localStorage.getItem('organizations')) : null,
-    companyes: localStorage.getItem('companyes') ? JSON.parse(localStorage.getItem('companyes')) : null,
-  },
-  //metodos para listar os getters
-  getters:{
-    getUsuario: state =>{
-      return state.usuario;
-    },
-    getToken: state =>{
-      //pegando token
-      if(state.usuario.token != null){
-        return state.usuario.token;
-      }else{
-        return;
-      }
-    },
-    getOrganizations: state =>{
-      return state.organizations;
-    },
-    getCompanyes: state =>{
-      return state.companyes;
-    }
-  },
-  //meetodos para auterar os valores 
-  mutations:{
-    setUsuario(state, n){
-      state.usuario = n;
-    },
-    setOrganizations(state, n){
-      state.organizations = n;
-    },
-    setCompanyes(state, n){
-      state.companyes = n;
-    }
-  }
-}
 
 
 Vue.use(VueGoogleMaps, {
@@ -73,16 +35,21 @@ Vue.use(DaySpanVuetify, {
 })
 
 //definindo stancia do axios:
-Vue.prototype.$http = axios;
+// Vue.prototype.$http = axios;
 //definindo variavel URL
 console.log();
 if(process.env.NODE_ENV == 'development'){
   Vue.prototype.$urlAPI = 'http://127.0.0.1:8000/api/';
   Vue.prototype.$urlBaseAssets = 'http://127.0.0.1:8000/storage/';
+  sessionStorage.setItem('urlAPI', 'http://127.0.0.1:8000/api/');
+  sessionStorage.setItem('urlBaseAssets', 'http://127.0.0.1:8000/storage/');
 }else{
   Vue.prototype.$urlAPI = 'https://api.myterials.com/api/';
   Vue.prototype.$urlBaseAssets = 'https://api.myterials.com/storage/';
+  sessionStorage.setItem('urlAPI', 'https://api.myterials.com/api/');
+  sessionStorage.setItem('urlBaseAssets', 'https://api.myterials.com/storage/');
 }
+
 
 
 Vue.config.productionTip = false
@@ -91,7 +58,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   router,
-  store: new Vuex.Store(store),
+  store,
   components: { App },
   template: '<App/>'
 })

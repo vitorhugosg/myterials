@@ -9,6 +9,7 @@ use App\User;
 use App\Models\Company;
 use App\Models\Collection;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class categoryController extends Controller
 {

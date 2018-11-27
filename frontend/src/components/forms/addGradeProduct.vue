@@ -12,7 +12,7 @@
             
             <hr>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" v-if="loader == false">
                     <p class="h6 text-center">Active</p>
                     <div class="row">
                         <div class="col text-center py-1" v-for="act in active" :key="act.id">
@@ -39,12 +39,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-12  text-center" v-if="loader">
+                    <img class="img-fluid text-center" src="/static/img/images/loader.gif" alt="">
+                </div>
             </div>
             <hr>
             <!-- Subscription form -->
             <div class="row">
                 <div class="col-md-12">
-                    
                     
                     <p class="red">{{errorValidation}}</p>
                     <mdb-input class="grey-text" type="text" v-model="nameAdd" label="Material Type name"/>
@@ -75,27 +77,39 @@ export default {
             active: [],
             desactive: [],
             errorValidation: '',
-            nameAdd: ''
+            nameAdd: '',
+            loader: false
         }
     },
     mounted(){
-        this.$http.get(this.$urlAPI + 'grade_product/get/'+ this.$route.params.idCompany,{
-          "headers":{
-              "authorization": "Bearer "+  this.$store.getters.getToken,
-              'X-Requested-With': 'XMLHttpRequest' 
-          }
-        }).then(response =>{
-            if(response.data.status){
-                this.active = response.data.material_type.active;
-                this.desactive = response.data.material_type.desactive;
-                
-            }else{
-                this.errorValidation = 'Error get informations for organizations';
-            }
-        }).catch(e => {
-            console.log(e)
-            this.errorValidation = 'Houve uma falha ao se conectar com servidor';
-        });
+        this.loader = true;
+
+        if(this.$store.getters.getGradeProduct == null){
+            this.$http.get(this.$urlAPI + 'products/grade_product/get/'+ this.$route.params.idCompany,{
+              "headers":{
+                  "authorization": "Bearer "+  this.$store.getters.getToken,
+                  'X-Requested-With': 'XMLHttpRequest' 
+              }
+            }).then(response =>{
+                if(response.data.status){
+                    this.active = response.data.grade_product.active;
+                    this.desactive = response.data.grade_product.desactive;
+                    this.$store.commit('SET_GRADE_PRODUCT', response.data.grade_product);
+                    this.loader = false;
+                }else{
+                    this.errorValidation = 'Error get informations for organizations';
+                    this.loader = false;
+                }
+            }).catch(e => {
+                console.log(e)
+                this.errorValidation = 'Houve uma falha ao se conectar com servidor';
+                this.loader = false;
+            });
+        }else{
+            this.active = this.$store.getters.getGradeProduct.active;
+            this.desactive = this.$store.getters.getGradeProduct.desactive;
+            this.loader = false;
+        }
     },
     methods:{
         
@@ -103,15 +117,16 @@ export default {
             this.errorValidation = '';
             if(type){
                 let data = {idMaterialType: id};
-                this.$http.post(this.$urlAPI + 'grade_product/desactive/'+ this.$route.params.idCompany,data,{
+                this.$http.post(this.$urlAPI + 'products/grade_product/desactive/'+ this.$route.params.idCompany,data,{
                     "headers":{
                         "authorization": "Bearer "+  this.$store.getters.getToken
                     }
                 }).then(response =>{
                     if(response.data.status){
                         console.log(response.data)
-                        this.active = response.data.material_type.active;
-                        this.desactive = response.data.material_type.desactive;
+                        this.active = response.data.grade_product.active;
+                        this.desactive = response.data.grade_product.desactive;
+                        this.$store.commit('SET_GRADE_PRODUCT', response.data.grade_product);
                     }else{
                         this.errorValidation = 'Error get informations for organizations';
                     }
@@ -121,15 +136,16 @@ export default {
                 });
             }else{
                 let data = {idMaterialType: id};
-                this.$http.post(this.$urlAPI + 'grade_product/activate/'+ this.$route.params.idCompany,data,{
+                this.$http.post(this.$urlAPI + 'products/grade_product/activate/'+ this.$route.params.idCompany,data,{
                     "headers":{
                         "authorization": "Bearer "+  this.$store.getters.getToken
                     }
                 }).then(response =>{
                     if(response.data.status){
                         console.log(response.data)
-                        this.active = response.data.material_type.active;
-                        this.desactive = response.data.material_type.desactive;
+                        this.active = response.data.grade_product.active;
+                        this.desactive = response.data.grade_product.desactive;
+                        this.$store.commit('SET_GRADE_PRODUCT', response.data.grade_product);
                     }else{
                         this.errorValidation = 'Error get informations for organizations';
                     }
@@ -145,15 +161,16 @@ export default {
                 'idCompany': this.$route.params.idCompany,
                 'name': this.nameAdd
             }
-            this.$http.post(this.$urlAPI + 'grade_product/add/',data,{
+            this.$http.post(this.$urlAPI + 'products/grade_product/add',data,{
                 "headers":{
                     "authorization": "Bearer "+  this.$store.getters.getToken
                 }
             }).then(response =>{
                 if(response.data.status){
                     console.log(response.data)
-                    this.active = response.data.material_type.active;
-                    this.desactive = response.data.material_type.desactive;
+                    this.active = response.data.grade_product.active;
+                    this.desactive = response.data.grade_product.desactive;
+                    this.$store.commit('SET_GRADE_PRODUCT', response.data.grade_product);
                 }else{
                     this.errorValidation = response.data.message;
                 }

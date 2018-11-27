@@ -1,7 +1,7 @@
 <template>
   <div class="fullscreen white-skin">
         <nav-bar-home></nav-bar-home>
-
+        
         <!-- Intro Section -->
         <section id="intro2" class="view intro-2">
             <div class="mask rgba-gradient py-5">

@@ -44,7 +44,4 @@ export default {
 .nav-brand{
     color: #fff;
 }
-@media (max-width: 768px) {
-    
-}
 </style>

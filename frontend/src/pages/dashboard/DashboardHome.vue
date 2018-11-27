@@ -18,6 +18,9 @@ export default {
     },
     mounted(){
         
+        if(this.$store.getters.getToken == null){
+            this.$router.push('/login');
+        }
     }
 }
 </script>

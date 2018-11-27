@@ -12,7 +12,7 @@
             
             <hr>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" v-if="loader == false">
                     <p class="h6 text-center">Active</p>
                     <div class="row">
                         <div class="col text-center py-1" v-for="act in active" :key="act.id">
@@ -30,17 +30,18 @@
                     <div class="row">
                         <div class="col text-center py-1" v-for="dst in desactive" :key="dst.id">
                             <mdb-btn-group>
-                                
                                 <mdb-btn outline="primary" darkWaves rounded size="sm">{{dst.name}}</mdb-btn>
                                 <mdb-btn outline="warning" darkWaves rounded size="sm">{{dst.collection}}</mdb-btn>
                                 <div v-on:click="activeModal(dst.id,false,dst.colletion_id)">
-                                    <mdb-btn outline="success" darkWaves rounded size="sm" ><i class="fa fa-plus-square-o" aria-hidden="true"></i></mdb-btn>
+                                    <mdb-btn outline="success" darkWaves rounded size="sm"><i class="fa fa-plus-square-o" aria-hidden="true"></i></mdb-btn>
                                 </div>
-                                
                             </mdb-btn-group>
                             
                         </div>
                     </div>
+                </div>
+                <div class="col-md-12  text-center" v-if="loader">
+                    <img class="img-fluid text-center" src="/static/img/images/loader.gif" alt="">
                 </div>
             </div>
             <hr>
@@ -84,31 +85,41 @@ export default {
             errorValidation: '',
             nameAdd: '',
             collection: '',
+            loader: false
         }
     },
     mounted(){
-
-        this.$http.get(this.$urlAPI + 'products/category/get/'+ this.$route.params.idCompany,{
-          "headers":{
-              "authorization": "Bearer "+  this.$store.getters.getToken,
-              'X-Requested-With': 'XMLHttpRequest' 
-          }
-        }).then(response =>{
-            
-            if(response.data.status){
+        this.loader = true;
+        if(this.$store.getters.getCategory == null){
+            this.$http.get(this.$urlAPI + 'products/category/get/'+ this.$route.params.idCompany,{
+                "headers":{
+                  "authorization": "Bearer "+  this.$store.getters.getToken,
+                  'X-Requested-With': 'XMLHttpRequest' 
+                }
+            }).then(response =>{
                 
-                this.active = response.data.category.active;
-                this.desactive = response.data.category.desactive;
-                this.collections = response.data.collections;
-                console.table(this.collections)
-            }else{
-                this.errorValidation = 'Error get informations for organizations';
-            }
-        }).catch(e => {
-            console.log(e)
-            this.errorValidation = 'Houve uma falha ao se conectar com servidor';
-        });
-
+                if(response.data.status){
+                    
+                    this.active = response.data.category.active;
+                    this.desactive = response.data.category.desactive;
+                    this.$store.commit('SET_CATEGORY', response.data.category);
+                    this.collections = response.data.collections;
+                    this.loader = false;
+                }else{
+                    this.errorValidation = 'Error get informations for organizations';
+                    this.loader = false;
+                }
+            }).catch(e => {
+                console.log(e)
+                this.errorValidation = 'Houve uma falha ao se conectar com servidor';
+            });
+        }else{
+            this.active = this.$store.getters.getCategory.active;
+            this.desactive = this.$store.getters.getCategory.desactive;
+            this.loader = false;
+        }
+        
+        
     },
     methods:{
         getSelectValue(value) {
@@ -131,6 +142,8 @@ export default {
                         this.active = response.data.category.active;
                         this.desactive = response.data.category.desactive;
                         this.collections = response.data.collections;
+
+                        this.$store.commit('SET_CATEGORY', response.data.category);
                     }else{
                         this.errorValidation = 'Error get informations for organizations';
                     }
@@ -153,6 +166,7 @@ export default {
                         this.active = response.data.category.active;
                         this.desactive = response.data.category.desactive;
                         this.collections = response.data.collections;
+                        this.$store.commit('SET_CATEGORY', response.data.category);
                     }else{
                         this.errorValidation = 'Error get informations for organizations';
                     }
@@ -172,7 +186,7 @@ export default {
                 'idCollection': this.collection,
                 'name': this.nameAdd
             }
-            this.$http.post(this.$urlAPI + 'products/category/add/',data,{
+            this.$http.post(this.$urlAPI + 'products/category/add',data,{
                 "headers":{
                     "authorization": "Bearer "+  this.$store.getters.getToken
                 }
@@ -182,6 +196,7 @@ export default {
                     this.active = response.data.category.active;
                     this.desactive = response.data.category.desactive;
                     this.collections = response.data.collections;
+                    this.$store.commit('SET_CATEGORY', response.data.category);
                 }else{
                     this.errorValidation = response.data.message;
                 }
