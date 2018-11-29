@@ -51,5 +51,10 @@ export default {
 </script>
 <style scoped>
 
+
+.mdb-color.lighten-3 {
+    background-color: #be3030 !important;
+}
+
 </style>
 

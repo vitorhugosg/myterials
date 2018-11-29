@@ -10,7 +10,7 @@
                 
                 <div class="row py-4 controllProducts" >
                     <div class="col-md-3">
-                        <router-link :to="'/admin/company/addproducts/'+ this.$route.params.idCompany"><btn color="primary" >Add Product</btn></router-link>
+                        <router-link :to="'/admin/company/addproducts/'+ this.$route.params.idCompany"><btn  color="success" >Add Product</btn></router-link>
                         
                     </div>
                     <div class="col-md-3">
@@ -19,14 +19,14 @@
                     <div class="col-md-4 searchProductsInput">
                         <div class="row">
                             <div class="col-sm-10"><mdb-input label="Search products"/></div>
-                            <div class="col-sm-2"><span><btn size="sm" color="warning"><i class="fa fa-search"></i></btn></span></div>
+                            <div class="col-sm-2"><span><btn size="sm" color="success"><i class="fa fa-search up-icon"></i></btn></span></div>
                         </div>
                         
                     </div>
                     <div class="col-md-2 align-self-end">
                         <btn-group class="float-md-right pt-sm-4" style="position: relative; bottom: 15px;">
-                            <span @click="activeTable(true)"><btn size="sm" color="primary"><i class="fa fa-list"></i></btn></span>
-                            <span @click="activeTable(false)"><btn size="sm" color="primary"><i class="fa fa-th"></i></btn></span>
+                            <span @click="activeTable(true)"><btn class="mr-1" size="sm" color="success"><i class=" up-icon fa fa-list"></i></btn></span>
+                            <span @click="activeTable(false)"><btn size="sm" color="success"><i class="up-icon fa fa-th"></i></btn></span>
                         </btn-group>
                     </div>
                 </div>
@@ -589,6 +589,18 @@ export default {
     margin-top: 0px !important;
     margin-bottom: 0px !important;
 }
-    
+
+.up-icon {
+    font-size: 15px !important;
+
+}    
+
+.pagination.pg-blue .page-item.active .page-link {
+    background-color: #00C851;
+}
+div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link:focus {
+     background-color: #00C851;
+}
+
 </style>
 

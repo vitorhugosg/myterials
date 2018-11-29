@@ -12,7 +12,7 @@
                             <mdb-card testimonial style="max-width: 22rem;">
 
                                 <!--Bacground color-->
-                                <div class="card-up aqua-gradient">
+                                <div class="card-up">
                                 </div>
 
                                 <!--Avatar-->
@@ -59,3 +59,13 @@ export default {
 }
 </script>
 
+
+
+<style scoped>
+
+.card-up {
+    background-color: #be3030 !important;
+}
+
+
+</style>
