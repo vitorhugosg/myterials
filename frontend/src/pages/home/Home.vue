@@ -583,4 +583,12 @@ export default {
 .card-red-myterials {
      background-color: #D02B2C; 
 }
+.card .card-circle{
+    border: 2px solid #e0e0e0;
+    height: 7.5rem;
+    width: 7.5rem;
+    border-radius: 50%;
+    max-width: 100px;
+    max-height: 100px;
+}
 </style>

@@ -105,8 +105,8 @@ export default {
                 this.loader = false;
             });
         }else{
-            this.active = this.$store.getters.getProfileProduct.active;
-            this.desactive = this.$store.getters.getProfileProduct.desactive;
+            this.active = this.$store.getters.getVolumeType.active;
+            this.desactive = this.$store.getters.getVolumeType.desactive;
             this.loader = false;
         }
         
