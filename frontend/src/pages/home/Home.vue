@@ -26,7 +26,7 @@
                                     <div class="card-body">
                                         <!-- Header -->
                                         <div class="text-center">
-                                            <h3 class="white-text"><i class="fa fa-user white-text"></i> Register :</h3>
+                                            <h3 class="white-text"><i class="fa fa-user white-text"></i> Register:</h3>
                                             <hr class="hr-light">
                                         </div>
 
@@ -117,7 +117,7 @@
 
                     <!--Grid column-->
                     <div class="col-md-4  text-center  flex-center ">
-                        <img src="/static/img/images/img-home.png" alt="" class="z-depth-0">
+                        <img src="/static/img/images/img-home.png" alt="" class="img-fluid z-depth-0">
                     </div>
                     <!--Grid column-->
 

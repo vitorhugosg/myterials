@@ -10,41 +10,46 @@
                 <h3>
                   <i class="fa fa-user mt-2 mb-2"></i> 
                   <b>Myterials</b> Log in:</h3>
-              </div>
+                </div>
 
-            <div class="form-erros">
-                {{errorValidation}}
-            </div>
-            <mdb-input v-model="email" label="Your email" labelColor="white" icon="envelope"/>
-            <mdb-input v-model="password" label="Your password" labelColor="white" icon="lock" type="password"/>
-            <div class="text-center mt-4 black-text">
-                <div class="w-100" v-on:click="login()" v-if="!loader">
-                  <btn  class="button-myterials">Login</btn>
-              </div>
-              <div class="w-100" v-if="loader">
-                  <progress-wrapper>
-                    <progress-bar :value="progressLoader" color="danger" animated></progress-bar>
-                </progress-wrapper>
-            </div>
+                <div class="form-erros">
+                  {{errorValidation}}
+                </div>
+                <mdb-input v-model="email" label="Your email" labelColor="white" icon="envelope"/>
+                <mdb-input v-model="password" label="Your password" labelColor="white" icon="lock" type="password"/>
+                <div class="text-center mt-4 black-text">
+                  <div class="w-100" v-on:click="login()" v-if="!loader">
+                    <btn  class="button-myterials">Login</btn>
+                  </div>
+                  <div class="w-100" v-if="loader">
+                    <progress-wrapper>
+                      <progress-bar :value="progressLoader" color="danger" animated></progress-bar>
+                    </progress-wrapper>
+                  </div>
 
-            <hr />
-            <div class="text-center d-flex justify-content-center white-label">
-              <a class="p-2 m-2">
-                <fa icon="twitter" class="white-text"/>
-            </a>
-            <a class="p-2 m-2">
-                <fa icon="linkedin" class="white-text"/>
-            </a>
-            <a class="p-2 m-2">
-                <fa icon="instagram" class="white-text"/>
-            </a>
-        </div>
-    </div>
-</mdb-card-body>
-</mdb-card>
-</div>
+                  <hr />
+                  <div class="text-center d-flex justify-content-center white-label">
+                    <a class="p-2 m-2">
+                      <fa icon="twitter" class="white-text"/>
+                    </a>
+                    <a class="p-2 m-2">
+                      <fa icon="linkedin" class="white-text"/>
+                    </a>
+                    <a class="p-2 m-2">
+                      <fa icon="instagram" class="white-text"/>
+                    </a>
+                  </div>
+                </div>
+              </mdb-card-body>
+            </mdb-card>
+          </div>
+          <div class="col-md-6  pt-5 mt-5 text-center flex-center ">
+              <img src="/static/img/images/img-login.png" alt="" class="img-fluid z-depth-0">
+          </div>
+
 </row>
 </container>
+
 </md-mask>
 
 </template>
@@ -129,7 +134,9 @@
 .form-header {
   background-color:#D02B2C ; 
 }
-
+#classic-card {
+  max-width: 450px;
+}
 
 </style>
 
