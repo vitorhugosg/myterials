@@ -3,7 +3,7 @@
         <nav-bar-home></nav-bar-home>
         
         <!-- Intro Section -->
-        <section id="intro2" class="" style="background-image: url(/static/img/images/bg-home2-png.png); background-size: cover; background-position: center center;">
+        <section id="intro2" class="img-fluid" style="background-image: url(/static/img/images/bg-home2-png.png); background-size: cover; background-position: center center;">
             <div class=" py-5">
                 <div class="container h-100 d-flex justify-content-center align-items-center">
                     <div class="d-flex align-items-center content-height">
@@ -556,11 +556,14 @@ export default {
     }
 }
 
+.card-circle {
+flex: none !important;
+}
 .title6 {
     letter-spacing: 1px;
 }
 .button-myterials {
-    background: #D02B2C !important;
+    background: #be3030 !important;
     letter-spacing: .1em;
     color:#fff !important;
 }
@@ -571,17 +574,17 @@ export default {
 }
 
 .icon-myterials {
-     color: #D02B2C;
+     color: #be3030;
 }
 .title6-red {
-    color: #D02B2C;
+    color: #be3030;
     letter-spacing: .1em;
 }
 .card-grey-myterials {
      background-color: rgba(244, 67, 54, 0.1);
 }
 .card-red-myterials {
-     background-color: #D02B2C; 
+     background-color: #be3030; 
 }
 .card .card-circle{
     border: 2px solid #e0e0e0;

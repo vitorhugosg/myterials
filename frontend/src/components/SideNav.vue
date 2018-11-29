@@ -1,6 +1,6 @@
 <template>
   <mdb-side-nav :OpenedFromOutside.sync="toggle" dark color="primary-color" ref="sideNav">
-    <mdb-scrollbar class="side-nav-scroll" :wheelSpeed="0.3">
+    <mdb-scrollbar class="img-no side-nav-scroll" :wheelSpeed="0.3">
       <li class="logo-nav">
         <div class="logo-wrapper">
           <img alt="" class="img-fluid" src="/static/img/logo/myterials.png"/>
@@ -14,10 +14,10 @@
         </form>
       </li>
       <li>
-        <ul class="collapsible">
+        <ul class="collapsible up-font">
           <li>
             <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 11 ? active = 0 : active = 11">
-              <mdb-icon icon="cubes"/> Organization<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 11 ? 'rotated' : ''"/>
+              <mdb-icon icon="cubes red-text"/> Organization<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 11 ? 'rotated' : ''"/>
             </a>
             <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
               <mdb-sub-menu tag="ul" v-if="active === 11" class="collapse-side-nav-item">
@@ -30,7 +30,7 @@
           </li>
           <li>
             <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 22 ? active = 0 : active = 22">
-              <mdb-icon icon="cube"/> Companyes<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 22 ? 'rotated' : ''"/>
+              <mdb-icon icon="cube red-text" /> Companyes<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 22 ? 'rotated' : ''"/>
             </a>
             <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
               <mdb-sub-menu tag="ul" v-if="active === 22" class="collapse-side-nav-item">
@@ -42,7 +42,7 @@
           </li>
           <li>
             <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 1 ? active = 0 : active = 1">
-              <mdb-icon icon="tachometer"/> Dashboards<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 1 ? 'rotated' : ''"/>
+              <mdb-icon icon="tachometer red-text"/> Dashboards<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 1 ? 'rotated' : ''"/>
             </a>
             <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
               <mdb-sub-menu tag="ul" v-if="active === 1" class="collapse-side-nav-item">
@@ -57,7 +57,7 @@
           </li>
           <li>
             <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 2 ? active = 0 : active = 2">
-              <mdb-icon icon="photo"/> Pages<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 2 ? 'rotated' : ''"/>
+              <mdb-icon icon="photo red-text"/> Pages<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 2 ? 'rotated' : ''"/>
             </a>
             <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
               <mdb-sub-menu tag="ul" v-if="active === 2" class="collapse-side-nav-item">
@@ -78,7 +78,7 @@
           </li>
           <li>
             <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 3 ? active = 0 : active = 3">
-              <mdb-icon icon="user"/> Profile<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 3 ? 'rotated' : ''"/>
+              <mdb-icon icon="user red-text"/> Profile<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 3 ? 'rotated' : ''"/>
             </a>
             <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
               <mdb-sub-menu tag="ul" v-if="active === 3" class="collapse-side-nav-item">
@@ -90,7 +90,7 @@
           </li>
           <li>
             <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 4 ? active = 0 : active = 4">
-              <mdb-icon icon="css3"/> CSS<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 4 ? 'rotated' : ''"/>
+              <mdb-icon icon="css3 red-text"/> CSS<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 4 ? 'rotated' : ''"/>
             </a>
             <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
               <mdb-sub-menu tag="ul" v-if="active === 4" class="collapse-side-nav-item">
@@ -111,7 +111,7 @@
           </li>
           <li>
             <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 5 ? active = 0 : active = 5">
-              <mdb-icon icon="th"/> Components<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 5 ? 'rotated' : ''"/>
+              <mdb-icon icon="th red-text"/> Components<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 5 ? 'rotated' : ''"/>
             </a>
             <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
               <mdb-sub-menu tag="ul" v-if="active === 5" class="collapse-side-nav-item">
@@ -134,7 +134,7 @@
           </li>
           <li>
             <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 6 ? active = 0 : active = 6">
-              <mdb-icon icon="check-square-o"/> Forms<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 6 ? 'rotated' : ''"/>
+              <mdb-icon icon="check-square-o red-text"/> Forms<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 6 ? 'rotated' : ''"/>
             </a>
             <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
               <mdb-sub-menu tag="ul" v-if="active === 6" class="collapse-side-nav-item">
@@ -145,7 +145,7 @@
           </li>
           <li>
             <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 7 ? active = 0 : active = 7">
-              <mdb-icon icon="table"/> Tables<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 7 ? 'rotated' : ''"/>
+              <mdb-icon icon="table red-text"/> Tables<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 7 ? 'rotated' : ''"/>
             </a>
             <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
               <mdb-sub-menu tag="ul" v-if="active === 7" class="collapse-side-nav-item">
@@ -157,7 +157,7 @@
           </li>
           <li>
             <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 8 ? active = 0 : active = 8">
-              <mdb-icon icon="map"/> Maps<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 8 ? 'rotated' : ''"/>
+              <mdb-icon icon="map red-text"/> Maps<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 8 ? 'rotated' : ''"/>
             </a>
             <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
               <mdb-sub-menu tag="ul" v-if="active === 8" class="collapse-side-nav-item">
@@ -167,16 +167,16 @@
             </transition>
           </li>
           <li>
-            <router-link class="ripple-parent" @click.native="wave" to="/modals/modals"><mdb-icon icon="bolt"/> Modals</router-link>
+            <router-link class="ripple-parent" @click.native="wave" to="/modals/modals"><mdb-icon icon="bolt red-text"/> Modals</router-link>
           </li>
           <li>
-            <router-link class="ripple-parent" @click.native="wave" to="/charts/charts"><mdb-icon icon="pie-chart"/> Charts</router-link>
+            <router-link class="ripple-parent" @click.native="wave" to="/charts/charts"><mdb-icon icon="pie-chart red-text"/> Charts</router-link>
           </li>
           <li>
-            <router-link class="ripple-parent" @click.native="wave" to="/calendar/calendar"><mdb-icon icon="calendar-check-o"/> Calendar</router-link>
+            <router-link class="ripple-parent" @click.native="wave" to="/calendar/calendar"><mdb-icon icon="calendar-check-o red-text"/> Calendar</router-link>
           </li>
           <li>
-            <router-link class="ripple-parent" @click.native="wave" to="/sections/sections"><mdb-icon icon="th-large"/> Sections</router-link>
+            <router-link class="ripple-parent" @click.native="wave" to="/sections/sections"><mdb-icon icon="th-large red-text"/> Sections</router-link>
           </li>
         </ul>
       </li>
@@ -343,4 +343,19 @@ export default {
 .form-control {
   font-size: 14px;
 }
+
+.img-no {
+  background-image: none !important;
+  background-color: #fff !important;
+  font-size: .1em !important; 
+}
+
+.up-font a{
+  font-size: 15px !important; 
+}
+
+.red-text {
+  font-size: 13px !important;
+}
+
 </style>

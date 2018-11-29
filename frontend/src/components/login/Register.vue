@@ -1,9 +1,8 @@
 <template>
-    <md-mask overlay="stylish-strong" class="d-flex justify-content-center align-items-center py-5">
+    <md-mask class=" min-height-100 d-flex justify-content-center align-items-center py-5" style="background-image: url(/static/img/images/icons-footer.png); background-repeat: no-repeat; ">
       <container id="" >
           <row>
-            
-          <div class="col-md-6 p-3 pt-5 mt-5 ">
+          <div class="col-md-12 p-3 pt-5 mt-5 ">
               <mdb-card id="classic-card">
               <mdb-card-body class="z-depth-2 white-text">
                   <div class="form-header ">
@@ -40,9 +39,7 @@
               </mdb-card-body>
               </mdb-card>
           </div>
-          <div class="col-md-6  pt-5 mt-5 text-center flex-center ">
-              <img src="/static/img/images/img-register.png" alt="" class="img-fluid z-depth-0">
-          </div>
+      
 
           </row>
       </container>
@@ -97,6 +94,7 @@ export default {
 
 .card {
   background-color: rgba(229, 228, 255, 0.2);
+  margin:0 auto;
 }
 
 .classic-form-page h6 {
@@ -126,10 +124,10 @@ export default {
 }
 
 .form-header {
-  background-color:#D02B2C !important; 
+  background-color:#be3030 !important; 
 }
 .button-myterials {
-    background: #D02B2C !important;
+    background: #be3030 !important;
     letter-spacing: .1em;
     color:#fff !important;
 }
@@ -137,6 +135,11 @@ export default {
 #classic-card {
   max-width: 450px;
 } 
+
+.min-height-100{
+  min-height: 100% !important;
+  background: #222;
+}
 
 </style>
 

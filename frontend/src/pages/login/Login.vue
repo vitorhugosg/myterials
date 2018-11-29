@@ -3,7 +3,6 @@
         <nav-bar-home></nav-bar-home>
         <form-login></form-login>
 
-        <footer-home></footer-home>
     </div>
 </template>
 

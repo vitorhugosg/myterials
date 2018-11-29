@@ -32,7 +32,7 @@
                                 <p class="card-text mt-3">Some quick example text to build on the card title and make up the bulk of the card's content.
                                 </p>
 
-                                <mdb-btn color="info" rounded size="sm" icon="paper-plane" iconRight>View Member</mdb-btn>
+                                <mdb-btn color="success" rounded size="sm" icon="paper-plane" iconRight>View Member</mdb-btn>
 
                                 
 

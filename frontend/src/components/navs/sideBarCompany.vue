@@ -1,5 +1,5 @@
 <template>
-    <div class="classOperations mb-4">
+    <div class="classOperations mb-5">
         <div class="row text-center ">
             <div class="col"><router-link class="p-2 button-classOp text-white w-100 d-block" :to="'/admin/company/'+ this.$route.params.idCompany">Statistic</router-link></div>
             <div class="col"><router-link class="p-2 button-classOp text-white w-100 d-block" :to="'/admin/company/products/'+ this.$route.params.idCompany">Products</router-link></div>
@@ -19,14 +19,14 @@
 </script>
 <style scoped>
 .classOperations{
-    background: #D13436;
+    background: #be3030;
     
 }
 .classOperations .button-classOp{
     text-decoration: none;
 }
 .classOperations .button-classOp:hover{
-    color: #D13436 !important;
+    color: #be3030 !important;
     background: #fff;
 }
 </style>

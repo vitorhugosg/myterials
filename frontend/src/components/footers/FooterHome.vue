@@ -104,17 +104,20 @@
 <style scoped>
 
 .footer-myterials {
-    background-color:#143F3B; 
+    background-color:#222222 !important; 
+/*  background-image: linear-gradient(-20deg, #616161 0%, #9bc5c3 100%)!important;*/
+
+
 }
 
 .icon-myterials {
-     color: #D02B2C !important;
+     color: #be3030 !important;
 }
 .space-letter {
     letter-spacing: .1em;
 }
 .space-letter:hover { 
-    color: #D02B2C;
+    color: #be3030;
     cursor:pointer;
 }
 
