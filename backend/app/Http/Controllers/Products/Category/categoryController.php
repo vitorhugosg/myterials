@@ -17,7 +17,9 @@ class categoryController extends Controller
     	$user = $request->user();
     	if ($user->companyes()->find($idCompany)) {
     		$collections =  Collection::where('company_id', $idCompany)->where('status', 1)->get();
+            dump($collections);
             if (!empty($collections)) {
+
                 foreach ($collections as $key => $value) {
                     $collectionsId[] = $collections[$key]['id'];
                 }
