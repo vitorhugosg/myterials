@@ -17,21 +17,33 @@ class categoryController extends Controller
     	$user = $request->user();
     	if ($user->companyes()->find($idCompany)) {
     		$collections =  Collection::where('company_id', $idCompany)->where('status', 1)->get();
-    		foreach ($collections as $key => $value) {
-    			$collectionsId[] = $collections[$key]['id'];
-    		}
-    		$categoryActive = Category::whereIn('colletion_id',$collectionsId)->where('status', 1)->get();
-    		$categoryActive = $this->addNameCollection($categoryActive);
-    		$categoryDesactive = Category::whereIn('colletion_id',$collectionsId)->where('status', 0)->get();
-    		$categoryDesactive = $this->addNameCollection($categoryDesactive);
-    		return [
-	    			'status'=> true,
-	    			'category'=>[
-	    				'active' =>$categoryActive,
-	    				'desactive' => $categoryDesactive
-	    			],
-	    			'collections' => $collections
-	    		];
+            if (!empty($collections)) {
+                foreach ($collections as $key => $value) {
+                    $collectionsId[] = $collections[$key]['id'];
+                }
+                $categoryActive = Category::whereIn('colletion_id',$collectionsId)->where('status', 1)->get();
+                $categoryActive = $this->addNameCollection($categoryActive);
+                $categoryDesactive = Category::whereIn('colletion_id',$collectionsId)->where('status', 0)->get();
+                $categoryDesactive = $this->addNameCollection($categoryDesactive);
+                return [
+                        'status'=> true,
+                        'category'=>[
+                            'active' =>$categoryActive,
+                            'desactive' => $categoryDesactive
+                        ],
+                        'collections' => $collections
+                    ];
+            }else{
+                return [
+                    'status'=> true,
+                    'category'=>[
+                        'active' =>'',
+                        'desactive' => ''
+                    ],
+                    'collections' => $collections
+                ];
+            }
+    		
     	}else{
     		return [
     			'status' => 'false',
