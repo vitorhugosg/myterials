@@ -116,6 +116,7 @@ export default {
         }else{
             this.active = this.$store.getters.getCategory.active;
             this.desactive = this.$store.getters.getCategory.desactive;
+            this.collections = this.$store.getters.getCollections.active;
             this.loader = false;
         }
         
