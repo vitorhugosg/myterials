@@ -334,7 +334,7 @@
 	            }
 	        }).then(response =>{
 	            if (response.data.status) {
-	                localStorage.setItem('productAux', JSON.stringify(response.data));
+	                localStorage.setItem('produtoAux', JSON.stringify(response.data));
 	                this.$store.commit('SET_PRODUCT_AUX', response.data);
 	                this.loader = false;
 	            }else{
