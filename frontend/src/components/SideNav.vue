@@ -40,109 +40,7 @@
               </mdb-sub-menu>
             </transition>
           </li>
-          <li>
-            <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 1 ? active = 0 : active = 1">
-              <mdb-icon icon="tachometer red-text"/> Dashboards<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 1 ? 'rotated' : ''"/>
-            </a>
-            <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
-              <mdb-sub-menu tag="ul" v-if="active === 1" class="collapse-side-nav-item">
-                <li><router-link class="ripple-parent" @click.native="wave" to="/">Version 1</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/dashboards/v-2">Version 2</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/dashboards/v-3">Version 3</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/dashboards/v-4">Version 4</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/dashboards/v-5">Version 5</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/dashboards/v-6">Version 6</router-link></li>
-              </mdb-sub-menu>
-            </transition>
-          </li>
-          <li>
-            <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 2 ? active = 0 : active = 2">
-              <mdb-icon icon="photo red-text"/> Pages<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 2 ? 'rotated' : ''"/>
-            </a>
-            <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
-              <mdb-sub-menu tag="ul" v-if="active === 2" class="collapse-side-nav-item">
-                <li><router-link class="ripple-parent" @click.native="wave" target="_blank" to="/pages/login">Login</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" target="_blank" to="/pages/register">Register</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" target="_blank" to="/pages/pricing">Pricing</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" target="_blank" to="/pages/about">About us</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" target="_blank" to="/pages/single">Single post</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" target="_blank" to="/pages/post">Post listing</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" target="_blank" to="/pages/landing">Landing Page</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/pages/customers">Customers</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/pages/invoice">Invoice</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/pages/page">Page Creator</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/pages/support">Support</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/pages/chat">Chat</router-link></li>
-              </mdb-sub-menu>
-            </transition>
-          </li>
-          <li>
-            <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 3 ? active = 0 : active = 3">
-              <mdb-icon icon="user red-text"/> Profile<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 3 ? 'rotated' : ''"/>
-            </a>
-            <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
-              <mdb-sub-menu tag="ul" v-if="active === 3" class="collapse-side-nav-item">
-                <li><router-link class="ripple-parent" @click.native="wave" to="/profiles/basic-1">Basic 1</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/profiles/basic-2">Basic 2</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/profiles/extended">Extended</router-link></li>
-              </mdb-sub-menu>
-            </transition>
-          </li>
-          <li>
-            <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 4 ? active = 0 : active = 4">
-              <mdb-icon icon="css3 red-text"/> CSS<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 4 ? 'rotated' : ''"/>
-            </a>
-            <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
-              <mdb-sub-menu tag="ul" v-if="active === 4" class="collapse-side-nav-item">
-                <li><router-link class="ripple-parent" @click.native="wave" to="/css/grid">Grid system</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/css/media">Media object</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/css/utilities">Utilities / helpers</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/css/code">Code</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/css/icons">Icons</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/css/images">Images</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/css/typo">Typography</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/css/colors">Colors</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/css/hover">Hover effects</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/css/masks">Masks</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/css/shadows">Shadows</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/css/skins">Skins</router-link></li>
-              </mdb-sub-menu>
-            </transition>
-          </li>
-          <li>
-            <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 5 ? active = 0 : active = 5">
-              <mdb-icon icon="th red-text"/> Components<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 5 ? 'rotated' : ''"/>
-            </a>
-            <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
-              <mdb-sub-menu tag="ul" v-if="active === 5" class="collapse-side-nav-item">
-                <li><router-link class="ripple-parent" @click.native="wave" to="/components/buttons">Buttons</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/components/cards">Cards</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/components/panels">Panels</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/components/list">List group</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/components/pagination">Pagination</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/components/progress">Progress bars</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/components/tabs">Tabs & pills</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/components/tags">Tags, labels & badges</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/components/collapse">Collapse</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/components/datepicker">Date picker</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/components/timepicker">Time picker</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/components/tooltips">Tooltips</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/components/popovers">Popovers</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/components/stepper">Stepper</router-link></li>
-              </mdb-sub-menu>
-            </transition>
-          </li>
-          <li>
-            <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 6 ? active = 0 : active = 6">
-              <mdb-icon icon="check-square-o red-text"/> Forms<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 6 ? 'rotated' : ''"/>
-            </a>
-            <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
-              <mdb-sub-menu tag="ul" v-if="active === 6" class="collapse-side-nav-item">
-                <li><router-link class="ripple-parent" @click.native="wave" to="/forms/basic">Basic</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/forms/extended">Extended</router-link></li>
-              </mdb-sub-menu>
-            </transition>
-          </li>
+          
           <li>
             <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 7 ? active = 0 : active = 7">
               <mdb-icon icon="table red-text"/> Tables<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 7 ? 'rotated' : ''"/>
@@ -155,26 +53,7 @@
               </mdb-sub-menu>
             </transition>
           </li>
-          <li>
-            <a class="collapsible-header ripple-parent" @click="wave" @click.prevent="active === 8 ? active = 0 : active = 8">
-              <mdb-icon icon="map red-text"/> Maps<mdb-icon icon="angle-down" class="rotate-icon" :class="active === 8 ? 'rotated' : ''"/>
-            </a>
-            <transition @before-enter="beforeEnter" @enter="enter" @before-leave="beforeLeave">
-              <mdb-sub-menu tag="ul" v-if="active === 8" class="collapse-side-nav-item">
-                <li><router-link class="ripple-parent" @click.native="wave" to="/maps/googlemaps">Google Maps</router-link></li>
-                <li><router-link class="ripple-parent" @click.native="wave" to="/maps/fullscreen">Full screen map</router-link></li>
-              </mdb-sub-menu>
-            </transition>
-          </li>
-          <li>
-            <router-link class="ripple-parent" @click.native="wave" to="/modals/modals"><mdb-icon icon="bolt red-text"/> Modals</router-link>
-          </li>
-          <li>
-            <router-link class="ripple-parent" @click.native="wave" to="/charts/charts"><mdb-icon icon="pie-chart red-text"/> Charts</router-link>
-          </li>
-          <li>
-            <router-link class="ripple-parent" @click.native="wave" to="/calendar/calendar"><mdb-icon icon="calendar-check-o red-text"/> Calendar</router-link>
-          </li>
+          
           <li>
             <router-link class="ripple-parent" @click.native="wave" to="/sections/sections"><mdb-icon icon="th-large red-text"/> Sections</router-link>
           </li>

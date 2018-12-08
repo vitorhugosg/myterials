@@ -48,8 +48,6 @@
             <!-- Subscription form -->
             <div class="row">
                 <div class="col-md-12">
-                    
-                    
                     <p class="red">{{errorValidation}}</p>
                     <mdb-input class="grey-text" type="text" v-model="nameAdd" label="Material Type name"/>
                     <mdb-select @getValue="getSelectValue" v-if="collections != null">
@@ -59,8 +57,6 @@
                     <div class="text-center mt-4" v-on:click="addMaterial()">
                         <mdb-btn class="btn-block" color="green " icon="paper-plane-o" iconRight >Add New</mdb-btn>
                     </div>
-
-                    
                 </div>
             </div>
             <!-- Subscription form -->
@@ -94,12 +90,10 @@ export default {
             this.$http.get(this.$urlAPI + 'products/category/get/'+ this.$route.params.idCompany,{
                 "headers":{
                   "authorization": "Bearer "+  this.$store.getters.getToken,
-                  'X-Requested-With': 'XMLHttpRequest' 
+                  'X-Requested-With': 'XMLHttpRequest'
                 }
             }).then(response =>{
-                
                 if(response.data.status){
-                    
                     this.active = response.data.category.active;
                     this.desactive = response.data.category.desactive;
                     this.$store.commit('SET_CATEGORY', response.data.category);

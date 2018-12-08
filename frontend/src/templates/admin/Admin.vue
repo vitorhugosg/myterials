@@ -42,8 +42,8 @@ export default {
   },
   data () {
     return {
-      activePage: 'Dashboard v.1',
-      toggle: false
+      activePage: '',
+      toggle: true
     }
   },
   mounted () {

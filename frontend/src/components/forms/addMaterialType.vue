@@ -84,7 +84,7 @@ export default {
     },
     mounted(){
         this.loader = true
-
+        console.log(this.$store.getters.getMaterialType);
         if(this.$store.getters.getMaterialType  == null){
             this.$http.get(this.$urlAPI + 'products/material_type/get/'+ this.$route.params.idCompany,{
                 "headers":{

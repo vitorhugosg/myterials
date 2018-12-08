@@ -11,7 +11,7 @@
                                     <h5>Product Name</h5>
                                 </div>
                                 <div class="col-md-12">
-                                    <mdb-input type="text" id="exampleInput" label="Product's name"  />
+                                    <mdb-input type="text" @input="inputNameProduct" id="inputNameProduct" label="Product's name"  />
                                 </div>
                                 <div class="col-md-6">
                                     <div class="row  py-3">
@@ -201,22 +201,26 @@
                             	</div>
                                 <div class="col-md-6 py-3">
                                 	<h5>Width Product</h5>
-                                	<mdb-input type="text" :value="form.width" id="width" label="Width"/>
+                                	<mdb-input type="number" v-model:value="form.width" id="width" label="Width" step="any"/>
                                 </div>
                                 <div class="col-md-6 py-3">
                                 	<h5>Height Product</h5>
-                                	<mdb-input type="text" :value="form.height" id="height" label="Height"/>
+                                	<mdb-input type="number" v-model:value="form.height" id="height" label="Height" step="any"/>
                                 </div>
                                 <div class="col-md-6 py-3">
                                 	<h5>Lenght Product</h5>
-                                	<mdb-input type="text" :value="form.lenght" id="Lenght" label="Lenght"/>
+                                	<mdb-input type="number" v-model:value="form.lenght" id="Lenght" label="Lenght" step="any"/>
                                 </div>
                                 <div class="col-md-6 py-3">
                                 	<h5>Volume Product</h5>
-                                	<mdb-input type="text" :value="form.volume" id="Volume" label="Volume"/>
+                                	<mdb-input type="number" v-model:value="form.volume" id="Volume" label="Volume" step="any"/>
                                 </div>
                                 <div class="col-md-12">
                                 	<h3>Images</h3>
+                                </div>
+                                <div class="col-md-12">
+                                	<addImagensMultiple>
+                                	</addImagensMultiple>
                                 </div>
                             </div>
                             <div class="row">
@@ -318,11 +322,12 @@
 	import addMaterialType from '@/components/forms/addMaterialType'
 	import addProfileProduct from '@/components/forms/addProfileProduct'
 	import addVolumeType from '@/components/forms/addVolumeType'
+	import addImagensMultiple from '@/components/forms/addImagensMultiple'
 	import {mdbSelect,mdbInput} from 'mdbvue'
 	export default{
 		name :'addFormProduct',
 		components:{
-			addVolumeType,addProfileProduct,addMaterialType,addMoistureProduct,addHazardProduct,addGradeProduct,addFinishProduct,addCategory,addCollection,
+			addVolumeType,addProfileProduct,addMaterialType,addMoistureProduct,addHazardProduct,addGradeProduct,addFinishProduct,addCategory,addCollection,addImagensMultiple,
 			mdbSelect,mdbInput
 		},
 		mounted(){
@@ -345,6 +350,10 @@
 	        });
 		},
 	    methods:{
+
+	    	inputNameProduct(value){
+	    		this.form.nameProduct = value;
+	    	},
 	        //pegando variavel
 	        getSelectValueCollection(value) {
 	            this.form.collection = false;
@@ -489,6 +498,7 @@
 	                materialType: false,
 	                moistoreProduct: false,
 	                finishProduct: false,
+	                nameProduct : '',
 	                width: '',
 	                height: '',
 	                lenght: '',

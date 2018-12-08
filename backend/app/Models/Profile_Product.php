@@ -8,11 +8,11 @@ class Profile_Product extends Model
 {
     protected $table = 'profile_product';
     protected $fillable = [
-        'company_id', 'name', 'status',
+        'collection_id', 'name', 'status',
     ];
 
-    public function companyes()
+    public function collection()
     {
-        return $this->hasMany('App\Models\Company', 'company_id');
+        return $this->hasMany('App\Models\Collection', 'collection_id');
     }
 }

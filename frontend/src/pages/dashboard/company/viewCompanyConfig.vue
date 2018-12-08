@@ -21,30 +21,30 @@
                         <add-material-type class="mb-2" >
                         </add-material-type>
 
-                        <add-moisture-product class="mb-2">
+                        <!-- <add-moisture-product class="mb-2">
                         </add-moisture-product>
 
                         <add-finish-product class="mb-2">
-                        </add-finish-product>
+                        </add-finish-product> -->
                     </div>
                     <div class="col-lg-4 mb-4">
                         
-                        <add-grade-product class="mb-2">
+                        <!-- <add-grade-product class="mb-2">
 
-                        </add-grade-product>
+                        </add-grade-product> -->
                         <add-collection class="mb-2">
 
                         </add-collection> 
                     </div>
                     <div class="col-lg-4 mb-4">
-                        <add-profile-product class="mb-2">
+                        <!-- <add-profile-product class="mb-2">
 
                         </add-profile-product>
                         <add-hazard-product class="mb-2">
                         </add-hazard-product>
                         <add-volume-type class="mb-2">
                             
-                        </add-volume-type>
+                        </add-volume-type> -->
                         <add-category class="mb-2">
 
                         </add-category> 

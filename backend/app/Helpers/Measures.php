@@ -6,8 +6,8 @@ use Measures;
  */
 class Measures
 {
-	public function inPattern(){
-
+	public function inPattern($idUofm){
+		
 	}
 
 	public function outPattern(){

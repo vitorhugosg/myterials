@@ -12,6 +12,7 @@ class collectionController extends Controller
 {
     public function get(Request $request,$idCompany){
     	$user = $request->user();
+        
     	if ($user->companyes()->find($idCompany)) {
     		return [
                 'status'=> true,

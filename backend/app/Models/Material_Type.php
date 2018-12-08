@@ -8,10 +8,10 @@ class Material_Type extends Model
 {
     protected $table = 'material_type';
     protected $fillable = [
-        'company_id', 'name', 'status',
+        'collection_id', 'name', 'status'
     ];
-    public function company()
+    public function collection()
     {
-        return $this->hasMany('App\Models\Company', 'company_id');
+        return $this->hasMany('App\Models\Company', 'collection_id');
     }
 }

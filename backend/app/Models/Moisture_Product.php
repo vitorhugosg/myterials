@@ -8,11 +8,11 @@ class Moisture_Product extends Model
 {
     protected $table = 'moisture_product';
     protected $fillable = [
-        'company_id', 'name', 'status',
+        'collection_id', 'name', 'status',
     ];
 
-    public function companyes()
+    public function collection()
     {
-        return $this->hasMany('App\Models\Company', 'company_id');
+        return $this->hasMany('App\Models\Company', 'collection_id');
     }
 }

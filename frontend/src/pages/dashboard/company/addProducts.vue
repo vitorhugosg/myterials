@@ -7,9 +7,9 @@
                 <side-bar-company :idProduct="this.$route.params.idProducts" class="mb-5">
 
                 </side-bar-company>
-                <addProductForm>
+                <add-product-form>
 
-                </addProductForm>
+                </add-product-form>
             </mdb-container>
         </span>
     </admin>
@@ -24,53 +24,6 @@ export default {
     name: 'Addproducts',
     components:{
         mdbContainer, admin,sideBarCompany,addProductForm
-    },
-    data() {
-        return {
-            loader: false,
-            form: {
-                collection: false,
-                category: false,
-                profileProduct: false,
-                hazardProduct: false,
-                volume: false,
-                grade: false,
-                materialType: false,
-                moistoreProduct: false,
-                finishProduct: false
-            },
-            view: {
-                collection: true,
-                category: false,
-                profile: true,
-                hazard: true,
-                volume: true,
-                grade: true,
-                materialType: true,
-                moistoreProduct: true,
-                finishProduct: true
-            },
-            addOptions:{
-                addCollection: false,
-                addCategory: false,
-                addFinishProduct: false,
-                addGradeProduct: false,
-                addHazardProduct: false,
-                addMoistureProduct: false,
-                addMaterialType: false,
-                addProfileProduct: false,
-                addVolumeType: false
-            },
-            collections: this.$store.getters.getCollections.active,
-            category: [],
-            profileProduct: this.$store.getters.getProfileProduct.active,
-            hazardProduct: this.$store.getters.getHazardProduct.active,
-            volumeType: this.$store.getters.getVolumeType.active,
-            gradeProduct: this.$store.getters.getGradeProduct.active,
-            materialType: this.$store.getters.getMaterialType.active,
-            moistoreProduct: this.$store.getters.getMoistureProdutct.active,
-            finishProduct: this.$store.getters.getMoistureProdutct.active,
-        }
     },
     methods:{
         //pegando variavel
@@ -211,6 +164,68 @@ export default {
 }
 </script>
 <style scoped>
-
+/* PLUGINS */
+.header-container {
+    margin-top: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.header-container__header-image {
+    max-width: 100%;
+    max-height: 60px;
+    margin-bottom: 30px;
+}
+.header-container__header-content {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    margin-top: 0;
+    text-align: center;
+}
+.header-container__code {
+    margin-bottom: 10px;
+}
+/*Upload Container*/
+.demo-upload-container {
+    padding: 50px 10px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1000px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+/*Info Container*/
+.demo-info-container {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    max-width: 300px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background: #4ea2f5;
+    padding: 15px 15px;
+    border-radius: 6px;
+    text-align: center;
+    color: white;
+}
+.demo-info-container a {
+    color: white;
+    text-decoration: underline;
+}
+.demo-info-container a:hover {
+    color: #eee;
+}
+.upload-info-button {
+    display: block;
+    margin-bottom: 10px;
+}
 </style>
 

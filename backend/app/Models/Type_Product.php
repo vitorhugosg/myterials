@@ -8,7 +8,7 @@ class Type_Product extends Model
 {
     protected $table = 'type_product';
 
-    public function companyes()
+    public function collection()
     {
         return $this->hasMany('App\Models\Company', 'company_id');
     }
