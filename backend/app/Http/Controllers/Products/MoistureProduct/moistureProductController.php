@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Products\Collection\collectionController;
 use App\Models\Moisture_Product;
+use App\Models\Collection;
 use App\User;
 use App\Models\Company;
 use Auth;
@@ -35,11 +36,11 @@ class moistureProductController extends Controller
         }else{
             return [
                 'status' => 'false',
-                'massage' => 'You are not part of this company or not exists collections in company.'
+                'massage' => 'You are not part of this company'
             ];
         }
     }
-/**
+    /**
      * Retorna todos itens ativos e desativos dessa tabela.
      * @param $request->all()['idCollection']
      * @param $request->all()['name']
@@ -49,21 +50,22 @@ class moistureProductController extends Controller
         $data = $request->all();
         $user = $request->user();
 
-        if(isset(Moisture_Product::where('collection_id',$data['idCollection'])->where('name', $data['name'])->get()[0])){
-            return[
+        if(Moisture_Product::where('name', $data['name'])->where('collection_id', $data['idCollection'])->count() > 0){
+            return [
                 'status' => false,
-                'message' => 'An item with that name already exists.',
-                'result' => Moisture_Product::where('collection_id',$data['idCollection'])->where('name', $data['name'])->get()
+                'message' => 'Name exisits in table'
             ];
         }
-        if ($user->companyes()->find($data['idCollection'])) {
+        
+        if ($collection = Collection::find($data['idCollection'])) {
+
             $insert = [
                 'collection_id' => $data['idCollection'],
                 'name' => $data['name'],
                 'status' => 1
             ];
             if ($add = Moisture_Product::create($insert)) {
-                return $this->get($request, $data['idCompany']);
+                return $this->get($request, $collection['company_id']);
             }else{
                 return [
                     'status' => false,
@@ -73,20 +75,20 @@ class moistureProductController extends Controller
         }else{
             return [
                 'status' => false,
-                'massage' => 'You are not part of this company'
+                'massage' => 'You are not part of this Collection'
             ];
         }
     }
 
-    public function update(Request $request, $idCompany, $idMaterialType){
+    public function update(Request $request, $idCollection, $idFinishProduct){
         $data = $request->all();
         $user = $request->user();
-
+       
     }
 
     /**
      * Retorna todos itens ativos e desativos dessa tabela.
-     * @param $idCompany (int)
+     * @param $request->all()['idCompany'] (int)
      * @param $request->all()['id'] -> (int)
      * @return  objectResponse
     **/
@@ -94,7 +96,7 @@ class moistureProductController extends Controller
         $data = $request->all();
         $user = $request->user();
         //primeiro verificar se item pertence a uma collection que pertence a sua company
-        if ($this->get($request,$idCompany)['status'] === true) {
+        if ($this->get($request,$data['idCompany'])['status'] === true) {
             if ($updateResult = Moisture_Product::find($data['id'])) {
                 $updateResult->status = 0;
                 $updateResult->save();
@@ -112,18 +114,17 @@ class moistureProductController extends Controller
             ];
         }
     }
-
     /**
      * Retorna todos itens ativos e desativos dessa tabela.
      * @param $idCompany (int)
      * @param $request->all()['id'] (int)
      * @return  objectResponse
     **/
-    public function activate(Request $request, $idCompany){
+    public function activate(Request $request){
         $data = $request->all();
         $user = $request->user();
         //primeiro verificar se item pertence a uma collection que pertence a sua company
-        if ($this->get($request,$idCompany)['status'] === true) {
+        if ($this->get($request,$data['idCompany'])['status'] === true) {
             if ($updateResult = Moisture_Product::find($data['id'])) {
                 $updateResult->status = 1;
                 $updateResult->save();

@@ -53,8 +53,8 @@ Route::middleware(['cors','auth:api'])->group(function(){
 	Route::prefix('products')->group(function(){
 		
 		Route::get('getproductsaux/{idCompany}', 'Products\Products@getProductsAux');
-		
-
+		Route::get('getuofm', 'Products\Uofm\UofmController@get');
+		Route::post('addproduct/{idCompany}', 'Products@insertProduct');
 		Route::prefix('material_type')->group(function(){
 			Route::get('get/{idCompany}', 'Products\MaterialType\material_typeController@get');
 			Route::post('add', 'Products\MaterialType\material_typeController@add');
@@ -113,6 +113,7 @@ Route::middleware(['cors','auth:api'])->group(function(){
 
 		Route::prefix('collection')->group(function(){
 			Route::get('get/{idCompany}', 'Products\Collection\collectionController@get');
+			Route::get('getforid/{id}', 'Products\Collection\collectionController@getForid');
 			Route::post('add', 'Products\Collection\collectionController@add');
 			Route::post('update/{idCompany}/{idMaterialType}', 'Products\Collection\collectionController@update');
 			Route::post('desactive/{idCompany}', 'Products\Collection\collectionController@desactive');

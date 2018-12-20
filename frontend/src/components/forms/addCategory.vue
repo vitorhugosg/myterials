@@ -36,7 +36,6 @@
                                     <mdb-btn outline="success" darkWaves rounded size="sm"><i class="fa fa-plus-square-o" aria-hidden="true"></i></mdb-btn>
                                 </div>
                             </mdb-btn-group>
-                            
                         </div>
                     </div>
                 </div>

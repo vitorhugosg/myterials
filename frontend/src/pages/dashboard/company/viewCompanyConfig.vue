@@ -16,39 +16,67 @@
             <!--Section: Intro-->
                 <div class="row pt-5" v-if="loader == false">
                     <!--Grid column-->
-                    <div class="col-lg-4 mb-4">
+                    <div class="col-md-12 text-center">
+                        <h4> Choose you config products</h4>
+                    </div>
+                    <div class="col-lg-12 ">
+                        <div class="row mb-4">
+                            <div class="col btn btn-outline-primary rounded btn-sm waves-effect" v-on:click="activeModal('collections')">
+                                Collection
+                            </div>
+                            <div class="col btn btn-outline-primary rounded btn-sm waves-effect" v-on:click="activeModal('category')">
+                                Category
+                            </div>
+                            <div class="col btn btn-outline-primary rounded btn-sm waves-effect hoverble" v-on:click="activeModal('finish')">
+                                Finish Product
+                            </div>
+                            <div class="col btn btn-outline-primary rounded btn-sm waves-effect" v-on:click="activeModal('material_type')">
+                                Materia Type
+                            </div>
+                            <div class="col btn btn-outline-primary rounded btn-sm waves-effect" v-on:click="activeModal('moisture')">
+                                Moisture
+                            </div>
+                            <div class="col btn btn-outline-primary rounded btn-sm waves-effect" v-on:click="activeModal('profile')">
+                                Profile
+                            </div>
+                            <div class="col btn btn-outline-primary rounded btn-sm waves-effect" v-on:click="activeModal('hazard')">
+                                Hazard
+                            </div>
+                            <div class="col btn btn-outline-primary rounded btn-sm waves-effect" v-on:click="activeModal('volume')">
+                                Volume
+                            </div>
+                            <div class="col btn btn-outline-primary rounded btn-sm waves-effect" v-on:click="activeModal('grade')">
+                                Grade
+                            </div>
+                        </div>
 
-                        <add-material-type class="mb-2" >
+                        <add-material-type class="mb-2 animated fadeInDown" v-if="material_type" >
                         </add-material-type>
 
-                        <!-- <add-moisture-product class="mb-2">
-                        </add-moisture-product>
+                        <add-moisture-product class="mb-2 animated fadeInDown"v-if="moisture">
+                        </add-moisture-product >
 
-                        <add-finish-product class="mb-2">
-                        </add-finish-product> -->
-                    </div>
-                    <div class="col-lg-4 mb-4">
-                        
-                        <!-- <add-grade-product class="mb-2">
+                        <add-finish-product class="mb-2 animated fadeInDown" v-if="finish">
+                        </add-finish-product>
+                        <add-profile-product class="mb-2 animated fadeInDown" v-if="profile">
 
-                        </add-grade-product> -->
-                        <add-collection class="mb-2">
+                        </add-profile-product>
+                        <add-hazard-product class="mb-2 animated fadeInDown" v-if="hazard">
+                        </add-hazard-product>
+                        <add-volume-type class="mb-2 animated fadeInDown" v-if="volume">
+                            
+                        </add-volume-type>
+                        <add-category class="mb-2 animated fadeInDown" v-if="category" >
+
+                        </add-category> 
+                        <add-grade-product class="mb-2 animated fadeInDown" v-if="grade">
+
+                        </add-grade-product>
+                        <add-collection class="mb-2 animated fadeInDown" v-if="collections">
 
                         </add-collection> 
                     </div>
-                    <div class="col-lg-4 mb-4">
-                        <!-- <add-profile-product class="mb-2">
-
-                        </add-profile-product>
-                        <add-hazard-product class="mb-2">
-                        </add-hazard-product>
-                        <add-volume-type class="mb-2">
-                            
-                        </add-volume-type> -->
-                        <add-category class="mb-2">
-
-                        </add-category> 
-                    </div>
+                    
                     
                     <!--Grid column-->
                 </div>
@@ -77,7 +105,16 @@ export default {
     data(){
         return{
             productsAux: '',
-            loader: false
+            loader: false,
+            material_type: false,
+            category: false,
+            collections: true,
+            finish: false,
+            moisture: false,
+            profile: false,
+            hazard: false,
+            volume: false,
+            grade: false
         }
     },
     mounted(){
@@ -98,7 +135,55 @@ export default {
         }).catch(e => {
             console.log(e);
         });
-        
+    },
+    computed: {
+        produtoAux(){
+            
+            return this.$store.getters.getProductsAux;
+        }
+    },
+    methods:{
+        activeModal(value){
+            this.desactiveAll();
+            if (value == 'material_type') {
+                this.material_type = true;
+            }
+            if (value == 'collections') {
+                this.collections = true;
+            }
+            if (value == 'category') {
+                this.category = true;
+            }
+            if (value == 'finish') {
+                this.finish = true;
+            }
+            if (value == "moisture") {
+                this.moisture = true;
+            }
+            if(value == 'profile'){
+                this.profile = true;
+            }
+            if(value == 'hazard'){
+                this.hazard = true;
+            }
+            if (value == 'volume') {
+                this.volume = true;
+            }
+            if(value == 'grade'){
+                this.grade = true;
+            }
+        },
+        desactiveAll(){
+            this.material_type = false;
+            this.category = false;
+            this.collections = false;
+            this.finish = false;
+            this.moisture = false;
+            this.profile = false;
+            this.hazard = false;
+            this.volume = false;
+            this.grade = false;
+        }
     }
 }
 </script>

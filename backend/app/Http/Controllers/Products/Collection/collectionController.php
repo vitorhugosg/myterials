@@ -28,7 +28,9 @@ class collectionController extends Controller
     		];
     	}
     }
-
+    public function getForId($request, $id){
+        return Collection::find($id);
+    }
     public function add(Request $request){
     	$data = $request->all();
     	$user = $request->user();

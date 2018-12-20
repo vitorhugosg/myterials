@@ -15,8 +15,17 @@
                                 <div class="form-erros">
                                     {{errorValidation}}
                                 </div>
-                                <mdb-input class="text-white" v-model="email" label="Your email" labelColor="white" icon="envelope"/>
-                                <mdb-input class="text-white" v-model="password" label="Your password" labelColor="white" icon="lock" type="password"/>
+                                <div class="text-white md-form">
+                                    <i  class="prefix fa fa-envelope"></i>
+                                    <input  type="text" id="email" class="form-control" v-model="email" style="color: #fff;" placeholder="Your email">
+                                    
+                                </div>
+                                <div class="text-white md-form">
+                                    <i  class="prefix fa fa-envelope"></i>
+                                    <input  type="password" id="password" class="form-control" v-model="password" style="color: #fff;" placeholder="Your password">
+                                    
+                                </div>
+
                                 <div class="text-center mt-4 black-text">
                                     <div class="w-100" v-on:click="login()" v-if="!loader">
                                         <btn  class="button-myterials">Login</btn>
@@ -71,6 +80,10 @@
                     errorLoader: false
                 }
             },
+            created(){
+                let forms = document.querySelectorAll(".md-form")
+                console.log(forms)
+            }
 
         }
     </script>
@@ -86,6 +99,12 @@
     .min-height-100{
         min-height: 100% !important;
         background: #222;
+    }
+    .text-white .form-control:focus{
+        color: #fff !important;
+    }
+    .text-white .form-control{
+        color: #fff !important;
     }
     .classic-form-page .view {
         background-image: url('http://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img%20(11).jpg');

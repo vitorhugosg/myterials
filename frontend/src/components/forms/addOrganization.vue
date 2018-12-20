@@ -46,9 +46,11 @@
                     }
                 }).then(response =>{
                     if(response.data.status){
-                        localStorage.setItem('organizations', JSON.stringify(response.data.organizations));
-                        this.$store.commit('setOrganizations', response.data.organizations);
-                        this.errorValidation = 'Organization Adicionada com sucesso';
+                        
+                        this.errorValidation = 'Organization add success';
+                        setTimeout(e =>{
+                            this.$router.push('/admin/company/add');
+                        },400);
                     }else if(response.data.status == false && response.data.validacao){
                         let erros = '';
                         for(let erro of Object.values(response.data.erros)){

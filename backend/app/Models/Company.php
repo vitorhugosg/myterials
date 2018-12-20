@@ -24,8 +24,4 @@ class Company extends Model
         return $this->hasMany('App\Models\Organization');
     }
 
-    public function material_type()
-    {
-        return $this->belongsTo('App\Models\Material_Type');
-    }
 }

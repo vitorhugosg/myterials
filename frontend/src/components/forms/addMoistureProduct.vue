@@ -13,11 +13,14 @@
             <hr>
             <div class="row">
                 <div class="col-md-12" v-if="loader == false">
-                    <p class="h6 text-center">Active</p>
+                    <p class="h6 text-center my-5">Active</p>
                     <div class="row">
-                        <div class="col text-center py-1" v-for="act in active" :key="act.id">
+                        <div class="col text-center p-3 border-primary border " v-for="act in active" :key="act.id">
+                            <span style="font-size: 0.5em">Collection</span>
+                            <p v-for="item in collectionsActive" :key="item.id" v-if="act.collection_id == item.id"  class="gray-text">{{item.name}}</p>
+                            <p v-for="item in collectionsDesactive" :key="item.id" v-if="act.collection_id == item.id"  class="red-text">{{item.name}}</p>
                             <mdb-btn-group>
-                                <mdb-btn outline="primary" darkWaves rounded size="sm">{{act.name}}</mdb-btn>
+                                <mdb-btn outline="primary" darkWaves rounded size="sm"><span class="black-text">name</span> : {{act.name}}</mdb-btn>
                                 <div v-on:click="activeModal(act.id,true)">
                                 <mdb-btn outline="danger" darkWaves rounded size="sm"><i class="fa fa-trash" aria-hidden="true"></i></mdb-btn>
                                 </div>
@@ -25,17 +28,18 @@
                         </div>
                     </div>
                     <hr>
-                    <p class="h6 text-center">Desactive</p>
+                    <p class="h6 text-center my-5">Desactive</p>
                     <div class="row">
-                        <div class="col text-center py-1" v-for="dst in desactive" :key="dst.id">
+                        <div class="col text-center  p-3 border-danger border " v-for="dst in desactive" :key="dst.id">
+                            <span style="font-size: 0.5em">Collection</span>
+                            <p v-for="item in collectionsActive" :key="item.id" v-if="dst.collection_id == item.id" class="gray-text">{{item.name}}</p>
+                            <p v-for="item in collectionsDesactive" :key="item.id" v-if="dst.collection_id == item.id" class="red-text">{{item.name}}</p>
                             <mdb-btn-group>
-                                <mdb-btn outline="primary" darkWaves rounded size="sm">{{dst.name}}</mdb-btn>
+                                <mdb-btn outline="primary" darkWaves rounded size="sm"><span class="black-text">name</span> : {{dst.name}}</mdb-btn>
                                 <div v-on:click="activeModal(dst.id,false)">
                                     <mdb-btn outline="success" darkWaves rounded size="sm" ><i class="fa fa-plus-square-o" aria-hidden="true"></i></mdb-btn>
                                 </div>
-                                
                             </mdb-btn-group>
-                            
                         </div>
                     </div>
                 </div>
@@ -47,15 +51,19 @@
             <!-- Subscription form -->
             <div class="row">
                 <div class="col-md-12">
-                    
-                    
-                    <p class="red">{{errorValidation}}</p>
-                    <mdb-input class="grey-text" type="text" v-model="nameAdd" label="Material Type name"/>
-                    
-                    <div class="text-center mt-4" v-on:click="addMaterial()">
-                        <mdb-btn class="btn-block" color="green " icon="paper-plane-o" iconRight >Add New</mdb-btn>
+                    <div class="mx-auto py-4" style="max-width: 300px">
+                        <h3>Add new Moisture Product</h3>
+                        <p class="red">{{errorValidation}}</p>
+                        <mdb-input class="grey-text" type="text" v-model="nameAdd" label="Material Type name"/>
+                        <mdb-select @getValue="getSelectCollection">
+                            <option disabled selected>Select Organization</option>
+                            
+                            <span :value="item.id" v-for="item in collectionsActive" :key="item.id">  {{item.name}}</span>
+                        </mdb-select>
+                        <div class="text-center mt-4" v-on:click="addMaterial()">
+                            <mdb-btn class="btn-block" color="green " icon="paper-plane-o" iconRight >Add New</mdb-btn>
+                        </div>
                     </div>
-
                     
                 </div>
             </div>
@@ -67,11 +75,11 @@
     <!--/.Card-->
 </template>
 <script>
-import {mdbInput, mdbBtn, mdbBtnGroup, Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter, Btn } from 'mdbvue'
+import {mdbInput, mdbBtn, mdbBtnGroup, Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter, Btn, mdbSelect } from 'mdbvue'
 export default {
-    name: 'FormVolumeType',
+    name: 'finishProduct',
     components: {
-        mdbInput, mdbBtn, mdbBtnGroup,  Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter, Btn
+        mdbInput, mdbBtn, mdbBtnGroup,  Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter, Btn,mdbSelect
     },
     data(){
         return{
@@ -79,16 +87,17 @@ export default {
             desactive: [],
             errorValidation: '',
             nameAdd: '',
+            collection: '',
             loader: false
         }
     },
     mounted(){
-        this.loader = true;
-        if(this.$store.getters.getMoistureProdutct == null){
+        this.loader = true
+        if(this.$store.getters.getMoistureProdutct  == null){
             this.$http.get(this.$urlAPI + 'products/moisture_product/get/'+ this.$route.params.idCompany,{
                 "headers":{
                   "authorization": "Bearer "+  this.$store.getters.getToken,
-                  'X-Requested-With': 'XMLHttpRequest' 
+                  'X-Requested-With': 'XMLHttpRequest'
                 }
             }).then(response =>{
                 if(response.data.status){
@@ -100,8 +109,7 @@ export default {
                 }
                 this.loader = false;
             }).catch(e => {
-                console.log(e)
-                this.errorValidation = 'Houve uma falha ao se conectar com servidor';
+                this.errorValidation = 'Error connect BD';
                 this.loader = false;
             });
         }else{
@@ -110,19 +118,31 @@ export default {
             this.loader = false;
         }
     },
+    computed:{
+        collectionsActive(){
+            return this.$store.getters.getCollections.active
+        },
+        collectionsDesactive(){
+            return this.$store.getters.getCollections.desactive
+        }
+    },
     methods:{
-        
+        getSelectCollection(value){
+            this.collection = value;
+        },
         activeModal(id,type){
             this.errorValidation = '';
+            let data = {
+                id: id,
+                idCompany: this.$route.params.idCompany
+            };
             if(type){
-                let data = {idMaterialType: id};
-                this.$http.post(this.$urlAPI + 'products/moisture_product/desactive/'+ this.$route.params.idCompany,data,{
+                this.$http.post(this.$urlAPI + 'products/moisture_product/desactive',data,{
                     "headers":{
                         "authorization": "Bearer "+  this.$store.getters.getToken
                     }
                 }).then(response =>{
                     if(response.data.status){
-                        console.log(response.data)
                         this.active = response.data.moisture_product.active;
                         this.desactive = response.data.moisture_product.desactive;
                         this.$store.commit('SET_MOISTURE_PRODUCT', response.data.moisture_product);
@@ -131,17 +151,15 @@ export default {
                     }
                 }).catch(e => {
                     console.log(e)
-                    this.errorValidation = 'Houve uma falha ao se conectar com servidor';
+                    this.errorValidation = 'Error connect BD';
                 });
             }else{
-                let data = {idMaterialType: id};
-                this.$http.post(this.$urlAPI + 'products/moisture_product/activate/'+ this.$route.params.idCompany,data,{
+                this.$http.post(this.$urlAPI + 'products/moisture_product/activate',data,{
                     "headers":{
                         "authorization": "Bearer "+  this.$store.getters.getToken
                     }
                 }).then(response =>{
                     if(response.data.status){
-                        console.log(response.data)
                         this.active = response.data.moisture_product.active;
                         this.desactive = response.data.moisture_product.desactive;
                         this.$store.commit('SET_MOISTURE_PRODUCT', response.data.moisture_product);
@@ -150,15 +168,19 @@ export default {
                     }
                 }).catch(e => {
                     console.log(e)
-                    this.errorValidation = 'Houve uma falha ao se conectar com servidor';
+                    this.errorValidation = 'Error connect BD';
                 });
             }
         },
         addMaterial(){
             this.errorValidation = '';
             let data = {
-                'idCompany': this.$route.params.idCompany,
+                'idCollection': this.collection,
                 'name': this.nameAdd
+            }
+            if (this.collection = '') {
+                this.errorValidation = 'Choose your collection'
+                return;
             }
             this.$http.post(this.$urlAPI + 'products/moisture_product/add',data,{
                 "headers":{
@@ -166,7 +188,6 @@ export default {
                 }
             }).then(response =>{
                 if(response.data.status){
-                    console.log(response.data)
                     this.active = response.data.moisture_product.active;
                     this.desactive = response.data.moisture_product.desactive;
                     this.$store.commit('SET_MOISTURE_PRODUCT', response.data.moisture_product);
@@ -175,7 +196,7 @@ export default {
                 }
             }).catch(e => {
                 console.log(e)
-                this.errorValidation = 'Houve uma falha ao se conectar com servidor';
+                this.errorValidation = 'Error connect BD';
             });
             
         }

@@ -2,6 +2,7 @@ import axios from 'axios'
 var store = {
     state:{
         produtoAux: localStorage.getItem('produtoAux') ? JSON.parse(localStorage.getItem('produtoAux')) : null,
+        inputRegisterProduct: []
     },
     getters:{
         getProductsAux: state => {
@@ -70,6 +71,9 @@ var store = {
                 return null;
             }
         },
+        getInputRegisterProduct: state =>{
+            return state.inputRegisterProduct;
+        }
     },
     mutations:{
         SET_PRODUCT_AUX(state, n){
@@ -110,6 +114,10 @@ var store = {
         SET_COLLECTIONS(state, n){
             state.produtoAux.collections = n;
             localStorage.setItem('produtoAux', JSON.stringify(state.produtoAux));
+        },
+        SET_IMAGENS(state,n){
+
+            state.inputRegisterProduct = n;
         }
     }
 

@@ -50,21 +50,22 @@ class finish_productController extends Controller
         $data = $request->all();
         $user = $request->user();
 
-        if(isset(Finish_Product::where('collection_id',$data['idCollection'])->where('name', $data['name'])->get()[0])){
-            return[
+        if(Finish_Product::where('name', $data['name'])->where('collection_id', $data['idCollection'])->count() > 0){
+            return [
                 'status' => false,
-                'message' => 'An item with that name already exists.',
-                'result' => Finish_Product::where('collection_id',$data['idCollection'])->where('name', $data['name'])->get()
+                'message' => 'Name exisits in table'
             ];
         }
-        if ($user->companyes()->find($data['idCollection'])) {
+
+        if ($collection = Collection::find($data['idCollection'])) {
+
             $insert = [
                 'collection_id' => $data['idCollection'],
                 'name' => $data['name'],
                 'status' => 1
             ];
             if ($add = Finish_Product::create($insert)) {
-                return $this->get($request, $data['idCompany']);
+                return $this->get($request, $collection['company_id']);
             }else{
                 return [
                     'status' => false,
@@ -74,7 +75,7 @@ class finish_productController extends Controller
         }else{
             return [
                 'status' => false,
-                'massage' => 'You are not part of this company'
+                'massage' => 'You are not part of this Collection'
             ];
         }
     }
@@ -119,7 +120,7 @@ class finish_productController extends Controller
      * @param $request->all()['id'] (int)
      * @return  objectResponse
     **/
-    public function activate(Request $request, $idCompany){
+    public function activate(Request $request){
         $data = $request->all();
         $user = $request->user();
         //primeiro verificar se item pertence a uma collection que pertence a sua company

@@ -132,6 +132,7 @@
                         localStorage.setItem('companyes', JSON.stringify(response.data.companyes));
                         this.$store.commit('setCompanyes', response.data.companyes);
                         this.errorValidation = 'Company success add';
+                        this.$router.push('/admin/company/'+ response.data.companyes.id);
                     }else if(response.data.status == false && response.data.validacao){
                         let erros = '';
                         for(let erro of Object.values(response.data.erros)){

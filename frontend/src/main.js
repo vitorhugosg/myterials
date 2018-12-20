@@ -17,8 +17,13 @@ import 'dayspan-vuetify/dist/lib/dayspan-vuetify.min.css'
 import 'mdbvue/build/css/mdb.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import store from './store/store.js'
+import { VueMaskDirective } from 'v-mask'
+
+window.$ = require('jquery')
+window.JQuery = require('jquery')
 
 
+Vue.directive('mask', VueMaskDirective);
 
 
 Vue.use(VueGoogleMaps, {

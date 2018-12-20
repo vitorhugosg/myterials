@@ -49,4 +49,8 @@ class products extends Controller
             ];
         }
     }
+
+    public function insertProduct(Request $request, $idCompany){
+        dd($request);
+    }
 }

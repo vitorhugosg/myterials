@@ -58,7 +58,7 @@ class CompanyController extends Controller
     	//verificando se tem erros
 	    return [
 	    		'status' => true,
-	    		'companyes' => $user->companyes()->get()
+	    		'companyes' => $company
 	    	];
     }
 }

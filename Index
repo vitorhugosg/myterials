@@ -1,0 +1,42 @@
+//////////////////////////////
+Criar Perfis{
+	Para determinada funcionalidade
+},
+//////////////////////////////
+{
+	Package : quando for produto unico,
+	Packing : quando for um conjuto de vários produtos,
+
+},
+//////////////////////////////
+{
+	Categoria ele seleciona quais campos são necessários da nossa tabela de produtos.
+},
+//////////////////////////////
+variavel[
+	{
+		campo: XXXXXXXX,
+		valor: XXXXX,
+		tipo: {
+			string, double or int
+		},
+		status: X,
+		SIGLA PARA SKU: XXXXXXXXXXXX {TAMNHO (2)} ,
+	}
+]
+//////////////////////////////
+TROCAR  ASSEMBLY POR BUNDLE
+//////////////////////////////
+CRIAR O PACKING
+
+{{
+	TRATAR FILHOS DO FILHOS
+}}
+//////////////////////////////
+PRODUCTS[
+	DATA FABRICAÇÃO.
+	LOTE DE FABRICAÇÃO.
+	AO RETIRAR UM ASSEMBLE, TBM é RETIRADO TODOS ITENS QUE A ELE PERTENCE.
+	VERIFICAR SE É EXATAMENTE IGUAL.
+];
+//////////////////////////////

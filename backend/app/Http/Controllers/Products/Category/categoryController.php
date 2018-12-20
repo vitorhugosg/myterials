@@ -18,7 +18,7 @@ class categoryController extends Controller
     	if ($user->companyes()->find($idCompany)) {
     		$collections =  Collection::where('company_id', $idCompany)->where('status', 1)->get();
             
-            if ($collections) {
+            if (count($collections) > 0) {
                 foreach ($collections as $key => $value) {
                     $collectionsId[] = $collections[$key]['id'];
                 }
