@@ -1,5 +1,5 @@
 <template >
-    <md-mask  class="d-flex justify-content-center align-items-center py-5 min-height-100" style="background-image: url(/static/img/images/icons-footer.png); background-repeat: no-repeat; min-height: 750px !important;" >
+    <md-mask  class="d-flex justify-content-center align-items-center py-5 min-height-100" style="background-image: url(/static/img/images/icons-footer.png); background-repeat:repeat; min-height: 750px !important;" >
         <container>
             <row>
                 <div class=" col-md-12 pt-5 mt-5 ">

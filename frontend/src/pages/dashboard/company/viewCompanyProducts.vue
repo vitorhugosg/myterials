@@ -9,24 +9,19 @@
                 </side-bar-company>
                 
                 <div class="row py-4 controllProducts" >
-                    <div class="col-md-3">
-                        <router-link :to="'/admin/company/addproducts/'+ this.$route.params.idCompany"><btn  color="success" >Add Product</btn></router-link>
-                        
+                    <div class="col-3">
+                        <router-link :to="'/admin/company/addproducts/'+ this.$route.params.idCompany"><mdb-btn tag="a" color="success" floating size="lg"><i class="fa fa-plus" aria-hidden="true"></i></mdb-btn></router-link> 
                     </div>
-                    <div class="col-md-3">
-                        
-                    </div>
-                    <div class="col-md-4 searchProductsInput">
+                    <div class="col-sm-6  searchProductsInput">
                         <div class="row">
-                            <div class="col-sm-10"><mdb-input label="Search products"/></div>
-                            <div class="col-sm-2"><span><btn size="sm" color="success"><i class="fa fa-search up-icon"></i></btn></span></div>
+                            <div class="col-10 pr-0 mr-0"><mdb-input label="Search products"/></div>
+                            <div class="col-2 m-0 p-0 d-flex align-items-center icon-search"><i class="fa fa-search"></i></div>
                         </div>
-                        
                     </div>
-                    <div class="col-md-2 align-self-end">
-                        <btn-group class="float-md-right pt-sm-4" style="position: relative; bottom: 15px;">
-                            <span @click="activeTable(true)"><btn class="mr-1" size="sm" color="success"><i class=" up-icon fa fa-list"></i></btn></span>
-                            <span @click="activeTable(false)"><btn size="sm" color="success"><i class="up-icon fa fa-th"></i></btn></span>
+                    <div class="col-2 d-flex align-items-center">
+                        <btn-group class="">
+                            <span @click="activeTable(true)"><mdb-btn tag="a" color="success" floating><i class=" up-icon fa fa-list"></i></mdb-btn></span>
+                            <span @click="activeTable(false)"><mdb-btn tag="a" color="success" floating><i class="up-icon fa fa-th"></i></mdb-btn></span>
                         </btn-group>
                     </div>
                 </div>
@@ -53,7 +48,7 @@
     </admin>
 </template>
 <script>
-import { mdbContainer, BtnGroup ,Btn,mdbDatatable,Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter, mdbInput   } from 'mdbvue'
+import { mdbContainer, BtnGroup ,Btn,mdbDatatable,Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter, mdbInput,mdbBtn, mdbIcon   } from 'mdbvue'
 import productsViewBig from '@/components/products/productsViewBig'
 import admin from '@/templates/admin/Admin'
 import sideBarCompany from '@/components/navs/sideBarCompany'
@@ -61,7 +56,7 @@ import formAddCompany from '@/components/forms/addCompany'
 export default {
     name: 'DashboardHome',
     components:{
-        mdbContainer, admin,formAddCompany,productsViewBig,sideBarCompany,BtnGroup ,Btn, mdbDatatable,Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter, mdbInput
+        mdbContainer, admin,formAddCompany,productsViewBig,sideBarCompany,BtnGroup ,Btn, mdbDatatable,Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter, mdbInput, mdbBtn, mdbIcon
     },
     created(){
         this.states.rows = this.statesData
@@ -581,14 +576,14 @@ export default {
 .controllProducts .autocomplete__box{
     border: 0px !important;
 }
-.searchInput{
+/*.searchInput{
     position: relative;
     top: 29px;
-}
-.searchProductsInput .md-form{
+}*/
+/*.searchProductsInput .md-form{
     margin-top: 0px !important;
     margin-bottom: 0px !important;
-}
+}*/
 
 .up-icon {
     font-size: 15px !important;
@@ -600,6 +595,19 @@ export default {
 }
 div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item.active .page-link:focus {
      background-color: #00C851;
+}
+
+.btn-floating {
+    border-radius: 2.3rem;
+}
+
+.btn-floating.btn-lg i {
+    line-height: 48px;
+    width: 33px;
+}
+.icon-search {
+     font-size: 15px !important;
+    color: #565656;
 }
 
 </style>

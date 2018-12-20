@@ -3,7 +3,7 @@
         <mdb-card id="classic-card">
             <mdb-card-body class="z-depth-2 ">
                 <div class="form-header">
-                    <h3><i class="fa fa-user mt-2 mb-2"></i> <b>Organization</b> Add:</h3>
+                    <h3><i class="fa fa-user mt-2 mb-2 mr-2"></i><b>Organization</b> Add:</h3>
                 </div>
                 <div class="form-erros">
                     {{errorValidation}}
@@ -78,6 +78,10 @@
 
 .form-header, .up-button  {
     background-color: #be3030 !important;
+   
+}
+.form-header {
+   border-radius: 0.25rem !important;
 }
 
 

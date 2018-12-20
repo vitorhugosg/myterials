@@ -168,5 +168,9 @@
     background-color: #be3030 !important;
 }
 
+.form-header {
+   border-radius: 0.25rem !important;
+}
+
 
 </style>

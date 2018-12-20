@@ -16,7 +16,7 @@ export default {
 body {
   font-size: 14px;
   font-weight: 300;
-  background-color: #eee;
+  background-color: #eee !important;
 }
 
 .side-nav {
