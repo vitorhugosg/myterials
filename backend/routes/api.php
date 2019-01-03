@@ -54,7 +54,7 @@ Route::middleware(['cors','auth:api'])->group(function(){
 		
 		Route::get('getproductsaux/{idCompany}', 'Products\Products@getProductsAux');
 		Route::get('getuofm', 'Products\Uofm\UofmController@get');
-		Route::post('addproduct/{idCompany}', 'Products@insertProduct');
+		Route::post('add/{idCompany}', 'Products\Products@insertProduct');
 		Route::prefix('material_type')->group(function(){
 			Route::get('get/{idCompany}', 'Products\MaterialType\material_typeController@get');
 			Route::post('add', 'Products\MaterialType\material_typeController@add');

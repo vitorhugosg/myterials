@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "80181d9ed95ef968ba33606a803b2f74",
+    "content-hash": "194b1c80f33c9c9e41e11e395f73c81d",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1391,6 +1391,52 @@
                 "server"
             ],
             "time": "2018-06-23T16:57:59+00:00"
+        },
+        {
+            "name": "melihovv/base64-image-decoder",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/melihovv/base64-image-decoder.git",
+                "reference": "3c4bdc11f8d4e932a0d9fad48f5fe86cd534daf6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/melihovv/base64-image-decoder/zipball/3c4bdc11f8d4e932a0d9fad48f5fe86cd534daf6",
+                "reference": "3c4bdc11f8d4e932a0d9fad48f5fe86cd534daf6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "ext-gd": "*",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Melihovv\\Base64ImageDecoder\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Melihov",
+                    "email": "amelihovv@ya.ru"
+                }
+            ],
+            "description": "A base64 image decoder",
+            "keywords": [
+                "base64",
+                "decoder",
+                "image"
+            ],
+            "time": "2018-09-08T08:35:25+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -3205,6 +3251,47 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2017-11-27T11:13:29+00:00"
+        },
+        {
+            "name": "verot/class.upload.php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/verot/class.upload.php.git",
+                "reference": "3d19633c6fe4315a999957741acca56eddddfbed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/verot/class.upload.php/zipball/3d19633c6fe4315a999957741acca56eddddfbed",
+                "reference": "3d19633c6fe4315a999957741acca56eddddfbed",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=4"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/class.upload.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Colin Verot",
+                    "email": "colin@verot.net"
+                }
+            ],
+            "description": "This PHP class uploads files and manipulates images very easily.",
+            "homepage": "http://www.verot.net/php_class_upload.htm",
+            "keywords": [
+                "gd",
+                "upload"
+            ],
+            "time": "2018-12-15T00:31:29+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -5081,7 +5168,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "verot/class.upload.php": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

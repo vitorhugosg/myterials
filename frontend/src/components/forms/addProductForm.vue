@@ -13,6 +13,13 @@
                                         <h5>Product Name</h5>
                                     </div>
                                     <div class="col-md-12">
+                                        <div class="row">
+                                            <p v-if="errorValidation" class="animated shake red-text">
+                                                {{errorValidation}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
                                         <mdb-input type="text" @input="inputNameProduct" id="inputNameProduct" label="Product's name"  />
                                     </div>
                                     <div class="col-md-6">
@@ -21,9 +28,12 @@
                                                 <h5>Collection</h5>
                                             </div>
                                             <div class="col-sm-10" v-if="view.collection">
+                                                <p v-if="errors.collection" class="red-text animated shake">
+                                                    {{errors.collection}}
+                                                </p>
                                                 <mdb-select @getValue="getSelectValueCollection">
                                                     <option disabled selected>Choose your collection</option>
-                                                    <span v-for="collection in collections" :key="collection.id" :value="collection.id">{{collection.name}}</span>
+                                                    <span v-for="collection in this.$store.getters.getCollections.active" :key="collection.id" :value="collection.id">{{collection.name}}</span>
                                                 </mdb-select>
                                             </div>
                                             <div class="col-sm-2">
@@ -40,6 +50,9 @@
                                                 <h5>Category</h5>
                                             </div>
                                             <div class="col-sm-10">
+                                                <p v-if="errors.category" class="red-text animated shake">
+                                                    {{errors.category}}
+                                                </p>
                                                 <mdb-select @getValue="getSelectValueCategory">
                                                     <option disabled selected>Choose your category</option>
                                                     <span v-for="ctg in category" :key="ctg.id" :value="ctg.id">{{ctg.name}}</span>
@@ -58,7 +71,7 @@
                                             </div>
                                             <div class="col-md-12 text-left my-3">
                                                 <img class="img-fluid text-left max-width-20 d-inline-block" src="/static/img/images/loader.gif" alt="">
-                                                <p class="d-inline-block">First choose   your Collections </p>
+                                                <p class="d-inline-block">First mark a collection that contains this item </p>
                                             </div>
                                         </div>
                                     </div>
@@ -69,6 +82,7 @@
                                             </div>
 
                                             <div class="col-sm-10" v-if="view.profile">
+
                                                 <mdb-select @getValue="getValueProfileProduct">
                                                     <option disabled selected>Choose your profile</option>
                                                     <span v-for="profile in profileProduct" :key="profile.id" :value="profile.id">{{profile.name}}</span>
@@ -87,7 +101,7 @@
                                             </div>
                                             <div class="col-md-12 text-left my-3">
                                                 <img class="img-fluid text-left max-width-20 d-inline-block" src="/static/img/images/loader.gif" alt="">
-                                                <p class="d-inline-block">First choose   your Collections </p>
+                                                <p class="d-inline-block">First mark a collection that contains this item </p>
                                             </div>
                                         </div>
                                     </div>
@@ -115,7 +129,7 @@
                                             </div>
                                             <div class="col-md-12 text-left my-3">
                                                 <img class="img-fluid text-left max-width-20 d-inline-block" src="/static/img/images/loader.gif" alt="">
-                                                <p class="d-inline-block">First choose   your Collections </p>
+                                                <p class="d-inline-block">First mark a collection that contains this item </p>
                                             </div>
                                         </div>
                                     </div>
@@ -143,7 +157,7 @@
                                             </div>
                                             <div class="col-md-12 text-left my-3">
                                                 <img class="img-fluid text-left max-width-20 d-inline-block" src="/static/img/images/loader.gif" alt="">
-                                                <p class="d-inline-block">First choose your Collections </p>
+                                                <p class="d-inline-block">First mark a collection that contains this item </p>
                                             </div>
                                         </div>
                                     </div>
@@ -171,7 +185,7 @@
                                             </div>
                                             <div class="col-md-12 text-left my-3">
                                                 <img class="img-fluid text-left max-width-20 d-inline-block" src="/static/img/images/loader.gif" alt="">
-                                                <p class="d-inline-block">First choose your Collections </p>
+                                                <p class="d-inline-block">First mark a collection that contains this items </p>
                                             </div>
                                         </div>
                                     </div>
@@ -199,7 +213,7 @@
                                             </div>
                                             <div class="col-md-12 text-left my-3">
                                                 <img class="img-fluid text-left max-width-20 d-inline-block" src="/static/img/images/loader.gif" alt="">
-                                                <p class="d-inline-block">First choose your Collections </p>
+                                                <p class="d-inline-block">First mark a collection that contains this item </p>
                                             </div>
                                         </div>
                                     </div>
@@ -227,7 +241,7 @@
                                             </div>
                                             <div class="col-md-12 text-left my-3">
                                                 <img class="img-fluid text-left max-width-20 d-inline-block" src="/static/img/images/loader.gif" alt="">
-                                                <p class="d-inline-block">First choose your Collections </p>
+                                                <p class="d-inline-block">First mark a collection that contains this item </p>
                                             </div>
                                         </div>
                                     </div>
@@ -255,7 +269,7 @@
                                             </div>
                                             <div class="col-md-12 text-left my-3">
                                                 <img class="img-fluid text-left max-width-20 d-inline-block" src="/static/img/images/loader.gif" alt="">
-                                                <p class="d-inline-block">First choose your Collections </p>
+                                                <p class="d-inline-block">First mark a collection that contains this item </p>
                                             </div>
                                         </div>
                                     </div>
@@ -269,7 +283,10 @@
                                         <h5>Width Product</h5>
                                         <div class="row">
                                             <div class="col-9">
-                                                <mdb-input type="number"  v-model:value="form.width" id="width" />
+                                                <p v-if="errors.width || errors.uofmWidth" class="red-text animated shake">
+                                                    {{errors.width || errors.uofmWidth}}
+                                                </p>
+                                                <mdb-input type="text"  v-mask-decimal.br="2"   v-model:value="form.width" id="width" />
                                             </div>
                                             <div class="col-3">
                                                 <mdb-select v-if="uofm.length > 0" @getValue="getSelectUofmWidth">
@@ -284,7 +301,10 @@
                                         <h5>Height Product</h5>
                                         <div class="row">
                                             <div class="col-9">
-                                                <mdb-input type="number" v-model:value="form.height" id="height" />
+                                                <p v-if="errors.height || errors.uofmHeight" class="red-text animated shake">
+                                                    {{errors.height || errors.uofmHeight}}
+                                                </p>
+                                                <mdb-input type="text"  v-mask-decimal.br="2" v-model:value="form.height" id="height" />
                                             </div>
                                             <div class="col-3">
                                                 <mdb-select v-if="uofm.length > 0" @getValue="getSelectUofmHeight">
@@ -299,7 +319,10 @@
                                         <h5>Lenght Product</h5>
                                         <div class="row">
                                             <div class="col-9">
-                                                <mdb-input type="number" v-mask="'#.##', {recursive: true}"  v-model:value="form.lenght" id="Lenght"  />
+                                                <p v-if="errors.lenght || errors.uofmLenght" class="red-text animated shake">
+                                                    {{errors.lenght || errors.uofmLenght}}
+                                                </p>
+                                                <mdb-input type="text"  v-mask-decimal.br="2"  v-model:value="form.lenght" id="Lenght"  />
                                             </div>
                                             <div class="col-3">
                                                 <mdb-select v-if="uofm.length > 0" @getValue="getSelectUofmLenght">
@@ -314,7 +337,10 @@
                                         <h5>Volume Product</h5>
                                         <div class="row">
                                             <div class="col-9">
-                                                <mdb-input type="number"  v-model:value="form.volume" id="Volume" />
+                                                <p v-if="errors.volume || errors.uofmVolume" class="red-text animated shake">
+                                                    {{errors.volume || errors.uofmVolume}}
+                                                </p>
+                                                <mdb-input type="text"   v-mask-decimal.br="2"  v-model:value="form.volume" id="Volume" />
                                             </div>
                                             <div class="col-3">
                                                 <mdb-select v-if="uofm.length > 0" @getValue="getSelectUofmVolume">
@@ -329,6 +355,9 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <h5>Bought UOFM</h5>
+                                                <p v-if="errors.uofmBought" class="red-text animated shake">
+                                                    {{errors.uofmBought}}
+                                                </p>
                                                 <mdb-select v-if="uofm.length > 0" @getValue="getSelectUofmBought">
                                                     <option disabled selected>Choose UOFM for Bought</option>
                                                     <span v-for="item in uofm" :key="item.id" :value="item.id">{{item.name}}</span>
@@ -336,6 +365,9 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <h5>Sold UOFM</h5>
+                                                <p v-if="errors.uofmSold" class="red-text animated shake">
+                                                    {{errors.uofmSold}}
+                                                </p>
                                                 <mdb-select v-if="uofm.length > 0" @getValue="getSelectUofmSold">
                                                     <option disabled selected>Choose UOFM for Sold</option>
                                                     <span v-for="item in uofm" :key="item.id" :value="item.id">{{item.name}}</span>
@@ -352,9 +384,21 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <pre>
-                                        {{this.form}}
-                                    </pre>
+                                    <div class="col-md-12">
+                                        <!-- Default input -->
+                                        <label for="SKUProduct">SKU Product(Optional)</label>
+                                        <input type="text" id="SKUProduct" v-model="form.skuProduct" class="form-control">
+                                        <span style="font-size: 0.7em">
+                                            If this field is empty the system itself will generate a SKU for this product
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="row">
+
+
+                                    <div class="col-md-12 text-center">
+                                        <mdb-btn type="submit" outline="primary" darkWaves rounded>Send Product</mdb-btn>
+                                    </div>
 
                                 </div>
                             </div>
@@ -431,9 +475,6 @@
                                     </add-finish-product>
                                 </div>
                             </div>
-                        <div id="id">
-                            
-                        </div>
                         </div>
                     </div>
                 </div>
@@ -454,14 +495,14 @@
     import addMaterialType from '@/components/forms/addMaterialType'
     import addProfileProduct from '@/components/forms/addProfileProduct'
     import addVolumeType from '@/components/forms/addVolumeType'
-    import {mdbSelect,mdbInput} from 'mdbvue'
+    import {mdbSelect,mdbInput,mdbBtn} from 'mdbvue'
     import addImagensProduct from '@/components/forms/addImagensMultiple'
     export default{
         name :'addFormProduct',
         components:{
             addVolumeType,addProfileProduct,addMaterialType,addMoistureProduct,addHazardProduct,addGradeProduct,addFinishProduct,addCategory,addCollection,
             mdbSelect,mdbInput,
-            addImagensProduct
+            addImagensProduct,mdbBtn
         },
         mounted(){
             this.loader = true;
@@ -482,9 +523,15 @@
                 console.log(e);
             });
             this.getUofm();
-             $('#id').html('eaeaeaeaeaeae');
+
+            
         },
         methods:{
+            mascaraNumber(value){
+                if(value == 'width'){
+                    document.querySelector('.').toLocaleString(2)
+                }
+            },
             getUofm(){
                 this.$http.get(this.$urlAPI +'products/getuofm', {
                     "headers":{
@@ -628,7 +675,7 @@
                     this.hide.finishProduct = true;
                 }
             }, 300);
-            },
+        },
             //pegando Grade Product Value
             getSelectGradeProduct(value){
                 this.form.grade = value
@@ -728,109 +775,230 @@
                 this.form.uofmBought = value;
             },
             sendProduct(){
-               
+             if(this.validate()){
+                let data = {
+                    form : this.form,
+                    images: this.imagesProduct
+                };
+                console.log(this.imagesProduct);
+                if(this.imagesProduct.length == 0){
+                    this.continueImage = ''
+                    this.$swal({
+                      title: 'Are you sure?',
+                      text: "Are you sure you want to add product without image?",
+                      type: 'warning',
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Yes, add product without image!'
+                    }).then((result) => {
+                      if (result.value) {
+                        this.continueImage = true;
+                      }
+                    });
+                    if(this.continueImage == true){
+                        return;
+                    }
+                }
+                
+                this.$http.post(this.$urlAPI + 'products/add/' + this.$route.params.idCompany,data,{
+                    "headers":{
+                        "authorization": "Bearer "+  this.$store.getters.getToken
+                    }
+                }).then(response =>{
+                    if(response.data.status){
+                        console.log();
+                    }else{
+                        this.errorValidation = 'Error get informations for organizations';
+                    }
+                }).catch(e => {
+                    console.log(e)
+                    this.errorValidation = 'Error connect BD';
+                });
+                
+             }
+         },
+         validate(){
+            this.errors = {
+                collection: '',
+                category: '',
+                profileProduct: '',
+                hazardProduct: '',
+                volume: '',
+                grade: '',
+                materialType: '',
+                moistoreProduct: '',
+                finishProduct: '',
+                nameProduct : '',
+                width: '',
+                height: '',
+                lenght: '',
+                volume: '',
+                uofmWidth: '',
+                uofmHeight: '',
+                uofmVolume: '',
+                uofmLenght: '',
+                uofmSold: '',
+                uofmBought : '',
+                skuProduct: ''
             }
-        },
-        data() {
-            return {
-                loader: false,
-                form: {
-                    collection: false,
-                    category: false,
-                    profileProduct: false,
-                    hazardProduct: false,
-                    volume: false,
-                    grade: false,
-                    materialType: false,
-                    moistoreProduct: false,
-                    finishProduct: false,
-                    nameProduct : '',
-                    width: '',
-                    height: '',
-                    lenght: '',
-                    volume: '',
-                    uofmWidth: '',
-                    uofmHeight: '',
-                    uofmVolume: '',
-                    uofmLenght: '',
-                    uofmSold: '',
-                    uofmBought : ''
-                },
-                errors:{
-                    collection: false,
-                    category: false,
-                    profileProduct: false,
-                    hazardProduct: false,
-                    volume: false,
-                    grade: false,
-                    materialType: false,
-                    moistoreProduct: false,
-                    finishProduct: false,
-                    nameProduct : '',
-                    width: '',
-                    height: '',
-                    lenght: '',
-                    volume: '',
-                    uofmWidth: '',
-                    uofmHeight: '',
-                    uofmVolume: '',
-                    uofmLenght: '',
-                    uofmSold: '',
-                    uofmBought : ''
-                },
-                view: {
-                    collection: true,
-                    category: false,
-                    profile: false,
-                    hazard: false,
-                    volume: false,
-                    grade: false,
-                    materialType: false,
-                    moistoreProduct: false,
-                    finishProduct: false
-                },
-                hide: {
-                    collection: false,
-                    category: false,
-                    profile: false,
-                    hazard: false,
-                    volume: false,
-                    grade: false,
-                    materialType: false,
-                    moistoreProduct: false,
-                    finishProduct: false
-                },
-                addOptions:{
-                    addCollection: false,
-                    addCategory: false,
-                    addFinishProduct: false,
-                    addGradeProduct: false,
-                    addHazardProduct: false,
-                    addMoistureProduct: false,
-                    addMaterialType: false,
-                    addProfileProduct: false,
-                    addVolumeType: false
-                },
-                collections: this.$store.getters.getCollections.active,
-                category: [],
-                profileProduct: [],
-                hazardProduct: [],
-                volumeType: [],
-                gradeProduct: [],
-                materialType: [],
-                moistoreProduct: [],
-                finishProduct: [],
-                uofm: []
+            if(this.form.collection == false || this.form.collection ==''){
+                this.errors.collection = 'Please, choose your collection'
+                return false;
             }
-        },
-        computed:{
-            imagesProduct(){
-
-                return this.$store.getters.getInputRegisterProduct;
+            if(this.form.category == false || this.form.category ==''){
+                this.errors.form = 'Please, choose your category'
+                return false;
             }
+            if(this.form.nameProduct == false || this.form.nameProduct ==''){
+                this.errors.nameProduct = 'Please, write your product name'
+                return false;
+            }
+            if(this.form.width == false || this.form.width ==''){
+                this.errors.width = 'Please, choose your width'
+                return false;
+            }
+            if(this.form.height == false || this.form.height ==''){
+                this.errors.height = 'Please, choose your height'
+                return false;
+            }
+            if(this.form.lenght == false || this.form.lenght ==''){
+                this.errors.lenght = 'Please, choose your lenght'
+                return false;
+            }
+            if(this.form.volume == false || this.form.volume ==''){
+                this.errors.volume = 'Please, choose your volume'
+                return false;
+            }
+            if(this.form.uofmWidth == false || this.form.uofmWidth ==''){
+                this.errors.uofmWidth = 'Please, write your uofm Width'
+                return false;
+            }
+            if(this.form.uofmHeight == false || this.form.uofmHeight ==''){
+                this.errors.uofmHeight = 'Please, choose your uofm Height'
+                return false;
+            }
+            if(this.form.uofmVolume == false || this.form.uofmVolume ==''){
+                this.errors.uofmVolume = 'Please, Choose your uofm Volume'
+                return false;
+            }
+            if(this.form.uofmLenght == false || this.form.uofmLenght ==''){
+                this.errors.uofmLenght = 'Please, Choose your UOFM Lenght'
+                return false;
+            }
+            if(this.form.uofmSold == false || this.form.uofmSold ==''){
+                this.errors.uofmSold = 'Please, choose your UOFM Sold'
+                return false;
+            }
+            if(this.form.uofmBought == false || this.form.uofmBought ==''){
+                this.errors.uofmBought = 'Please, choose your UOFM Bought'
+                return false;
+            }
+            return true;
         }
-
+    },
+    data() {
+        return {
+            loader: false,
+            form: {
+                collection: false,
+                category: false,
+                profileProduct: false,
+                hazardProduct: false,
+                volume: false,
+                grade: false,
+                materialType: false,
+                moistoreProduct: false,
+                finishProduct: false,
+                nameProduct : '',
+                width: '',
+                height: '',
+                lenght: '',
+                volume: '',
+                uofmWidth: '',
+                uofmHeight: '',
+                uofmVolume: '',
+                uofmLenght: '',
+                uofmSold: '',
+                uofmBought : '',
+                skuProduct: '',
+            },
+            errors:{
+                collection: '',
+                category: '',
+                profileProduct: '',
+                hazardProduct: '',
+                volume: '',
+                grade: '',
+                materialType: '',
+                moistoreProduct: '',
+                finishProduct: '',
+                nameProduct : '',
+                width: '',
+                height: '',
+                lenght: '',
+                volume: '',
+                uofmWidth: '',
+                uofmHeight: '',
+                uofmVolume: '',
+                uofmLenght: '',
+                uofmSold: '',
+                uofmBought : '',
+                skuProduct: ''
+            },
+            view: {
+                collection: true,
+                category: false,
+                profile: false,
+                hazard: false,
+                volume: false,
+                grade: false,
+                materialType: false,
+                moistoreProduct: false,
+                finishProduct: false
+            },
+            hide: {
+                collection: false,
+                category: false,
+                profile: false,
+                hazard: false,
+                volume: false,
+                grade: false,
+                materialType: false,
+                moistoreProduct: false,
+                finishProduct: false
+            },
+            addOptions:{
+                addCollection: false,
+                addCategory: false,
+                addFinishProduct: false,
+                addGradeProduct: false,
+                addHazardProduct: false,
+                addMoistureProduct: false,
+                addMaterialType: false,
+                addProfileProduct: false,
+                addVolumeType: false
+            },
+            collections: [],
+            category: [],
+            profileProduct: [],
+            hazardProduct: [],
+            volumeType: [],
+            gradeProduct: [],
+            materialType: [],
+            moistoreProduct: [],
+            finishProduct: [],
+            uofm: [],
+            errorValidation: ''
+        }
+    },
+    computed:{
+        imagesProduct(){
+            return this.$store.getters.getInputRegisterProduct;
+        }
     }
+
+}
 </script>
 <style scoped>
 .profile-card .avatar {
