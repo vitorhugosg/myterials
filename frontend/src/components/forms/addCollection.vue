@@ -1,17 +1,35 @@
-this.loader = false;<template>
+<template>
     <!--Card-->
-    <div class="card">
+    <div class="card cardsAdd">
 
         <!--Card content-->
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12">
-                    <p class="h5 text-center mb-4">Collection</p>    
+                    <h4 class="h4-responsive text-center">Collection</h4>    
                 </div>
             </div>
-            
             <hr>
+            <div class="row mb-3">
+                <div class="col-md-12">
+                    <mdb-btn tag="a" color="success" floating><i class="fa fa-plus" aria-hidden="true"></i></mdb-btn>
+                </div>
+            </div>
             <div class="row">
+                <div class="col-6">
+                    <h5 class="p-1">Collection 1</h5>
+                    <h5 class="p-1">Collection 2</h5>
+                    <h5 class="p-1">Collection 3</h5>
+                </div>
+                <div class="col-6">
+                    <mdb-switch class="p-1" checked />
+                    <mdb-switch class="p-1" checked />
+                    <mdb-switch class="p-1" checked />
+                </div>
+            </div>
+
+
+            <!-- <div class="row">
                 <div class="col-md-12" v-if="loader == false">
                     <p class="h6 text-center">Active</p>
                     <div class="row">
@@ -41,9 +59,9 @@ this.loader = false;<template>
                     <img class="img-fluid text-center" src="/static/img/images/loader.gif" alt="">
                 </div>
             </div>
-            <hr>
+            <hr> -->
             <!-- Subscription form -->
-            <div class="row">
+       <!--      <div class="row">
                 <div class="col-md-12">
                     
                     
@@ -55,7 +73,7 @@ this.loader = false;<template>
                     </div>
 
                     
-                </div>
+                </div> -->
             </div>
             <!-- Subscription form -->
             
@@ -65,11 +83,11 @@ this.loader = false;<template>
     <!--/.Card-->
 </template>
 <script>
-import {mdbInput, mdbBtn, mdbBtnGroup, Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter, Btn } from 'mdbvue'
+import {mdbInput, mdbBtn, mdbBtnGroup, Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter, Btn, mdbSwitch } from 'mdbvue'
 export default {
     name: 'CategoryProduct',
     components: {
-        mdbInput, mdbBtn, mdbBtnGroup,  Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter, Btn
+        mdbInput, mdbBtn, mdbBtnGroup,  Modal, ModalHeader, ModalTitle, ModalBody, ModalFooter, Btn, mdbSwitch
     },
     data(){
         return{
@@ -181,7 +199,23 @@ export default {
 
 }
 </script>
-<style scoped>
+<style>
+
+.cardsAdd .btn-floating {
+    border-radius: 2.3rem;
+}
+
+.cardsAdd .btn-floating.btn-lg i {
+    line-height: 48px;
+    width: 33px;
+}
+
+.cardsAdd .switch label input[type=checkbox]:checked + .lever:after{
+    background-color:#00c851 !important;
+}
+.cardsAdd .switch label input[type=checkbox]:checked + .lever{
+    background: #b3e5c7 !important;
+}
 
 </style>
 

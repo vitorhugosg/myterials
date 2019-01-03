@@ -1,7 +1,6 @@
 <template>
     <!--Card-->
     <div class="card">
-
         <!--Card content-->
         <div class="card-body">
             <div class="row">
@@ -22,7 +21,7 @@
                             <mdb-btn-group>
                                 <mdb-btn outline="primary" darkWaves rounded size="sm"><span class="black-text">name</span> : {{act.name}}</mdb-btn>
                                 <div v-on:click="activeModal(act.id,true)">
-                                <mdb-btn outline="danger" darkWaves rounded size="sm"><i class="fa fa-trash" aria-hidden="true"></i></mdb-btn>
+                                <mdb-btn outline="danger" darkWaves rounded size="sm"><i class="fa fa-trash up-icon" aria-hidden="true"></i></mdb-btn>
                                 </div>
                             </mdb-btn-group>
                         </div>
@@ -37,7 +36,7 @@
                             <mdb-btn-group>
                                 <mdb-btn outline="primary" darkWaves rounded size="sm"><span class="black-text">name</span> : {{dst.name}}</mdb-btn>
                                 <div v-on:click="activeModal(dst.id,false)">
-                                    <mdb-btn outline="success" darkWaves rounded size="sm" ><i class="fa fa-plus-square-o" aria-hidden="true"></i></mdb-btn>
+                                    <mdb-btn outline="success" darkWaves rounded size="sm" ><i class="fa fa-plus-square-o up-icon" aria-hidden="true"></i></mdb-btn>
                                 </div>
                             </mdb-btn-group>
                         </div>
@@ -205,6 +204,10 @@ export default {
 }
 </script>
 <style scoped>
+
+.up-icon {
+    font-size: 15px !important;
+} 
 
 </style>
 

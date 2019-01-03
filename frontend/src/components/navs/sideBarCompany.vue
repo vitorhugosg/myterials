@@ -18,6 +18,7 @@
     }
 </script>
 <style scoped>
+
 .classOperations{
     background: #be3030;
     
@@ -28,5 +29,13 @@
 .classOperations .button-classOp:hover{
     color: #be3030 !important;
     background: #fff;
+}
+</style>
+<style>
+.fullscreen{
+    background: #222222 !important;
+}
+.classOperations {
+   border-radius: 0.25rem !important;
 }
 </style>

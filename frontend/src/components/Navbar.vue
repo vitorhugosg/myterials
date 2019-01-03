@@ -40,9 +40,9 @@
         </mdb-dropdown-toggle>
         <mdb-dropdown-menu right>
           <span v-on:click="closeLogin()">
-            <mdb-dropdown-item >Log Out</mdb-dropdown-item>
+            <mdb-dropdown-item ><i class="fa fa-user mt-2 mb-2 mr-2 text-red-two"/>Log Out</mdb-dropdown-item>
           </span>
-          <mdb-dropdown-item>My account</mdb-dropdown-item>
+          <mdb-dropdown-item><i class="fa fa-user mt-2 mb-2 mr-2 text-red-two"/>My account</mdb-dropdown-item>
         </mdb-dropdown-menu>
       </mdb-dropdown>
     </mdb-navbar-nav>
@@ -156,7 +156,7 @@ export default {
 }
 
 .text-red-two{
-  color: red !important;
+  color: #BE3030 !important;
   font-size: 13px !important;
 }
 .navbar .notifications-nav .dropdown-menu[data-v-41458b80] {

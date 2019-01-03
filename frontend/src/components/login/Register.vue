@@ -1,5 +1,5 @@
 <template>
-    <md-mask class=" min-height-100 d-flex justify-content-center align-items-center py-5" style="background-image: url(/static/img/images/icons-footer.png); background-repeat: no-repeat; min-height: 750px !important;">
+    <md-mask class=" min-height-100 d-flex justify-content-center align-items-center py-5" style="background-image: url(/static/img/images/icons-footer.png); background-repeat:repeat; min-height: 750px !important;">
       <container id="" >
           <row>
           <div class="col-md-12 p-3 pt-5 mt-5 ">
@@ -11,7 +11,7 @@
                   <div>{{errorValidation}}</div>
                   <mdb-input class="text-white" v-model="name" label="Your name" labelColor="white" icon="user"/>
                   <mdb-input  class="text-white"v-model="email" label="Your email" labelColor="white" icon="envelope"/>
-                  <mdb-input  class="text-white"v-model="password" label="Your password" labelColor="white" icon="lock" type="password"/>
+                  <mdb-input  class="text-white"v-model="password" label="Your password" labelColor="white" icon="lock" type="password""/>
                   <mdb-input class="text-white" v-model="password_confirmation" label="Repeat your password" labelColor="white" icon="lock" type="password"/>
                   <div class="text-center mt-4 black-text">
                     <div class="w-100" v-on:click="registerUser()"  v-if="!loader">
@@ -122,10 +122,7 @@ export default {
 .classic-form-page label {
   color: #fff!important;
 }
-.md-form .prefix ~ input, 
-.md-form .prefix ~ textarea{
-  color: #fff !important;
-}
+
 .form-header {
   background-color:#be3030 !important; 
 }
@@ -143,6 +140,7 @@ export default {
   min-height: 100% !important;
   background: #222;
 }
+
 
 </style>
 
