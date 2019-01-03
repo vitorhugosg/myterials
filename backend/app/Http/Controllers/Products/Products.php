@@ -15,6 +15,7 @@ use App\Http\Controllers\Products\MoistureProduct\moistureProductController;
 use App\Http\Controllers\Products\ProfileProduct\profile_productController;
 use App\Http\Controllers\Products\VolumeType\volume_typeController;
 use Melihovv\Base64ImageDecoder\Base64ImageDecoder;
+use Illuminate\Support\Facades\Storage;
 
 
 class products extends Controller
@@ -55,11 +56,16 @@ class products extends Controller
     public function insertProduct(Request $request, $idCompany){
 
         $images = $request->images;
+        $data = $request->all();
+
         foreach ($images as $key => $value) {
-            $decoder = new Base64ImageDecoder($images[$key]['path'], $allowedFormats = ['jpeg', 'png', 'gif', 'jpg']);
-            $decoder->getFormat(); // 'png', or 'jpeg', or 'gif', or etc.
-            echo '<img src="'.$images[$key]['path'].'" alt="">';exit; // base64 decoded raw image bytes.
-            // base64 encoded raw image bytes.
+            $images[$key]['path'] = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $images[$key]['path']));
+            $ext = explode('.',$images[$key]['name'])[1];
+            $path[$key] = 'images/products/'.$idCompany.'/'.str_slug($data['form']['nameProduct'].rand('0000', '9999'). time(), '-'). '.' . $ext;
+            Storage::disk('public')->put($path[$key] ,$images[$key]['path']);
         }
+        
+        return $data;
+        
     }
 }
