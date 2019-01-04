@@ -32082,6 +32082,12 @@ Chart.defaults.global.defaultFontColor = '#fff';
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -32094,7 +32100,29 @@ Chart.defaults.global.defaultFontColor = '#fff';
         mdbContainer: __WEBPACK_IMPORTED_MODULE_0_mdbvue__["H" /* mdbContainer */], admin: __WEBPACK_IMPORTED_MODULE_2__templates_admin_Admin__["a" /* default */], formAddCompany: __WEBPACK_IMPORTED_MODULE_4__components_forms_addCompany__["a" /* default */], productsViewBig: __WEBPACK_IMPORTED_MODULE_1__components_products_productsViewBig__["a" /* default */], sideBarCompany: __WEBPACK_IMPORTED_MODULE_3__components_navs_sideBarCompany__["a" /* default */], BtnGroup: __WEBPACK_IMPORTED_MODULE_0_mdbvue__["b" /* BtnGroup */], Btn: __WEBPACK_IMPORTED_MODULE_0_mdbvue__["a" /* Btn */], mdbDatatable: __WEBPACK_IMPORTED_MODULE_0_mdbvue__["J" /* mdbDatatable */], Modal: __WEBPACK_IMPORTED_MODULE_0_mdbvue__["g" /* Modal */], ModalHeader: __WEBPACK_IMPORTED_MODULE_0_mdbvue__["j" /* ModalHeader */], ModalTitle: __WEBPACK_IMPORTED_MODULE_0_mdbvue__["k" /* ModalTitle */], ModalBody: __WEBPACK_IMPORTED_MODULE_0_mdbvue__["h" /* ModalBody */], ModalFooter: __WEBPACK_IMPORTED_MODULE_0_mdbvue__["i" /* ModalFooter */], mdbInput: __WEBPACK_IMPORTED_MODULE_0_mdbvue__["T" /* mdbInput */], mdbBtn: __WEBPACK_IMPORTED_MODULE_0_mdbvue__["y" /* mdbBtn */], mdbIcon: __WEBPACK_IMPORTED_MODULE_0_mdbvue__["S" /* mdbIcon */]
     },
     created: function created() {
-        this.states.rows = this.statesData;
+        // this.states.rows = this.statesData
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.loader = true;
+        this.$http.get(this.$urlAPI + 'products/get/' + this.$route.params.idCompany, {
+            "headers": {
+                "authorization": "Bearer " + this.$store.getters.getToken,
+                'X-Requested-With': 'XMLHttpRequest'
+            }
+        }).then(function (response) {
+            console.log(response.data);
+            if (response.data.status) {
+                _this.products = response.data.products;
+                _this.statesData = response.data.products;
+                _this.states.rows = _this.statesData;
+                _this.loader = false;
+            }
+        }).catch(function (e) {
+            _this.loader = false;
+            console.log(e);
+        });
     },
 
     methods: {
@@ -32105,435 +32133,42 @@ Chart.defaults.global.defaultFontColor = '#fff';
     data: function data() {
         return {
             addProductModal: false,
+            products: {},
             viewProducts: true,
+            loader: false,
             states: {
                 columns: [{
+                    label: 'ID',
+                    field: 'id',
+                    sort: 'asc'
+                }, {
                     label: 'Name',
                     field: 'name',
                     sort: 'asc'
                 }, {
-                    label: 'Position',
-                    field: 'position',
+                    label: 'Collection',
+                    field: 'collection',
                     sort: 'asc'
                 }, {
-                    label: 'Office',
-                    field: 'office',
+                    label: 'Category',
+                    field: 'category',
                     sort: 'asc'
                 }, {
-                    label: 'Age',
-                    field: 'age',
+                    label: 'Status',
+                    field: 'status',
                     sort: 'asc'
                 }, {
-                    label: 'Start date',
-                    field: 'date',
+                    label: 'created',
+                    field: 'created_at',
                     sort: 'asc'
                 }, {
-                    label: 'Salary',
-                    field: 'salary',
+                    label: 'updated',
+                    field: 'updated_at',
                     sort: 'asc'
                 }],
                 rows: []
             },
-            statesData: [{
-                name: 'Tiger Nixon',
-                position: 'System Architect',
-                office: 'Edinburgh',
-                age: '61',
-                date: '2011/04/25',
-                salary: '$320'
-            }, {
-                name: 'Garrett Winters',
-                position: 'Accountant',
-                office: 'Tokyo',
-                age: '63',
-                date: '2011/07/25',
-                salary: '$170'
-            }, {
-                name: 'Ashton Cox',
-                position: 'Junior Technical Author',
-                office: 'San Francisco',
-                age: '66',
-                date: '2009/01/12',
-                salary: '$86'
-            }, {
-                name: 'Cedric Kelly',
-                position: 'Senior Javascript Developer',
-                office: 'Edinburgh',
-                age: '22',
-                date: '2012/03/29',
-                salary: '$433'
-            }, {
-                name: 'Airi Satou',
-                position: 'Accountant',
-                office: 'Tokyo',
-                age: '33',
-                date: '2008/11/28',
-                salary: '$162'
-            }, {
-                name: 'Brielle Williamson',
-                position: 'Integration Specialist',
-                office: 'New York',
-                age: '61',
-                date: '2012/12/02',
-                salary: '$372'
-            }, {
-                name: 'Herrod Chandler',
-                position: 'Sales Assistant',
-                office: 'San Francisco',
-                age: '59',
-                date: '2012/08/06',
-                salary: '$137'
-            }, {
-                name: 'Rhona Davidson',
-                position: 'Integration Specialist',
-                office: 'Tokyo',
-                age: '55',
-                date: '2010/10/14',
-                salary: '$327'
-            }, {
-                name: 'Colleen Hurst',
-                position: 'Javascript Developer',
-                office: 'San Francisco',
-                age: '39',
-                date: '2009/09/15',
-                salary: '$205'
-            }, {
-                name: 'Sonya Frost',
-                position: 'Software Engineer',
-                office: 'Edinburgh',
-                age: '23',
-                date: '2008/12/13',
-                salary: '$103'
-            }, {
-                name: 'Jena Gaines',
-                position: 'Office Manager',
-                office: 'London',
-                age: '30',
-                date: '2008/12/19',
-                salary: '$90'
-            }, {
-                name: 'Quinn Flynn',
-                position: 'Support Lead',
-                office: 'Edinburgh',
-                age: '22',
-                date: '2013/03/03',
-                salary: '$342'
-            }, {
-                name: 'Charde Marshall',
-                position: 'Regional Director',
-                office: 'San Francisco',
-                age: '36',
-                date: '2008/10/16',
-                salary: '$470'
-            }, {
-                name: 'Haley Kennedy',
-                position: 'Senior Marketing Designer',
-                office: 'London',
-                age: '43',
-                date: '2012/12/18',
-                salary: '$313'
-            }, {
-                name: 'Tatyana Fitzpatrick',
-                position: 'Regional Director',
-                office: 'London',
-                age: '19',
-                date: '2010/03/17',
-                salary: '$385'
-            }, {
-                name: 'Michael Silva',
-                position: 'Marketing Designer',
-                office: 'London',
-                age: '66',
-                date: '2012/11/27',
-                salary: '$198'
-            }, {
-                name: 'Paul Byrd',
-                position: 'Chief Financial Officer (CFO)',
-                office: 'New York',
-                age: '64',
-                date: '2010/06/09',
-                salary: '$725'
-            }, {
-                name: 'Gloria Little',
-                position: 'Systems Administrator',
-                office: 'New York',
-                age: '59',
-                date: '2009/04/10',
-                salary: '$237'
-            }, {
-                name: 'Bradley Greer',
-                position: 'Software Engineer',
-                office: 'London',
-                age: '41',
-                date: '2012/10/13',
-                salary: '$132'
-            }, {
-                name: 'Dai Rios',
-                position: 'Personnel Lead',
-                office: 'Edinburgh',
-                age: '35',
-                date: '2012/09/26',
-                salary: '$217'
-            }, {
-                name: 'Jenette Caldwell',
-                position: 'Development Lead',
-                office: 'New York',
-                age: '30',
-                date: '2011/09/03',
-                salary: '$345'
-            }, {
-                name: 'Yuri Berry',
-                position: 'Chief Marketing Officer (CMO)',
-                office: 'New York',
-                age: '40',
-                date: '2009/06/25',
-                salary: '$675'
-            }, {
-                name: 'Caesar Vance',
-                position: 'Pre-Sales Support',
-                office: 'New York',
-                age: '21',
-                date: '2011/12/12',
-                salary: '$106'
-            }, {
-                name: 'Doris Wilder',
-                position: 'Sales Assistant',
-                office: 'Sidney',
-                age: '23',
-                date: '2010/09/20',
-                salary: '$85'
-            }, {
-                name: 'Angelica Ramos',
-                position: 'Chief Executive Officer (CEO)',
-                office: 'London',
-                age: '47',
-                date: '2009/10/09',
-                salary: '$1'
-            }, {
-                name: 'Gavin Joyce',
-                position: 'Developer',
-                office: 'Edinburgh',
-                age: '42',
-                date: '2010/12/22',
-                salary: '$92'
-            }, {
-                name: 'Jennifer Chang',
-                position: 'Regional Director',
-                office: 'Singapore',
-                age: '28',
-                date: '2010/11/14',
-                salary: '$357'
-            }, {
-                name: 'Brenden Wagner',
-                position: 'Software Engineer',
-                office: 'San Francisco',
-                age: '28',
-                date: '2011/06/07',
-                salary: '$206'
-            }, {
-                name: 'Fiona Green',
-                position: 'Chief Operating Officer (COO)',
-                office: 'San Francisco',
-                age: '48',
-                date: '2010/03/11',
-                salary: '$850'
-            }, {
-                name: 'Shou Itou',
-                position: 'Regional Marketing',
-                office: 'Tokyo',
-                age: '20',
-                date: '2011/08/14',
-                salary: '$163'
-            }, {
-                name: 'Michelle House',
-                position: 'Integration Specialist',
-                office: 'Sidney',
-                age: '37',
-                date: '2011/06/02',
-                salary: '$95'
-            }, {
-                name: 'Suki Burks',
-                position: 'Developer',
-                office: 'London',
-                age: '53',
-                date: '2009/10/22',
-                salary: '$114'
-            }, {
-                name: 'Prescott Bartlett',
-                position: 'Technical Author',
-                office: 'London',
-                age: '27',
-                date: '2011/05/07',
-                salary: '$145'
-            }, {
-                name: 'Gavin Cortez',
-                position: 'Team Leader',
-                office: 'San Francisco',
-                age: '22',
-                date: '2008/10/26',
-                salary: '$235'
-            }, {
-                name: 'Martena Mccray',
-                position: 'Post-Sales support',
-                office: 'Edinburgh',
-                age: '46',
-                date: '2011/03/09',
-                salary: '$324'
-            }, {
-                name: 'Unity Butler',
-                position: 'Marketing Designer',
-                office: 'San Francisco',
-                age: '47',
-                date: '2009/12/09',
-                salary: '$85'
-            }, {
-                name: 'Howard Hatfield',
-                position: 'Office Manager',
-                office: 'San Francisco',
-                age: '51',
-                date: '2008/12/16',
-                salary: '$164'
-            }, {
-                name: 'Hope Fuentes',
-                position: 'Secretary',
-                office: 'San Francisco',
-                age: '41',
-                date: '2010/02/12',
-                salary: '$109'
-            }, {
-                name: 'Vivian Harrell',
-                position: 'Financial Controller',
-                office: 'San Francisco',
-                age: '62',
-                date: '2009/02/14',
-                salary: '$452'
-            }, {
-                name: 'Timothy Mooney',
-                position: 'Office Manager',
-                office: 'London',
-                age: '37',
-                date: '2008/12/11',
-                salary: '$136'
-            }, {
-                name: 'Jackson Bradshaw',
-                position: 'Director',
-                office: 'New York',
-                age: '65',
-                date: '2008/09/26',
-                salary: '$645'
-            }, {
-                name: 'Olivia Liang',
-                position: 'Support Engineer',
-                office: 'Singapore',
-                age: '64',
-                date: '2011/02/03',
-                salary: '$234'
-            }, {
-                name: 'Bruno Nash',
-                position: 'Software Engineer',
-                office: 'London',
-                age: '38',
-                date: '2011/05/03',
-                salary: '$163'
-            }, {
-                name: 'Sakura Yamamoto',
-                position: 'Support Engineer',
-                office: 'Tokyo',
-                age: '37',
-                date: '2009/08/19',
-                salary: '$139'
-            }, {
-                name: 'Thor Walton',
-                position: 'Developer',
-                office: 'New York',
-                age: '61',
-                date: '2013/08/11',
-                salary: '$98'
-            }, {
-                name: 'Finn Camacho',
-                position: 'Support Engineer',
-                office: 'San Francisco',
-                age: '47',
-                date: '2009/07/07',
-                salary: '$87'
-            }, {
-                name: 'Serge Baldwin',
-                position: 'Data Coordinator',
-                office: 'Singapore',
-                age: '64',
-                date: '2012/04/09',
-                salary: '$138'
-            }, {
-                name: 'Zenaida Frank',
-                position: 'Software Engineer',
-                office: 'New York',
-                age: '63',
-                date: '2010/01/04',
-                salary: '$125'
-            }, {
-                name: 'Zorita Serrano',
-                position: 'Software Engineer',
-                office: 'San Francisco',
-                age: '56',
-                date: '2012/06/01',
-                salary: '$115'
-            }, {
-                name: 'Jennifer Acosta',
-                position: 'Junior Javascript Developer',
-                office: 'Edinburgh',
-                age: '43',
-                date: '2013/02/01',
-                salary: '$75'
-            }, {
-                name: 'Cara Stevens',
-                position: 'Sales Assistant',
-                office: 'New York',
-                age: '46',
-                date: '2011/12/06',
-                salary: '$145'
-            }, {
-                name: 'Hermione Butler',
-                position: 'Regional Director',
-                office: 'London',
-                age: '47',
-                date: '2011/03/21',
-                salary: '$356'
-            }, {
-                name: 'Lael Greer',
-                position: 'Systems Administrator',
-                office: 'London',
-                age: '21',
-                date: '2009/02/27',
-                salary: '$103'
-            }, {
-                name: 'Jonas Alexander',
-                position: 'Developer',
-                office: 'San Francisco',
-                age: '30',
-                date: '2010/07/14',
-                salary: '$86'
-            }, {
-                name: 'Shad Decker',
-                position: 'Regional Director',
-                office: 'Edinburgh',
-                age: '51',
-                date: '2008/11/13',
-                salary: '$183'
-            }, {
-                name: 'Michael Bruce',
-                position: 'Javascript Developer',
-                office: 'Singapore',
-                age: '29',
-                date: '2011/06/27',
-                salary: '$183'
-            }, {
-                name: 'Donna Snider',
-                position: 'Customer Support',
-                office: 'New York',
-                age: '27',
-                date: '2011/01/25',
-                salary: '$112'
-            }]
+            statesData: []
         };
     }
 });
@@ -35976,7 +35611,7 @@ var Component = normalizeComponent(
 
         //pegando valor volume type
         getSelectVolumeType: function getSelectVolumeType(value) {
-            this.form.volume = value;
+            this.form.volume_type = value;
         },
 
         //colocando collection na categoria
@@ -36219,6 +35854,8 @@ var Component = normalizeComponent(
                     }).then(function (result) {
                         if (result.value) {
                             _this12.continueImage = true;
+                        } else {
+                            _this12.continueImage = false;
                         }
                     });
                     if (this.continueImage == true) {
@@ -36232,9 +35869,14 @@ var Component = normalizeComponent(
                     }
                 }).then(function (response) {
                     if (response.data.status) {
-                        console.log();
+                        _this12.$swal('Good job!', 'Your product is add!', 'success');
+                        _this12.$router.push('/admin/company/products/' + _this12.$route.params.idCompany);
                     } else {
-                        _this12.errorValidation = 'Error get informations for organizations';
+                        _this12.$swal({
+                            type: 'error',
+                            title: 'Oops...',
+                            text: response.data.message
+                        });
                     }
                 }).catch(function (e) {
                     console.log(e);
@@ -36284,6 +35926,7 @@ var Component = normalizeComponent(
                 this.errors.lenght = 'Please, choose your lenght';
                 return false;
             }
+
             if (this.form.volume == false || this.form.volume == '') {
                 this.errors.volume = 'Please, choose your volume';
                 return false;
@@ -36316,11 +35959,11 @@ var Component = normalizeComponent(
         }
     },
     data: function data() {
-        var _form, _errors2;
+        var _errors2;
 
         return {
             loader: false,
-            form: (_form = {
+            form: {
                 collection: false,
                 category: false,
                 profileProduct: false,
@@ -36333,8 +35976,16 @@ var Component = normalizeComponent(
                 nameProduct: '',
                 width: '',
                 height: '',
-                lenght: ''
-            }, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_form, 'volume', ''), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_form, 'uofmWidth', ''), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_form, 'uofmHeight', ''), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_form, 'uofmVolume', ''), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_form, 'uofmLenght', ''), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_form, 'uofmSold', ''), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_form, 'uofmBought', ''), __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_defineProperty___default()(_form, 'skuProduct', ''), _form),
+                lenght: '',
+                volume_type: '',
+                uofmWidth: '',
+                uofmHeight: '',
+                uofmVolume: '',
+                uofmLenght: '',
+                uofmSold: '',
+                uofmBought: '',
+                skuProduct: ''
+            },
             errors: (_errors2 = {
                 collection: '',
                 category: '',
@@ -47469,7 +47120,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_viewCompanyProducts_vue__ = __webpack_require__(427);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5824d686_hasScoped_false_transformToRequire_video_src_poster_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_viewCompanyProducts_vue__ = __webpack_require__(1102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_fd55527c_hasScoped_false_transformToRequire_video_src_poster_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_viewCompanyProducts_vue__ = __webpack_require__(1102);
 function injectStyle (ssrContext) {
   __webpack_require__(1098)
 }
@@ -47489,7 +47140,7 @@ var __vue_scopeId__ = null
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_viewCompanyProducts_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_5824d686_hasScoped_false_transformToRequire_video_src_poster_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_viewCompanyProducts_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_fd55527c_hasScoped_false_transformToRequire_video_src_poster_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_viewCompanyProducts_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -47563,7 +47214,7 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('admin',[_c('span',{attrs:{"slot":"body"},slot:"body"},[_c('mdb-container',{attrs:{"fluid":""}},[_c('side-bar-company',{attrs:{"idProduct":this.$route.params.idProducts}}),_vm._v(" "),_c('div',{staticClass:"row py-4 controllProducts"},[_c('div',{staticClass:"col-3"},[_c('router-link',{attrs:{"to":'/admin/company/addproducts/'+ this.$route.params.idCompany}},[_c('mdb-btn',{attrs:{"tag":"a","color":"success","floating":"","size":"lg"}},[_c('i',{staticClass:"fa fa-plus",attrs:{"aria-hidden":"true"}})])],1)],1),_vm._v(" "),_c('div',{staticClass:"col-sm-6  searchProductsInput"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-10 pr-0 mr-0"},[_c('mdb-input',{attrs:{"label":"Search products"}})],1),_vm._v(" "),_c('div',{staticClass:"col-2 m-0 p-0 d-flex align-items-center icon-search"},[_c('i',{staticClass:"fa fa-search"})])])]),_vm._v(" "),_c('div',{staticClass:"col-2 d-flex align-items-center"},[_c('btn-group',{},[_c('span',{on:{"click":function($event){_vm.activeTable(true)}}},[_c('mdb-btn',{attrs:{"tag":"a","color":"success","floating":""}},[_c('i',{staticClass:" up-icon fa fa-list"})])],1),_vm._v(" "),_c('span',{on:{"click":function($event){_vm.activeTable(false)}}},[_c('mdb-btn',{attrs:{"tag":"a","color":"success","floating":""}},[_c('i',{staticClass:"up-icon fa fa-th"})])],1)])],1)]),_vm._v(" "),(_vm.viewProducts)?_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-12"},[_c('div',{staticClass:"card p-3"},[_c('mdb-datatable',{attrs:{"data":_vm.states,"striped":"","bordered":"","searching":false}})],1)])]):_vm._e(),_vm._v(" "),(!_vm.viewProducts)?_c('div',{staticClass:"row"},_vm._l((_vm.states.rows),function(state){return _c('div',{key:state.name,staticClass:"col-md-3 my-3"},[_c('productsViewBig',{attrs:{"state":state}})],1)})):_vm._e()],1)],1)])}
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('admin',[_c('span',{attrs:{"slot":"body"},slot:"body"},[_c('mdb-container',{attrs:{"fluid":""}},[_c('side-bar-company',{attrs:{"idProduct":this.$route.params.idProducts}}),_vm._v(" "),_c('div',{staticClass:"row py-4 controllProducts"},[_c('div',{staticClass:"col-3"},[_c('router-link',{attrs:{"to":'/admin/company/addproducts/'+ this.$route.params.idCompany}},[_c('mdb-btn',{attrs:{"tag":"a","color":"success","floating":"","size":"lg"}},[_c('i',{staticClass:"fa fa-plus",attrs:{"aria-hidden":"true"}})])],1)],1),_vm._v(" "),_c('div',{staticClass:"col-sm-6  searchProductsInput"},[_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-10 pr-0 mr-0"},[_c('mdb-input',{attrs:{"label":"Search products"}})],1),_vm._v(" "),_c('div',{staticClass:"col-2 m-0 p-0 d-flex align-items-center icon-search"},[_c('i',{staticClass:"fa fa-search"})])])]),_vm._v(" "),_c('div',{staticClass:"col-2 d-flex align-items-center"},[_c('btn-group',{},[_c('span',{on:{"click":function($event){_vm.activeTable(true)}}},[_c('mdb-btn',{attrs:{"tag":"a","color":"success","floating":""}},[_c('i',{staticClass:" up-icon fa fa-list"})])],1),_vm._v(" "),_c('span',{on:{"click":function($event){_vm.activeTable(false)}}},[_c('mdb-btn',{attrs:{"tag":"a","color":"success","floating":""}},[_c('i',{staticClass:"up-icon fa fa-th"})])],1)])],1)]),_vm._v(" "),(!_vm.loader)?_c('div',[(_vm.viewProducts)?_c('div',{staticClass:"row"},[_c('div',{staticClass:"col-md-12"},[_c('div',{staticClass:"card p-3"},[_c('mdb-datatable',{attrs:{"data":_vm.states,"striped":"","bordered":"","searching":false}})],1)])]):_vm._e(),_vm._v(" "),(!_vm.viewProducts)?_c('div',{staticClass:"row"},_vm._l((_vm.states.rows),function(state){return _c('div',{key:state.name,staticClass:"col-md-3 my-3"},[_c('productsViewBig',{attrs:{"state":state}})],1)})):_vm._e()]):_c('div',{staticClass:"py-5 row"},[_c('div',{staticClass:"col-md-12  text-center"},[_c('img',{staticClass:"img-fluid text-center",attrs:{"src":"/static/img/images/loader.gif","alt":""}})])])],1)],1)])}
 var staticRenderFns = []
 var esExports = { render: render, staticRenderFns: staticRenderFns }
 /* harmony default export */ __webpack_exports__["a"] = (esExports);
@@ -47868,7 +47519,7 @@ var Component = normalizeComponent(
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_addProductForm_vue__ = __webpack_require__(450);
 /* unused harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_25c4d383_hasScoped_true_transformToRequire_video_src_poster_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_addProductForm_vue__ = __webpack_require__(1176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4b3d4ff2_hasScoped_true_transformToRequire_video_src_poster_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_addProductForm_vue__ = __webpack_require__(1176);
 function injectStyle (ssrContext) {
   __webpack_require__(1130)
 }
@@ -47883,12 +47534,12 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-25c4d383"
+var __vue_scopeId__ = "data-v-4b3d4ff2"
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 var Component = normalizeComponent(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_addProductForm_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_25c4d383_hasScoped_true_transformToRequire_video_src_poster_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_addProductForm_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4b3d4ff2_hasScoped_true_transformToRequire_video_src_poster_source_src_img_src_image_xlink_href_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_addProductForm_vue__["a" /* default */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -48733,4 +48384,4 @@ var store = {
 
 /***/ })
 ],[473]);
-//# sourceMappingURL=app.41b4b042d497b4daf999.js.map
+//# sourceMappingURL=app.df9d97b37197bcb91bb1.js.map

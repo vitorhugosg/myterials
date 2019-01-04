@@ -7,7 +7,40 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
 
-
+    protected $fillable = [
+        'name',
+        'created_at',
+        'updated_at',
+        'company_id',
+        'collection_id',
+        'bought_uofm_id',
+        'sold_uofm_id',
+        'width',
+        'length',
+        'heigth',
+        'volume',
+        'own_sku',
+        'status',
+        'type_product_id',
+        'profile_id',
+        'grade_id',
+        'moisture_id',
+        'material_type_id',
+        'hazard_id',
+        'volume_type_id',
+        'finish_id',
+        'supplier_sku',
+        'hs_code',
+        'upc_code',
+        'barcode',
+        'qrcode',
+        'uofm_width',
+        'uofm_height',
+        'uofm_lenght',
+        'uofm_volume',
+        'net_weight',
+        'gross_weight'
+    ];
     protected $table = 'products';
 
     //ONE TO MANY

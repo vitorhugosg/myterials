@@ -583,7 +583,7 @@
             },
             //pegando valor volume type
             getSelectVolumeType(value){
-                this.form.volume = value
+                this.form.volume_type = value
             },
             //colocando collection na categoria
             getCategoryInCollection(value){
@@ -794,6 +794,8 @@
                     }).then((result) => {
                       if (result.value) {
                         this.continueImage = true;
+                      }else{
+                        this.continueImage = false;
                       }
                     });
                     if(this.continueImage == true){
@@ -807,9 +809,18 @@
                     }
                 }).then(response =>{
                     if(response.data.status){
-                        console.log();
+                        this.$swal(
+                          'Good job!',
+                          'Your product is add!',
+                          'success'
+                        );
+                        this.$router.push('/admin/company/products/'+this.$route.params.idCompany);
                     }else{
-                        this.errorValidation = 'Error get informations for organizations';
+                        this.$swal({
+                          type: 'error',
+                          title: 'Oops...',
+                          text: response.data.message
+                        })
                     }
                 }).catch(e => {
                     console.log(e)
@@ -866,6 +877,7 @@
                 this.errors.lenght = 'Please, choose your lenght'
                 return false;
             }
+            
             if(this.form.volume == false || this.form.volume ==''){
                 this.errors.volume = 'Please, choose your volume'
                 return false;
@@ -914,7 +926,7 @@
                 width: '',
                 height: '',
                 lenght: '',
-                volume: '',
+                volume_type: '',
                 uofmWidth: '',
                 uofmHeight: '',
                 uofmVolume: '',
