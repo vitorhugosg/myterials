@@ -63,8 +63,10 @@ class products extends Controller
             if(!empty($products['volume_type'])){
                 $products[$key]['volume_type'] = Finish_Product::where('id', $products[$key]['volume_type'])->first()['name'];
             }
+
             $products[$key]['category'] = Category::where('id', $products[$key]['category_id'])->first()['name'];
             $products[$key]['collection'] = Collection::where('id', $products[$key]['collection_id'])->first()['name'];
+            $products[$key]['images'] = Images_Products::where('products_id', $products[$key]['id'])->get();
         }
         return [
             'status'=>true,
@@ -116,6 +118,7 @@ class products extends Controller
         //Company collection
         $product['company_id'] = $idCompany;
         $product['collection_id'] = $data['form']['collection'];
+        $product['category_id'] = $data['form']['category'];
 
         //Auxiliares
 

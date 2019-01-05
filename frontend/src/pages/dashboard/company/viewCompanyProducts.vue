@@ -39,8 +39,8 @@
                         </div>
                     </div>
                     <div class="row" v-if="!viewProducts">
-                        <div class="col-md-3 my-3" v-for="state in states.rows" :key="state.name">
-                            <productsViewBig :state="state"></productsViewBig>
+                        <div class="col-md-3 my-3" v-for="product in products" :key="product.id">
+                            <productsViewBig :state="product"></productsViewBig>
                         </div>
                     </div>
                 </div>
@@ -78,7 +78,21 @@ export default {
                 console.log(response.data);
                 if (response.data.status) {
                     this.products = response.data.products;
-                    this.statesData =  response.data.products;
+                    var i = 0;
+
+                    for (var product of response.data.products) {
+                        this.statesData[i] = {
+                            id: product.id,
+                            name: product.name,
+                            collection: product.collection,
+                            category: product.category,
+                            status: product.status,
+                            created_at: product.created_at,
+                            updated_at: product.updated_at
+                        }
+                        ++i;
+                    }
+                    
                     this.states.rows = this.statesData
                     this.loader = false;
                 }

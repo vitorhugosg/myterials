@@ -9,7 +9,7 @@
                     <h4 class="h4-responsive text-center">Collection</h4>    
                 </div>
             </div>
-            <hr>
+            <!-- <hr>
             <div class="row mb-3">
                 <div class="col-md-12">
                     <mdb-btn tag="a" color="success" floating><i class="fa fa-plus" aria-hidden="true"></i></mdb-btn>
@@ -26,10 +26,10 @@
                     <mdb-switch class="p-1" checked />
                     <mdb-switch class="p-1" checked />
                 </div>
-            </div>
+            </div> -->
 
 
-            <!-- <div class="row">
+            <div class="row">
                 <div class="col-md-12" v-if="loader == false">
                     <p class="h6 text-center">Active</p>
                     <div class="row">
@@ -59,9 +59,9 @@
                     <img class="img-fluid text-center" src="/static/img/images/loader.gif" alt="">
                 </div>
             </div>
-            <hr> -->
+            <hr>
             <!-- Subscription form -->
-       <!--      <div class="row">
+            <div class="row">
                 <div class="col-md-12">
                     
                     
@@ -73,7 +73,7 @@
                     </div>
 
                     
-                </div> -->
+                </div>
             </div>
             <!-- Subscription form -->
             
